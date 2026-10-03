@@ -113,77 +113,77 @@ const Store = {
 
     if (this.products.length === 0) {
       grid.innerHTML = `
-        <div class="col-span-full text-center py-16 text-gray-400">
-          <p class="text-base font-serif-luxury text-[#E5C378]">No fragrances found in this category.</p>
-          <button onclick="Store.setCategory('All')" class="mt-4 px-5 py-2 rounded-xl gradient-gold-btn text-black text-xs font-bold font-serif-luxury">View Entire Collection</button>
+        <div class="col-span-full text-center py-16 text-gray-500">
+          <p class="text-base font-bold text-gray-800">No fragrances found in this category.</p>
+          <button onclick="Store.setCategory('All')" class="mt-4 px-5 py-2 rounded-xl bg-gray-900 text-white text-xs font-bold shadow-md">View Entire Collection</button>
         </div>
       `;
       return;
     }
 
     grid.innerHTML = this.products.map(p => {
-      const discountPercent = Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100);
+      const discountPercent = p.comparePrice ? Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100) : 0;
       return `
-        <div class="product-card bg-[#0F0F14] rounded-2xl p-4 glow-border flex flex-col justify-between group relative overflow-hidden transition-all duration-300">
+        <div class="product-card bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
           ${p.badge ? `
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#C5A059] text-black shadow-md font-mono">${p.badge}</span>
+            <div class="absolute top-1.5 left-1.5 sm:top-2.5 sm:left-2.5 z-10">
+              <span class="text-[7px] sm:text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-gray-900 text-white shadow-sm">${p.badge}</span>
             </div>
           ` : ''}
 
           <!-- Visual Tin / Perfume Graphic with Zoom -->
-          <a href="/product.html?id=${p.id}" class="product-image-container w-full h-52 rounded-xl bg-gradient-to-b ${p.gradient || 'from-[#171720] to-[#0A0A0E]'} border border-white/5 flex flex-col items-center justify-center relative p-3 group-hover:border-[#C5A059]/40 transition-all cursor-pointer overflow-hidden">
+          <a href="/product.html?id=${p.id}" class="product-image-container w-full h-24 sm:h-44 md:h-48 rounded-lg sm:rounded-xl bg-gradient-to-b from-gray-50 to-gray-100/80 border border-gray-100 flex flex-col items-center justify-center relative p-1 sm:p-2 group-hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
             ${p.image ? `
-              <img src="${p.image}" alt="${p.title}" class="w-full h-40 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="if(this.src!=='${p.localImage || ''}' && '${p.localImage || ''}'){this.src='${p.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
-              <div class="perfume-graphic w-28 h-28 rounded-full border-2 border-[#C5A059]/70 bg-[#14120C] hidden flex-col items-center justify-center shadow-xl">
-                <span class="text-[8px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-                <span class="text-xs font-bold font-serif-luxury text-[#F7EBD0] text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
-                <span class="text-[9px] font-bold text-[#C5A059] font-serif-luxury">${p.title.split(' ')[1] || 'PERFUME'}</span>
+              <img src="${p.image}" alt="${p.title}" class="w-full h-20 sm:h-36 md:h-40 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="if(this.src!=='${p.localImage || ''}' && '${p.localImage || ''}'){this.src='${p.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
+              <div class="perfume-graphic w-16 h-16 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white hidden flex-col items-center justify-center shadow-md">
+                <span class="text-[7px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
+                <span class="text-[9px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
+                <span class="text-[8px] sm:text-[9px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
               </div>
             ` : `
-              <div class="perfume-graphic w-28 h-28 rounded-full border-2 border-[#C5A059]/70 bg-[#14120C] flex flex-col items-center justify-center shadow-xl group-hover:shadow-[0_0_25px_rgba(229,195,120,0.3)]">
-                <span class="text-[8px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-                <span class="text-xs font-bold font-serif-luxury text-[#F7EBD0] text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
-                <span class="text-[9px] font-bold text-[#C5A059] font-serif-luxury">${p.title.split(' ')[1] || 'PERFUME'}</span>
+              <div class="perfume-graphic w-16 h-16 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white flex flex-col items-center justify-center shadow-md">
+                <span class="text-[7px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
+                <span class="text-[9px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
+                <span class="text-[8px] sm:text-[9px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
               </div>
             `}
-            <span class="absolute bottom-2 text-[10px] text-gray-300 font-mono tracking-tight bg-black/70 px-2 py-0.5 rounded-full border border-white/10 backdrop-blur-sm">${p.weight || '18g'} &bull; ${p.category}</span>
+            <span class="hidden sm:inline-block absolute bottom-1.5 text-[9px] text-gray-600 font-mono tracking-tight bg-white/95 px-2 py-0.5 rounded-full border border-gray-200 backdrop-blur-sm">${p.weight || '18g'} &bull; ${p.category}</span>
           </a>
 
           <!-- Details -->
-          <div class="mt-4 space-y-2">
-            <div class="flex items-center justify-between text-xs">
-              <div class="flex items-center text-[#E5C378]">
-                ★★★★★ <span class="text-gray-400 text-[10px] ml-1">(${p.reviewCount || 40})</span>
+          <div class="mt-1.5 sm:mt-2.5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-[8px] sm:text-xs text-amber-500 font-semibold">
+                <span>★ 5.0 <span class="text-gray-400 font-normal">(${p.reviewCount || 40})</span></span>
+                <span class="hidden sm:inline text-gray-500 font-mono text-[10px]">${p.longevity || '8+ Hours'}</span>
               </div>
-              <span class="text-[11px] text-gray-400 font-mono">${p.longevity || '8+ Hours'}</span>
+
+              <a href="/product.html?id=${p.id}" class="block mt-0.5 sm:mt-1">
+                <h3 class="text-[11px] sm:text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1 leading-snug">
+                  ${p.title}
+                </h3>
+              </a>
+
+              <p class="hidden sm:block text-[11px] text-gray-500 line-clamp-1 leading-relaxed mt-0.5">
+                ${p.subtitle || p.description}
+              </p>
             </div>
 
-            <a href="/product.html?id=${p.id}" class="block">
-              <h3 class="text-base font-bold font-serif-luxury text-white group-hover:text-[#F7EBD0] transition-colors line-clamp-1">
-                ${p.title}
-              </h3>
-            </a>
-
-            <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed">
-              ${p.subtitle || p.description}
-            </p>
-
-            <div class="flex items-baseline gap-2 pt-1">
-              <span class="text-base font-extrabold text-[#F7EBD0]">₹${p.price}</span>
-              ${p.comparePrice ? `<span class="text-xs text-gray-500 line-through font-mono">₹${p.comparePrice}</span>` : ''}
-              ${discountPercent > 0 ? `<span class="text-[10px] text-green-400 font-semibold font-mono">${discountPercent}% OFF</span>` : ''}
+            <div class="flex items-baseline gap-1 sm:gap-2 pt-1 sm:pt-2">
+              <span class="text-xs sm:text-base font-extrabold text-gray-900">₹${p.price}</span>
+              ${p.comparePrice ? `<span class="text-[9px] sm:text-xs text-gray-400 line-through font-mono">₹${p.comparePrice}</span>` : ''}
+              ${discountPercent > 0 ? `<span class="hidden sm:inline text-[10px] text-emerald-600 font-bold font-mono">${discountPercent}% OFF</span>` : ''}
             </div>
           </div>
 
           <!-- Action buttons with Fly To Cart Trigger -->
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-2">
-            <button onclick="Store.addToCartWithAnimation('${p.id}', event)" class="add-to-cart-btn flex-1 py-2.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase tracking-wider font-serif-luxury flex items-center justify-center gap-1.5 shadow-md">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-              <span>Add to Bag</span>
+          <div class="mt-1.5 sm:mt-2.5 pt-1.5 sm:pt-2 border-t border-gray-100 flex items-center gap-1.5">
+            <button onclick="Store.addToCartWithAnimation('${p.id}', event)" class="add-to-cart-btn flex-1 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all active:scale-95">
+              <svg class="w-3 h-3 hidden sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              <span>+ Add</span>
             </button>
-            <button onclick="Store.openQuickView('${p.id}')" class="p-2.5 rounded-xl bg-[#161622] border border-white/10 hover:border-[#C5A059] text-gray-300 hover:text-[#E5C378] transition-colors" title="Quick View">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            <button onclick="Store.openQuickView('${p.id}')" class="hidden sm:flex p-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-gray-400 text-gray-700 hover:text-black transition-colors" title="Quick View">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             </button>
           </div>
         </div>
@@ -196,9 +196,9 @@ const Store = {
     
     document.querySelectorAll('.cat-tab-btn').forEach(btn => {
       if (btn.dataset.category === cat) {
-        btn.className = "cat-tab-btn px-4 py-2 rounded-xl bg-[#C5A059] text-black font-bold text-xs uppercase tracking-wider font-serif-luxury shadow-md shadow-[#C5A059]/30 transition-all";
+        btn.className = "cat-tab-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-900 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all whitespace-nowrap";
       } else {
-        btn.className = "cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all";
+        btn.className = "cat-tab-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-white border border-gray-200 text-gray-700 hover:border-gray-400 text-xs uppercase tracking-wider transition-all whitespace-nowrap";
       }
     });
 
@@ -377,29 +377,29 @@ const Store = {
       document.getElementById('cart-checkout-btn')?.setAttribute('disabled', 'true');
     } else {
       cartItemsContainer.innerHTML = this.cart.map(item => `
-        <div class="flex items-center justify-between p-3.5 rounded-xl bg-[#12121A] border border-white/5 hover:border-[#C5A059]/30 transition-all">
+        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all">
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-lg bg-black/60 border border-[#C5A059]/40 flex items-center justify-center overflow-hidden flex-shrink-0">
+            <div class="w-12 h-12 rounded-lg bg-white border border-gray-200 p-1 flex items-center justify-center overflow-hidden flex-shrink-0">
               ${item.image ? `
-                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain p-0.5" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';">
-                <span class="font-bold text-xs text-[#E5C378] font-serif-luxury hidden">Z</span>
+                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';">
+                <span class="font-bold text-xs text-gray-900 hidden">Z</span>
               ` : `
-                <span class="font-bold text-xs text-[#E5C378] font-serif-luxury">Z</span>
+                <span class="font-bold text-xs text-gray-900">Z</span>
               `}
             </div>
             <div>
-              <p class="text-xs font-bold text-white line-clamp-1">${item.title}</p>
-              <p class="text-[11px] text-gray-400 font-mono">${item.weight} &bull; ₹${item.price} each</p>
-              <div class="flex items-center gap-2 mt-1.5">
-                <button onclick="Store.updateQuantity('${item.productId}', -1)" class="w-5 h-5 rounded bg-black/60 border border-white/10 text-xs flex items-center justify-center text-gray-300 hover:text-white">-</button>
-                <span class="text-xs font-bold text-[#F7EBD0] px-1">${item.quantity}</span>
-                <button onclick="Store.updateQuantity('${item.productId}', 1)" class="w-5 h-5 rounded bg-black/60 border border-white/10 text-xs flex items-center justify-center text-gray-300 hover:text-white">+</button>
+              <p class="text-xs font-bold text-gray-900 line-clamp-1">${item.title}</p>
+              <p class="text-[11px] text-gray-500 font-mono">${item.weight} &bull; ₹${item.price} each</p>
+              <div class="flex items-center gap-1.5 mt-1.5">
+                <button onclick="Store.updateQuantity('${item.productId}', -1)" class="w-5 h-5 rounded bg-white border border-gray-300 text-xs flex items-center justify-center text-gray-700 hover:bg-gray-100 font-bold">-</button>
+                <span class="text-xs font-bold text-gray-900 px-1 font-mono">${item.quantity}</span>
+                <button onclick="Store.updateQuantity('${item.productId}', 1)" class="w-5 h-5 rounded bg-white border border-gray-300 text-xs flex items-center justify-center text-gray-700 hover:bg-gray-100 font-bold">+</button>
               </div>
             </div>
           </div>
           <div class="text-right space-y-1">
-            <p class="text-xs font-bold text-[#F7EBD0]">₹${item.price * item.quantity}</p>
-            <button onclick="Store.removeFromCart('${item.productId}')" class="text-[10px] text-red-400 hover:underline">Remove</button>
+            <p class="text-xs font-extrabold text-gray-900">₹${item.price * item.quantity}</p>
+            <button onclick="Store.removeFromCart('${item.productId}')" class="text-[10px] text-red-500 hover:underline">Remove</button>
           </div>
         </div>
       `).join('');
@@ -424,46 +424,46 @@ const Store = {
 
     content.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-        <div class="h-64 rounded-2xl bg-gradient-to-b ${product.gradient || 'from-[#181822] to-[#0A0A0E]'} border border-[#C5A059]/40 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+        <div class="h-64 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col items-center justify-center p-4 relative overflow-hidden">
           ${product.image ? `
-            <img src="${product.image}" alt="${product.title}" class="w-full h-48 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]" onerror="if(this.src!=='${product.localImage || ''}' && '${product.localImage || ''}'){this.src='${product.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
-            <div class="w-32 h-32 rounded-full border-4 border-[#C5A059] bg-[#16130B] hidden flex-col items-center justify-center shadow-2xl">
+            <img src="${product.image}" alt="${product.title}" class="w-full h-48 object-contain drop-shadow-sm" onerror="if(this.src!=='${product.localImage || ''}' && '${product.localImage || ''}'){this.src='${product.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
+            <div class="w-32 h-32 rounded-full border-2 border-gray-300 bg-white hidden flex-col items-center justify-center shadow-md">
               <span class="text-[9px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-              <span class="text-sm font-bold font-serif-luxury text-[#F7EBD0] text-center px-1">${product.title.split(' ')[0]}</span>
-              <span class="text-xs font-bold text-white font-serif-luxury">${product.title.split(' ')[1] || ''}</span>
+              <span class="text-sm font-bold text-gray-900 text-center px-1">${product.title.split(' ')[0]}</span>
+              <span class="text-xs font-bold text-blue-600">${product.title.split(' ')[1] || ''}</span>
             </div>
           ` : `
-            <div class="w-32 h-32 rounded-full border-4 border-[#C5A059] bg-[#16130B] flex flex-col items-center justify-center shadow-2xl">
+            <div class="w-32 h-32 rounded-full border-2 border-gray-300 bg-white flex flex-col items-center justify-center shadow-md">
               <span class="text-[9px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-              <span class="text-sm font-bold font-serif-luxury text-[#F7EBD0] text-center px-1">${product.title.split(' ')[0]}</span>
-              <span class="text-xs font-bold text-white font-serif-luxury">${product.title.split(' ')[1] || ''}</span>
+              <span class="text-sm font-bold text-gray-900 text-center px-1">${product.title.split(' ')[0]}</span>
+              <span class="text-xs font-bold text-blue-600">${product.title.split(' ')[1] || ''}</span>
             </div>
           `}
-          <p class="text-xs text-gray-300 font-mono mt-2 bg-black/70 px-3 py-0.5 rounded-full border border-white/10">${product.weight} &bull; 100% Alcohol-Free</p>
+          <p class="text-xs text-gray-600 font-mono mt-2 bg-white/90 px-3 py-0.5 rounded-full border border-gray-200">${product.weight} &bull; 100% Alcohol-Free</p>
         </div>
         <div class="space-y-4">
           <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#C5A059] text-black font-mono">${product.badge || 'LUXURY'}</span>
-            <h3 class="text-xl font-bold font-serif-luxury text-white mt-2">${product.title}</h3>
-            <p class="text-xs text-[#E5C378] font-serif-luxury">${product.subtitle || ''}</p>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-900 text-white font-mono">${product.badge || 'LUXURY'}</span>
+            <h3 class="text-xl font-bold text-gray-900 mt-2">${product.title}</h3>
+            <p class="text-xs text-gray-500">${product.subtitle || ''}</p>
           </div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-black text-[#F7EBD0]">₹${product.price}</span>
-            <span class="text-sm text-gray-500 line-through font-mono">₹${product.comparePrice}</span>
+            <span class="text-2xl font-black text-gray-900">₹${product.price}</span>
+            <span class="text-sm text-gray-400 line-through font-mono">₹${product.comparePrice}</span>
           </div>
-          <p class="text-xs text-gray-300 leading-relaxed">${product.description}</p>
+          <p class="text-xs text-gray-600 leading-relaxed">${product.description}</p>
           
-          <div class="bg-[#12121A] p-3 rounded-xl border border-white/5 text-xs space-y-1">
-            <p><strong class="text-[#E5C378]">Top:</strong> ${product.topNotes || 'Citrus, Amber'}</p>
-            <p><strong class="text-[#E5C378]">Heart:</strong> ${product.heartNotes || 'Cedarwood, Spices'}</p>
-            <p><strong class="text-[#E5C378]">Base:</strong> ${product.baseNotes || 'Pure Musk, Oudh'}</p>
+          <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1">
+            <p><strong class="text-gray-900">Top:</strong> ${product.topNotes || 'Citrus, Amber'}</p>
+            <p><strong class="text-gray-900">Heart:</strong> ${product.heartNotes || 'Cedarwood, Spices'}</p>
+            <p><strong class="text-gray-900">Base:</strong> ${product.baseNotes || 'Pure Musk, Oudh'}</p>
           </div>
 
           <div class="flex gap-3 pt-2">
-            <button onclick="Store.addToCart('${product.id}', 1, true); Store.closeQuickView();" class="flex-1 py-3 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury">
+            <button onclick="Store.addToCart('${product.id}', 1, true); Store.closeQuickView();" class="flex-1 py-3 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-xs uppercase shadow-md transition-all">
               Add To Bag &bull; ₹${product.price}
             </button>
-            <a href="/product.html?id=${product.id}" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-200 text-xs font-semibold hover:border-[#C5A059]">
+            <a href="/product.html?id=${product.id}" class="px-4 py-3 rounded-xl bg-white border border-gray-300 text-gray-700 hover:border-gray-900 text-xs font-semibold">
               Full Notes
             </a>
           </div>

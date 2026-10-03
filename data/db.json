@@ -509,40 +509,34 @@
     {
       "id": "ZP-2573",
       "createdAt": "2026-10-03T10:02:53.812Z",
-      "orderStatus": "Processing",
+      "orderStatus": "Delivered",
       "paymentStatus": "Paid (Verified via UTR)",
       "courierName": "BlueDart Express",
       "trackingNumber": "AWB-4781520041",
       "statusHistory": [
         {
-          "status": "Order Submitted",
+          "status": "Order Placed",
           "time": "03 Oct, 15:32",
           "completed": true,
           "current": false
         },
         {
-          "status": "Bank UPI Verified",
+          "status": "Packed & Quality Checked",
           "time": "03 Oct, 15:32 by Zaid Admin",
           "completed": true,
           "current": false
         },
         {
-          "status": "Packed & Quality Checked",
-          "time": "In Progress",
-          "completed": false,
-          "current": true
-        },
-        {
           "status": "In Transit (Dispatched)",
-          "time": "Pending",
-          "completed": false,
+          "time": "In Progress",
+          "completed": true,
           "current": false
         },
         {
           "status": "Delivered",
-          "time": "Pending",
-          "completed": false,
-          "current": false
+          "time": "03 Oct, 17:32",
+          "completed": true,
+          "current": true
         }
       ],
       "utrNumber": "970223824130",

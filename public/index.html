@@ -7,45 +7,45 @@
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="stylesheet" href="/css/luxury-glow.css">
 </head>
-<body class="min-h-screen bg-[#08080A] text-[#F4F4F5] antialiased">
+<body class="min-h-screen bg-[#F8F9FA] text-[#0F172A] antialiased">
 
   <!-- 1. ANNOUNCEMENT BAR (TOP) -->
-  <div class="bg-gradient-to-r from-[#8F7035] via-[#C5A059] to-[#8F7035] text-black py-2 px-4 text-center text-xs md:text-sm font-semibold tracking-wide shadow-md flex items-center justify-between">
-    <span class="hidden sm:inline text-xs font-mono bg-black/20 text-black px-2.5 py-0.5 rounded font-bold">LIMITED TIME</span>
-    <div class="flex-1 text-center font-serif-luxury" id="announcement-text">
-      🌙 LUXURY IN YOUR POCKET: FREE SHIPPING ON ALL SOLID PERFUMES | CODE: <strong class="underline font-bold">ZAIDFIRST</strong>
+  <div class="bg-[#0F172A] text-white py-2 px-3 text-center text-xs sm:text-sm font-medium tracking-wide shadow-sm flex items-center justify-between">
+    <span class="hidden sm:inline text-[11px] font-mono bg-white/10 text-white px-2.5 py-0.5 rounded font-bold">LIMITED TIME</span>
+    <div class="flex-1 text-center font-heading text-xs sm:text-sm" id="announcement-text">
+      🌙 LUXURY IN YOUR POCKET: FREE SHIPPING ON ALL SOLID PERFUMES | CODE: <strong class="underline font-bold text-amber-300">ZAIDFIRST</strong>
     </div>
-    <span class="hidden sm:inline text-xs text-black/90 font-mono font-bold">100% ALCOHOL-FREE</span>
+    <span class="hidden sm:inline text-[11px] text-gray-300 font-mono font-bold">100% ALCOHOL-FREE</span>
   </div>
 
   <!-- 2. LUXURY NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#09090C]/95 backdrop-blur-md border-b border-[#C5A059]/25 shadow-xl transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
       
       <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl gradient-gold-bg flex items-center justify-center text-black font-bold font-serif-luxury text-lg shadow-lg shadow-[#C5A059]/30 group-hover:scale-105 transition-transform duration-300">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center text-white font-extrabold font-heading text-lg shadow-sm group-hover:scale-105 transition-transform duration-300">
           Z
         </div>
         <div>
-          <span class="text-xl md:text-2xl font-bold font-serif-luxury tracking-widest gradient-gold-text">
+          <span class="text-lg sm:text-2xl font-extrabold font-heading tracking-tight text-gray-900">
             ZAID'S PERFUMES
           </span>
-          <span class="block text-[9px] text-gray-400 tracking-wider uppercase font-mono">Artisanal Solid Colognes</span>
+          <span class="block text-[9px] text-gray-500 tracking-wider uppercase font-medium">Artisanal Solid Colognes</span>
         </div>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-gray-300 font-medium">
-        <button onclick="Store.setCategory('All')" class="hover:text-[#F7EBD0] transition-colors">All Scents</button>
-        <button onclick="Store.setCategory('Solid Perfumes')" class="hover:text-[#F7EBD0] transition-colors">Solid Perfumes</button>
-        <button onclick="Store.setCategory('Royal Oudhs')" class="hover:text-[#F7EBD0] transition-colors">Royal Oudh</button>
-        <button onclick="Store.setCategory('Fresh & Aquatic')" class="hover:text-[#F7EBD0] transition-colors">Aquatics</button>
-        <button onclick="Store.setCategory('Gift Combos')" class="hover:text-[#F7EBD0] transition-colors">Gift Sets</button>
+      <nav class="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider text-gray-600 font-semibold">
+        <button onclick="Store.setCategory('All')" class="hover:text-black transition-colors">All Scents</button>
+        <button onclick="Store.setCategory('Solid Perfumes')" class="hover:text-black transition-colors">Signature Solids</button>
+        <button onclick="Store.setCategory('Royal Oudhs')" class="hover:text-black transition-colors">Royal Oudh</button>
+        <button onclick="Store.setCategory('Fresh & Aquatic')" class="hover:text-black transition-colors">Aquatics</button>
+        <button onclick="Store.setCategory('Gift Combos')" class="hover:text-black transition-colors">Gift Sets</button>
       </nav>
 
       <!-- Actions: Search, Customer Account, Cart -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5">
         
         <!-- Search Input -->
         <div class="relative hidden sm:block">
@@ -53,129 +53,129 @@
             type="text" 
             placeholder="Search scents..." 
             oninput="Store.handleSearch(this.value)" 
-            class="bg-[#12121A] border border-white/10 rounded-xl px-3.5 py-1.5 text-xs text-gray-200 placeholder-gray-500 w-44 focus:w-60 focus:border-[#C5A059] focus:outline-none transition-all duration-300"
+            class="bg-gray-100 border border-gray-200 rounded-xl px-3.5 py-1.5 text-xs text-gray-800 placeholder-gray-400 w-36 sm:w-48 focus:w-60 focus:bg-white focus:border-gray-900 focus:outline-none transition-all duration-300"
           >
           <span class="absolute right-3 top-2 text-gray-400 text-xs">🔍</span>
         </div>
 
         <!-- Customer Portal Button -->
-        <a href="/account.html" class="p-2 rounded-xl bg-[#12121A] border border-white/10 hover:border-[#C5A059]/50 text-gray-300 hover:text-[#E5C378] transition-all flex items-center gap-1.5 text-xs" title="Track Order & My Account">
+        <a href="/account.html" class="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 border border-gray-200 text-gray-700 hover:text-black transition-all flex items-center gap-1.5 text-xs font-medium" title="Track Order & My Account">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-          <span class="hidden md:inline font-medium">Track Order</span>
+          <span class="hidden md:inline">Track Order</span>
         </a>
 
         <!-- Cart Button (Target for Fly-to-Cart Animation) -->
-        <button id="cart-btn-nav" onclick="Store.openCart()" class="relative px-3.5 py-2 rounded-xl gradient-gold-btn text-black font-semibold text-xs flex items-center gap-2 shadow-lg shadow-[#C5A059]/20 transition-transform">
+        <button id="cart-btn-nav" onclick="Store.openCart()" class="relative px-3.5 py-2 rounded-xl bg-gray-900 hover:bg-black text-white font-semibold text-xs flex items-center gap-2 shadow-sm transition-transform active:scale-95">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="font-bold font-serif-luxury">Bag</span>
-          <span id="cart-badge-count" class="bg-black text-[#F7EBD0] text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+          <span class="font-bold font-heading">Bag</span>
+          <span id="cart-badge-count" class="bg-white text-gray-900 text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
         </button>
 
       </div>
     </div>
   </header>
 
-  <!-- 3. INFINITE MARQUEE TICKER (thedmf.shop style) -->
-  <div class="bg-[#101017] border-y border-[#C5A059]/20 py-2.5 overflow-hidden">
-    <div class="marquee-container text-xs font-serif-luxury tracking-widest text-[#E5C378]/90">
+  <!-- 3. INFINITE MARQUEE TICKER -->
+  <div class="bg-white border-y border-gray-200 py-2.5 overflow-hidden">
+    <div class="marquee-container text-xs font-semibold tracking-wider text-gray-600 font-heading">
       <div class="marquee-content flex items-center gap-8 px-4">
-        <span>✨ 100% ORGANIC BEESWAX & SHEA BUTTER</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>🌿 100% ALCOHOL-FREE (NO SKIN IRRITATION)</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>⏳ 8+ HOURS LASTING CLOSE-TO-SKIN SILLAGE</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>🛡️ POCKET-FRIENDLY ZERO LEAKAGE TINS</span>
-        <span class="text-gray-500">&bull;</span>
+        <span>🌿 100% ORGANIC BEESWAX & SHEA BUTTER</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>✨ 100% ALCOHOL-FREE (ZERO IRRITATION)</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>⏳ 8+ HOURS LASTING SKIN SILLAGE</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>🛡️ POCKET-FRIENDLY LEAKPROOF TINS</span>
+        <span class="text-gray-300">&bull;</span>
         <span>🚚 FREE EXPRESS DELIVERY ACROSS INDIA ABOVE ₹499</span>
-        <span class="text-gray-500">&bull;</span>
+        <span class="text-gray-300">&bull;</span>
         <span>👑 ROYAL ARABIAN EXTRAITS DE PARFUM</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>✨ 100% ORGANIC BEESWAX & SHEA BUTTER</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>🌿 100% ALCOHOL-FREE (NO SKIN IRRITATION)</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>⏳ 8+ HOURS LASTING CLOSE-TO-SKIN SILLAGE</span>
-        <span class="text-gray-500">&bull;</span>
-        <span>🛡️ POCKET-FRIENDLY ZERO LEAKAGE TINS</span>
-        <span class="text-gray-500">&bull;</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>🌿 100% ORGANIC BEESWAX & SHEA BUTTER</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>✨ 100% ALCOHOL-FREE (ZERO IRRITATION)</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>⏳ 8+ HOURS LASTING SKIN SILLAGE</span>
+        <span class="text-gray-300">&bull;</span>
+        <span>🛡️ POCKET-FRIENDLY LEAKPROOF TINS</span>
+        <span class="text-gray-300">&bull;</span>
         <span>🚚 FREE EXPRESS DELIVERY ACROSS INDIA ABOVE ₹499</span>
       </div>
     </div>
   </div>
 
   <!-- 4. HERO SECTION -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-12">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#12121A] via-[#09090C] to-[#16130B] border border-[#C5A059]/30 p-8 md:p-14 shadow-2xl glow-gold-sm">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-8">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] border border-slate-700/60 p-6 md:p-12 shadow-xl text-white">
       
       <!-- Subtle Ambient Glow -->
-      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#C5A059]/10 blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#E5C378]/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A059]/10 border border-[#C5A059]/40 text-[#F7EBD0] text-xs font-semibold tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-[#C5A059] animate-ping"></span>
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-gray-200 text-xs font-semibold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             PURE HANDCRAFTED SOLID PERFUMES
           </div>
           
-          <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold font-serif-luxury leading-tight">
+          <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold font-heading leading-tight text-white tracking-tight">
             The Essence of <br>
-            <span class="gradient-gold-text glow-text-gold">Pure Distinction.</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-gray-200">Pure Distinction.</span>
           </h1>
 
           <p class="text-sm md:text-base text-gray-300 max-w-xl leading-relaxed">
             Pocket-friendly solid colognes handcrafted with organic beeswax, shea butter, and royal fragrance extracts. Alcohol-free, 8+ hours lingering skin sillage, and TSA travel-safe.
           </p>
 
-          <div class="flex flex-wrap items-center gap-4 pt-2">
-            <button onclick="document.getElementById('catalog-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase tracking-wider font-serif-luxury shadow-lg shadow-[#C5A059]/30">
-              Explore Collection
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button onclick="document.getElementById('catalog-section').scrollIntoView({ behavior: 'smooth' })" class="px-6 py-3 rounded-xl bg-white hover:bg-gray-100 text-gray-900 font-bold text-xs uppercase tracking-wider font-heading shadow-md transition-all active:scale-95">
+              Explore Collection &darr;
             </button>
-            <button onclick="Store.addToCartWithAnimation('zp-sld-014', event)" class="px-6 py-3.5 rounded-xl bg-transparent border border-[#C5A059]/60 text-[#F7EBD0] hover:bg-[#C5A059]/10 font-bold text-xs uppercase tracking-wider font-serif-luxury transition-all">
+            <button onclick="Store.addToCartWithAnimation('zp-sld-014', event)" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider font-heading transition-all">
               ⚡ Pack of 5 Solid Perfumes (₹499)
             </button>
           </div>
 
           <!-- USPs / Badges -->
-          <div class="grid grid-cols-3 gap-3 pt-6 border-t border-white/10 text-center">
-            <div class="p-3 rounded-xl bg-black/40 border border-white/5">
-              <p class="text-[#E5C378] font-bold text-base font-serif-luxury">100%</p>
-              <p class="text-[11px] text-gray-400">Alcohol Free &bull; Skin Safe</p>
+          <div class="grid grid-cols-3 gap-2.5 pt-4 border-t border-white/10 text-center">
+            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-white font-bold text-base font-heading">100%</p>
+              <p class="text-[10px] text-gray-300">Alcohol Free &bull; Skin Safe</p>
             </div>
-            <div class="p-3 rounded-xl bg-black/40 border border-white/5">
-              <p class="text-[#E5C378] font-bold text-base font-serif-luxury">8+ Hours</p>
-              <p class="text-[11px] text-gray-400">Skin Heat Activation</p>
+            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-white font-bold text-base font-heading">8+ Hours</p>
+              <p class="text-[10px] text-gray-300">Skin Heat Activated</p>
             </div>
-            <div class="p-3 rounded-xl bg-black/40 border border-white/5">
-              <p class="text-[#E5C378] font-bold text-base font-serif-luxury">Pocket Tin</p>
-              <p class="text-[11px] text-gray-400">Zero Leakage / Shatter</p>
+            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+              <p class="text-white font-bold text-base font-heading">Pocket Tin</p>
+              <p class="text-[10px] text-gray-300">Zero Leakage / Shatter</p>
             </div>
           </div>
         </div>
 
-        <!-- HERO HIGHLIGHT PRODUCT CARD (Hawas Fire Solid Perfume @ thedmf.shop ₹179 rate) -->
+        <!-- HERO HIGHLIGHT PRODUCT CARD -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-72 sm:w-80 h-[410px] rounded-2xl bg-gradient-to-b from-[#1C110F] to-[#0A0A0E] border-2 border-[#C5A059]/50 p-6 flex flex-col justify-between shadow-2xl glow-gold-sm hover:scale-[1.02] transition-transform duration-300">
+          <div class="relative w-72 sm:w-80 h-[390px] rounded-2xl bg-white border border-gray-200 p-5 flex flex-col justify-between shadow-2xl text-gray-900 hover:scale-[1.02] transition-transform duration-300">
             <div class="flex justify-between items-start">
-              <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded bg-[#C5A059] text-black font-mono">BESTSELLER</span>
-              <span class="text-xs text-[#F7EBD0] font-serif-luxury">18g Pocket Tin</span>
+              <span class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-900 text-white font-mono">BESTSELLER</span>
+              <span class="text-xs text-gray-500 font-medium">18g Pocket Tin</span>
             </div>
             
             <a href="/product.html?id=zp-sld-001" class="my-auto flex flex-col items-center text-center group cursor-pointer">
-              <div class="w-44 h-44 rounded-2xl bg-black/40 border border-[#C5A059]/30 flex items-center justify-center p-2 relative overflow-hidden group-hover:border-[#C5A059] transition-all">
-                <img src="https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6867_2f23c2a9-349f-4a3c-8911-3480cc17200d.png?v=1789459912" alt="Hawas Fire Solid Perfume" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]" onerror="this.src='/images/products/zp-sld-001_img1.png'">
+              <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center p-2 relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                <img src="https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6867_2f23c2a9-349f-4a3c-8911-3480cc17200d.png?v=1789459912" alt="Hawas Fire Solid Perfume" class="w-full h-full object-contain drop-shadow-md" onerror="this.src='/images/products/zp-sld-001_img1.png'">
               </div>
-              <h3 class="text-base font-bold font-serif-luxury text-white mt-3 group-hover:text-[#F7EBD0] transition-colors">Hawas Fire Solid Perfume</h3>
-              <p class="text-[11px] text-gray-300 mt-0.5 font-medium">Amber &middot; Marine Salt &middot; Soft Spicy Resins</p>
+              <h3 class="text-base font-bold text-gray-900 mt-2.5 group-hover:text-blue-600 transition-colors">Hawas Fire Solid Perfume</h3>
+              <p class="text-[11px] text-gray-500 mt-0.5">Amber &middot; Marine Salt &middot; Soft Spicy Resins</p>
             </a>
 
-            <div class="flex items-center justify-between border-t border-white/10 pt-3">
+            <div class="flex items-center justify-between border-t border-gray-100 pt-3">
               <div>
-                <span class="text-xs text-gray-500 line-through font-mono">₹249</span>
-                <span class="text-2xl font-black text-[#F7EBD0] ml-1">₹179</span>
+                <span class="text-xs text-gray-400 line-through font-mono">₹249</span>
+                <span class="text-2xl font-extrabold text-gray-900 ml-1">₹179</span>
               </div>
-              <button onclick="Store.addToCartWithAnimation('zp-sld-001', event)" class="px-4 py-2.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury shadow-md flex items-center gap-1.5">
+              <button onclick="Store.addToCartWithAnimation('zp-sld-001', event)" class="px-4 py-2 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-xs uppercase shadow-sm flex items-center gap-1.5 transition-all active:scale-95">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                 <span>Add to Bag</span>
               </button>
@@ -188,66 +188,66 @@
   </section>
 
   <!-- 5. CATALOG SECTION WITH FILTER TABS -->
-  <section id="catalog-section" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-8">
+  <section id="catalog-section" class="max-w-7xl mx-auto px-2 sm:px-6 py-6 space-y-6">
     
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-4">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200/80 pb-4">
       <div>
-        <span class="text-xs uppercase tracking-widest text-[#C5A059] font-semibold font-mono">HANDCRAFTED SOLID PERFUMES & FRAGRANCES</span>
-        <h2 class="text-2xl md:text-3xl font-extrabold font-serif-luxury gradient-gold-text mt-1">
-          Explore The Scent Gallery
+        <span class="text-[11px] sm:text-xs uppercase tracking-widest text-gray-500 font-semibold font-mono">ARTISANAL SOLID PERFUMES & SCENTS</span>
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 font-display mt-0.5">
+          Explore The Collection
         </h2>
       </div>
 
-      <!-- Category Filter Pills with Smooth Transitions -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-        <button onclick="Store.setCategory('All')" data-category="All" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#C5A059] text-black font-bold text-xs uppercase tracking-wider font-serif-luxury shadow-md shadow-[#C5A059]/30 transition-all">All Solid Perfumes</button>
-        <button onclick="Store.setCategory('Solid Perfumes')" data-category="Solid Perfumes" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all whitespace-nowrap">Signature Solids</button>
-        <button onclick="Store.setCategory('Royal Oudhs')" data-category="Royal Oudhs" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all whitespace-nowrap">Royal Oudhs & Leather</button>
-        <button onclick="Store.setCategory('Fresh & Aquatic')" data-category="Fresh & Aquatic" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all whitespace-nowrap">Fresh Aquatics</button>
-        <button onclick="Store.setCategory('Champions Edition')" data-category="Champions Edition" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all whitespace-nowrap">Champions Series</button>
-        <button onclick="Store.setCategory('Gift Combos')" data-category="Gift Combos" class="cat-tab-btn px-4 py-2 rounded-xl bg-[#121218] border border-white/10 text-gray-300 hover:border-[#C5A059]/40 text-xs uppercase tracking-wider font-serif-luxury transition-all whitespace-nowrap">Multi-Pack Combos</button>
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <button onclick="Store.setCategory('All')" data-category="All" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gray-900 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all whitespace-nowrap">All Perfumes</button>
+        <button onclick="Store.setCategory('Solid Perfumes')" data-category="Solid Perfumes" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-gray-900 text-xs uppercase tracking-wider transition-all whitespace-nowrap">Signature Solids</button>
+        <button onclick="Store.setCategory('Royal Oudhs')" data-category="Royal Oudhs" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-gray-900 text-xs uppercase tracking-wider transition-all whitespace-nowrap">Royal Oudhs</button>
+        <button onclick="Store.setCategory('Fresh & Aquatic')" data-category="Fresh & Aquatic" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-gray-900 text-xs uppercase tracking-wider transition-all whitespace-nowrap">Fresh Aquatics</button>
+        <button onclick="Store.setCategory('Champions Edition')" data-category="Champions Edition" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-gray-900 text-xs uppercase tracking-wider transition-all whitespace-nowrap">Champions Series</button>
+        <button onclick="Store.setCategory('Gift Combos')" data-category="Gift Combos" class="cat-tab-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-gray-900 text-xs uppercase tracking-wider transition-all whitespace-nowrap">Gift Combos</button>
       </div>
     </div>
 
-    <!-- Product Grid -->
-    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Product Grid: 3 columns on Mobile, 3 on Tablet, 4 on Desktop -->
+    <div id="products-grid" class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6">
       <!-- Populated via store.js -->
     </div>
 
   </section>
 
   <!-- 6. WHY SOLID PERFUMES (EDUCATION SECTION) -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-    <div class="rounded-3xl bg-[#0D0D14] border border-[#C5A059]/25 p-8 md:p-12 glow-gold-sm">
-      <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
-        <h3 class="text-2xl md:text-3xl font-bold font-serif-luxury gradient-gold-text">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="rounded-3xl bg-white border border-gray-200/90 p-6 md:p-12 shadow-sm">
+      <div class="text-center max-w-2xl mx-auto space-y-2 mb-8 md:mb-10">
+        <h3 class="text-xl md:text-3xl font-extrabold text-gray-900 font-display">
           Why Switch to Solid Perfumes?
         </h3>
-        <p class="text-xs md:text-sm text-gray-400">
+        <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
           Crafted for the modern fragrance enthusiast who demands skin-friendly luxury, portability, and zero irritation.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-[#12121A] border border-white/5 space-y-3 hover:border-[#C5A059]/40 transition-all">
-          <div class="w-10 h-10 rounded-xl gradient-gold-bg text-black flex items-center justify-center font-bold text-sm">1</div>
-          <h4 class="text-base font-bold font-serif-luxury text-white">Slide or Twist to Open</h4>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Convenient pocket tin with zero leakage. Unlike glass bottles, it will never break inside your pocket, briefcase, or gym duffle.
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="p-5 md:p-6 rounded-2xl bg-gray-50/80 border border-gray-200/80 space-y-3 hover:border-gray-400 transition-all">
+          <div class="w-9 h-9 rounded-xl bg-gray-900 text-white flex items-center justify-center font-bold text-sm shadow-sm">1</div>
+          <h4 class="text-sm md:text-base font-bold text-gray-900 font-display">Pocket-Friendly & Zero Leakage</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Convenient pocket tin with zero leakage. Unlike fragile glass bottles, it will never break inside your pocket, car, or gym bag.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-[#12121A] border border-white/5 space-y-3 hover:border-[#C5A059]/40 transition-all">
-          <div class="w-10 h-10 rounded-xl gradient-gold-bg text-black flex items-center justify-center font-bold text-sm">2</div>
-          <h4 class="text-base font-bold font-serif-luxury text-white">Apply to Pulse Points</h4>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Warm a small dab between your fingertips and apply to wrists, collarbones, and neck. Body temperature activates the scent layers continuously.
+        <div class="p-5 md:p-6 rounded-2xl bg-gray-50/80 border border-gray-200/80 space-y-3 hover:border-gray-400 transition-all">
+          <div class="w-9 h-9 rounded-xl bg-gray-900 text-white flex items-center justify-center font-bold text-sm shadow-sm">2</div>
+          <h4 class="text-sm md:text-base font-bold text-gray-900 font-display">Activated by Body Warmth</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Warm a small dab between fingertips and apply to wrists and neck. Natural body heat continuously diffuses the scent layers.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-[#12121A] border border-white/5 space-y-3 hover:border-[#C5A059]/40 transition-all">
-          <div class="w-10 h-10 rounded-xl gradient-gold-bg text-black flex items-center justify-center font-bold text-sm">3</div>
-          <h4 class="text-base font-bold font-serif-luxury text-white">Longer Intimate Sillage</h4>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Because it doesn't flash evaporate like chemical alcohol sprays, beeswax and shea butter lock the fragrance oils close to skin for 8-10 hours.
+        <div class="p-5 md:p-6 rounded-2xl bg-gray-50/80 border border-gray-200/80 space-y-3 hover:border-gray-400 transition-all">
+          <div class="w-9 h-9 rounded-xl bg-gray-900 text-white flex items-center justify-center font-bold text-sm shadow-sm">3</div>
+          <h4 class="text-sm md:text-base font-bold text-gray-900 font-display">8-10 Hours Intimate Longevity</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Because it doesn't flash evaporate like alcohol sprays, pure organic beeswax and shea butter lock the fragrance close to skin.
           </p>
         </div>
       </div>
@@ -255,27 +255,27 @@
   </section>
 
   <!-- 7. SLIDE-OVER CART DRAWER -->
-  <div id="cart-backdrop" onclick="Store.closeCart()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
-  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#09090D] border-l border-[#C5A059]/30 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between">
+  <div id="cart-backdrop" onclick="Store.closeCart()" class="fixed inset-0 bg-gray-950/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white border-l border-gray-200 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between text-gray-900">
     
     <!-- Drawer Header -->
-    <div class="p-5 border-b border-white/10 flex items-center justify-between">
+    <div class="p-4 sm:p-5 border-b border-gray-100 flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-[#C5A059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        <h3 class="text-base font-bold font-serif-luxury text-white tracking-wide">Your Luxury Bag</h3>
+        <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <h3 class="text-base font-bold text-gray-900 font-display tracking-tight">Your Shopping Bag</h3>
       </div>
-      <button onclick="Store.closeCart()" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-white/5">
+      <button onclick="Store.closeCart()" class="p-2 text-gray-400 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors">
         ✕
       </button>
     </div>
 
     <!-- Free Delivery Progress Bar -->
-    <div class="p-4 bg-[#101018] border-b border-white/5">
-      <div class="flex justify-between text-xs mb-1.5" id="free-ship-text">
+    <div class="p-3.5 sm:p-4 bg-gray-50 border-b border-gray-100">
+      <div class="flex justify-between text-xs mb-1.5 text-gray-700" id="free-ship-text">
         <span>Add items to unlock <strong>FREE Express Delivery</strong>!</span>
       </div>
-      <div class="w-full h-1.5 rounded-full bg-black/60 overflow-hidden">
-        <div id="free-ship-meter" class="h-full gradient-gold-bg w-0 transition-all duration-300"></div>
+      <div class="w-full h-1.5 rounded-full bg-gray-200 overflow-hidden">
+        <div id="free-ship-meter" class="h-full bg-gray-900 w-0 transition-all duration-300"></div>
       </div>
     </div>
 
@@ -285,7 +285,7 @@
     </div>
 
     <!-- Drawer Footer: Coupon & Checkout -->
-    <div class="p-5 bg-[#0D0D14] border-t border-white/10 space-y-4">
+    <div class="p-4 sm:p-5 bg-white border-t border-gray-100 space-y-4">
       
       <!-- Coupon Box -->
       <div class="flex gap-2">
@@ -293,34 +293,34 @@
           id="cart-coupon-input" 
           type="text" 
           placeholder="Promo code (e.g. ZAIDFIRST)" 
-          class="flex-1 bg-[#14141E] border border-white/15 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono focus:border-[#C5A059] focus:outline-none"
+          class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 uppercase font-mono focus:border-gray-900 focus:outline-none"
         >
-        <button onclick="Store.applyCoupon(document.getElementById('cart-coupon-input').value)" class="px-4 py-2 rounded-xl gradient-gold-outline text-xs font-bold font-serif-luxury">
+        <button onclick="Store.applyCoupon(document.getElementById('cart-coupon-input').value)" class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold transition-colors">
           Apply
         </button>
       </div>
 
       <!-- Pricing Summary -->
       <div class="space-y-1.5 text-xs">
-        <div class="flex justify-between text-gray-400">
+        <div class="flex justify-between text-gray-500">
           <span>Subtotal</span>
-          <span id="cart-subtotal" class="text-white font-medium font-mono">₹0</span>
+          <span id="cart-subtotal" class="text-gray-900 font-semibold font-mono">₹0</span>
         </div>
-        <div class="flex justify-between text-emerald-400">
+        <div class="flex justify-between text-emerald-600">
           <span>Discount</span>
-          <span id="cart-discount" class="font-medium font-mono">-₹0</span>
+          <span id="cart-discount" class="font-semibold font-mono">-₹0</span>
         </div>
-        <div class="flex justify-between text-gray-400">
+        <div class="flex justify-between text-gray-500">
           <span>Express Shipping</span>
-          <span class="text-green-400 font-semibold font-mono">FREE</span>
+          <span class="text-emerald-600 font-semibold font-mono">FREE</span>
         </div>
-        <div class="flex justify-between text-sm font-extrabold pt-2 border-t border-white/10">
-          <span class="text-white font-serif-luxury">Total Payable</span>
-          <span id="cart-total" class="text-[#F7EBD0] text-lg font-serif-luxury">₹0</span>
+        <div class="flex justify-between text-sm font-extrabold pt-2 border-t border-gray-100">
+          <span class="text-gray-900 font-display">Total Payable</span>
+          <span id="cart-total" class="text-gray-900 text-lg font-extrabold font-display">₹0</span>
         </div>
       </div>
 
-      <a id="cart-checkout-btn" href="/checkout.html" class="block w-full py-3.5 rounded-xl gradient-gold-btn text-black font-extrabold text-xs uppercase tracking-wider font-serif-luxury text-center shadow-lg shadow-[#C5A059]/30 transition-all">
+      <a id="cart-checkout-btn" href="/checkout.html" class="block w-full py-3.5 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-xs uppercase tracking-wider text-center shadow-md transition-all active:scale-[0.99]">
         Proceed to Checkout &rarr;
       </a>
     </div>
@@ -328,9 +328,9 @@
   </aside>
 
   <!-- 8. QUICK VIEW MODAL -->
-  <div id="quick-view-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="relative w-full max-w-2xl bg-[#0D0D14] border-2 border-[#C5A059]/50 rounded-3xl shadow-2xl overflow-hidden glow-gold-sm">
-      <button onclick="Store.closeQuickView()" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-full bg-black/40 flex items-center justify-center">
+  <div id="quick-view-modal" class="fixed inset-0 bg-gray-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl bg-white border border-gray-200 rounded-3xl shadow-2xl overflow-hidden">
+      <button onclick="Store.closeQuickView()" class="absolute top-4 right-4 z-20 text-gray-500 hover:text-gray-900 text-sm w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
         ✕
       </button>
       <div id="quick-view-content"></div>
@@ -338,47 +338,47 @@
   </div>
 
   <!-- 9. FOOTER -->
-  <footer class="bg-[#050507] border-t border-[#C5A059]/20 pt-12 pb-8 mt-12">
+  <footer class="bg-[#0B0F19] border-t border-slate-800 pt-12 pb-8 mt-12 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs">
       
       <div class="space-y-3">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg gradient-gold-bg text-black font-bold font-serif-luxury flex items-center justify-center text-sm">Z</div>
-          <span class="text-base font-bold font-serif-luxury gradient-gold-text">ZAID'S PERFUMES</span>
+          <div class="w-8 h-8 rounded-lg bg-white text-gray-900 font-bold font-display flex items-center justify-center text-sm shadow-sm">Z</div>
+          <span class="text-base font-bold font-display text-white tracking-wide">ZAID'S PERFUMES</span>
         </div>
-        <p class="text-gray-400 leading-relaxed">
-          India's luxury handcrafted solid perfume and artisanal fragrance house. 100% natural, alcohol-free, long-lasting formulation.
+        <p class="text-slate-400 leading-relaxed">
+          India's premier artisanal solid perfume house. 100% alcohol-free, skin-friendly, long-lasting handcrafted formulations.
         </p>
       </div>
 
       <div class="space-y-2">
-        <h4 class="font-bold text-white font-serif-luxury uppercase tracking-wider text-xs">Customer Care</h4>
-        <p class="text-gray-400">📞 Phone: <a id="footer-phone-link" href="tel:+918624085212" class="hover:text-[#F7EBD0] transition-colors"><span id="footer-phone">+91 86240 85212</span></a></p>
-        <p class="text-gray-400">✉️ Email: <a id="footer-email-link" href="mailto:zaidsperfumes@gmail.com" class="hover:text-[#F7EBD0] transition-colors"><span id="footer-email">zaidsperfumes@gmail.com</span></a></p>
+        <h4 class="font-bold text-white uppercase tracking-wider text-xs font-display">Customer Care</h4>
+        <p class="text-slate-400">📞 Phone: <a id="footer-phone-link" href="tel:+918624085212" class="hover:text-white transition-colors"><span id="footer-phone">+91 86240 85212</span></a></p>
+        <p class="text-slate-400">✉️ Email: <a id="footer-email-link" href="mailto:zaidsperfumes@gmail.com" class="hover:text-white transition-colors"><span id="footer-email">zaidsperfumes@gmail.com</span></a></p>
       </div>
 
       <div class="space-y-2">
-        <h4 class="font-bold text-white font-serif-luxury uppercase tracking-wider text-xs">Quick Access</h4>
-        <p><a href="/account.html" class="text-gray-400 hover:text-[#F7EBD0]">Track Your Order</a></p>
-        <p><a href="/account.html" class="text-gray-400 hover:text-[#F7EBD0]">Customer Portal</a></p>
-        <p><a href="/admin/login.html" class="text-[#C5A059] hover:underline font-mono">Store Administrator (/admin)</a></p>
+        <h4 class="font-bold text-white uppercase tracking-wider text-xs font-display">Quick Access</h4>
+        <p><a href="/account.html" class="text-slate-400 hover:text-white transition-colors">Track Your Order</a></p>
+        <p><a href="/account.html" class="text-slate-400 hover:text-white transition-colors">Customer Portal</a></p>
+        <p><a href="/admin/login.html" class="text-blue-400 hover:underline font-mono">Store Administrator (/admin)</a></p>
       </div>
 
       <div class="space-y-3">
-        <h4 class="font-bold text-white font-serif-luxury uppercase tracking-wider text-xs">Payment & Trust</h4>
-        <div class="flex flex-wrap gap-2 text-[10px] text-gray-300 font-mono">
-          <span class="px-2 py-1 rounded bg-[#13131B] border border-white/10">Cash On Delivery</span>
-          <span class="px-2 py-1 rounded bg-[#13131B] border border-white/10">UPI Scan & Pay</span>
-          <span class="px-2 py-1 rounded bg-[#13131B] border border-white/10">BlueDart / Delhivery Air</span>
+        <h4 class="font-bold text-white uppercase tracking-wider text-xs font-display">Payment & Trust</h4>
+        <div class="flex flex-wrap gap-2 text-[10px] text-slate-300 font-mono">
+          <span class="px-2 py-1 rounded bg-slate-900 border border-slate-800">Cash On Delivery</span>
+          <span class="px-2 py-1 rounded bg-slate-900 border border-slate-800">UPI Scan & Pay</span>
+          <span class="px-2 py-1 rounded bg-slate-900 border border-slate-800">Express Courier Delivery</span>
         </div>
-        <p class="text-gray-500 text-[11px]">Free delivery on orders over ₹499 across all pincodes in India.</p>
+        <p class="text-slate-500 text-[11px]">Free express shipping on all orders over ₹499 across all pincodes in India.</p>
       </div>
 
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
       <p>&copy; 2026 ZAID'S PERFUMES. All Rights Reserved.</p>
-      <p class="text-[#C5A059]">Engineered with Professional Champagne Gold & Matte Obsidian Aesthetic</p>
+      <p class="text-slate-400">Engineered with Modern Luxury Studio Design</p>
     </div>
   </footer>
 
