@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAID'S PERFUMES | Admin Control Panel</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="/css/luxury-glow.css">
+</head>
+<body class="min-h-screen bg-[#08080A] text-[#F4F4F5] antialiased">
+
+  <!-- TOP BAR -->
+  <header class="bg-[#09090C] border-b border-[#C5A059]/30 px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl gradient-gold-bg flex items-center justify-center text-black font-bold font-serif-luxury text-base shadow-md">Z</div>
+      <div>
+        <span class="text-lg font-bold font-serif-luxury tracking-widest gradient-gold-text">ZAID'S PERFUMES</span>
+        <span class="text-[10px] text-gray-400 block font-mono">Administration Hub</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs">
+      <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#14141E] border border-amber-500/20 text-gray-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="admin-badge-name" class="font-mono text-gray-300">Admin</span>
+      </div>
+      <a href="/" target="_blank" class="text-gray-300 hover:text-[#E5C378] px-3 py-1.5 rounded-lg bg-[#14141E] border border-white/10 flex items-center gap-1.5 transition-all">
+        <span>🌐 View Live Store</span>
+      </a>
+      <button onclick="AdminApp.logout()" class="px-3 py-1.5 rounded-lg bg-red-950/40 text-red-300 border border-red-500/30 hover:bg-red-900 transition-colors">
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- SIDEBAR NAVIGATION (3 cols) -->
+    <aside class="lg:col-span-3 space-y-2">
+      <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-3 space-y-1.5 glow-gold-sm">
+        <button data-tab="dashboard" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-[#C5A059] text-black font-bold text-xs uppercase tracking-wider font-serif-luxury shadow-md flex items-center gap-2.5">
+          <span>📊</span>
+          <span>Dashboard Overview</span>
+        </button>
+        <button data-tab="orders" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center gap-2.5 transition-all">
+          <span>📦</span>
+          <span>Orders & Invoices</span>
+        </button>
+        <button data-tab="verifications" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center justify-between transition-all">
+          <div class="flex items-center gap-2.5">
+            <span>🛡️</span>
+            <span>UPI Verifications</span>
+          </div>
+          <span id="nav-pending-upi-count" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-[#FFDF73] text-[10px] font-bold font-mono">0</span>
+        </button>
+        <button data-tab="products" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center gap-2.5 transition-all">
+          <span>🧴</span>
+          <span>Perfume Catalog</span>
+        </button>
+        <button data-tab="coupons" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center gap-2.5 transition-all">
+          <span>🏷️</span>
+          <span>Discount Coupons</span>
+        </button>
+        <button data-tab="settings" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center gap-2.5 transition-all">
+          <span>⚙️</span>
+          <span>Store Settings</span>
+        </button>
+      </div>
+
+      <div class="bg-[#0F0F16] border border-white/10 rounded-2xl p-5 text-xs space-y-2">
+        <h4 class="font-bold font-serif-luxury text-[#E5C378]">Store Infrastructure</h4>
+        <p class="text-gray-400">Payment Modes: <span class="text-green-400 font-mono">Cash on Delivery &bull; Dynamic UPI QR</span></p>
+        <p class="text-gray-400">Database: <span class="text-emerald-400 font-mono">JSON/SQLite Persistent</span></p>
+      </div>
+    </aside>
+
+    <!-- MAIN ADMIN CONTENT AREA (9 cols) -->
+    <main class="lg:col-span-9 space-y-8">
+      
+      <!-- TAB 1: DASHBOARD -->
+      <section id="tab-content-dashboard" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-[#0F0F16] border border-[#C5A059]/35 glow-gold-sm">
+            <span class="text-xs uppercase font-mono text-gray-400">Total Revenue</span>
+            <h3 id="dash-revenue" class="text-2xl font-black text-[#F7EBD0] font-serif-luxury mt-1 font-mono">₹0</h3>
+            <p class="text-[11px] text-green-400 mt-1">↑ Net customer sales</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-[#0F0F16] border border-white/10">
+            <span class="text-xs uppercase font-mono text-gray-400">Total Orders</span>
+            <h3 id="dash-orders" class="text-2xl font-black text-white font-serif-luxury mt-1 font-mono">0</h3>
+            <p class="text-[11px] text-blue-400 mt-1">Active order volume</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-[#0F0F16] border border-white/10">
+            <span class="text-xs uppercase font-mono text-gray-400">Active Perfumes</span>
+            <h3 id="dash-products" class="text-2xl font-black text-white font-serif-luxury mt-1 font-mono">0</h3>
+            <p class="text-[11px] text-amber-400 mt-1">In store catalog</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-[#0F0F16] border border-white/10">
+            <span class="text-xs uppercase font-mono text-gray-400">Conversion Rate</span>
+            <h3 id="dash-conversion" class="text-2xl font-black text-[#F7EBD0] font-serif-luxury mt-1 font-mono">4.2%</h3>
+            <p class="text-[11px] text-green-400 mt-1">Cart-to-checkout ratio</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-6 space-y-4">
+            <h3 class="text-base font-bold font-serif-luxury text-white">Recent Customer Orders</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="border-b border-white/10 text-gray-400 font-mono">
+                    <th class="py-2.5 px-2">Order ID</th>
+                    <th class="py-2.5 px-2">Customer</th>
+                    <th class="py-2.5 px-2">Mode</th>
+                    <th class="py-2.5 px-2">Total</th>
+                    <th class="py-2.5 px-2">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dash-recent-orders" class="divide-y divide-white/5"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 bg-[#0F0F16] border border-white/10 rounded-2xl p-6 space-y-3">
+            <h3 class="text-base font-bold font-serif-luxury text-white">Low Stock Warnings</h3>
+            <div id="dash-low-stock" class="space-y-2"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: PRODUCTS -->
+      <section id="tab-content-products" class="space-y-6 hidden">
+        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+          <div>
+            <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">Perfume Catalog Management</h2>
+            <p class="text-xs text-gray-400">Add, edit scents, fragrance notes, pricing, and stock count</p>
+          </div>
+          <button onclick="AdminApp.openAddProductModal()" class="px-4 py-2.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury shadow-md">
+            + Add New Perfume
+          </button>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#14141E] text-gray-400 font-mono">
+                <tr>
+                  <th class="py-3 px-3">Perfume Title</th>
+                  <th class="py-3 px-3">Category</th>
+                  <th class="py-3 px-3">Price</th>
+                  <th class="py-3 px-3">Stock Units</th>
+                  <th class="py-3 px-3">Badge</th>
+                  <th class="py-3 px-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body" class="divide-y divide-white/5"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ORDERS -->
+      <section id="tab-content-orders" class="space-y-6 hidden">
+        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+          <div>
+            <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">Store Orders & Invoicing</h2>
+            <p class="text-xs text-gray-400">Update live shipment status (reflects instantly in customer tracker)</p>
+          </div>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#14141E] text-gray-400 font-mono">
+                <tr>
+                  <th class="py-3 px-3">Order ID</th>
+                  <th class="py-3 px-3">Customer Details</th>
+                  <th class="py-3 px-3">Items</th>
+                  <th class="py-3 px-3">Payment</th>
+                  <th class="py-3 px-3">Total</th>
+                  <th class="py-3 px-3">Shipment Status</th>
+                  <th class="py-3 px-3 text-right">Invoice</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body" class="divide-y divide-white/5"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: UPI PAYMENT VERIFICATIONS -->
+      <section id="tab-content-verifications" class="space-y-6 hidden">
+        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+          <div>
+            <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">UPI Anti-Fraud & Payment Verification</h2>
+            <p class="text-xs text-gray-400">Verify customer 12-digit UTR numbers against your PhonePe merchant statement before packing</p>
+          </div>
+          <span id="verif-summary-badge" class="px-3 py-1.5 rounded-xl bg-amber-500/20 text-[#FFDF73] border border-amber-500/40 text-xs font-mono font-bold">
+            0 Pending Verification
+          </span>
+        </div>
+
+        <!-- INSTRUCTIONS FOR STORE OWNER -->
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-4 text-xs space-y-2 glow-gold-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🛡️</span>
+            <span class="font-bold text-[#F7EBD0]">Merchant Verification Protocol:</span>
+          </div>
+          <p class="text-gray-300">
+            1. Check your PhonePe / Bank SMS or bank application for an incoming credit of the exact amount.
+            <br>
+            2. Match the customer's submitted <strong class="text-white font-mono">12-digit UTR Number</strong>.
+            <br>
+            3. If confirmed, click <strong class="text-emerald-400">"✓ Approve & Mark Paid"</strong>. The order will immediately move to Processing.
+            <br>
+            4. If no money was received or the screenshot is fake, click <strong class="text-red-400">"✕ Reject Fraud"</strong>. The order will be cancelled and reserved stock will be automatically restored.
+          </p>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#14141E] text-gray-400 font-mono">
+                <tr>
+                  <th class="py-3 px-3">Order ID</th>
+                  <th class="py-3 px-3">Customer Details</th>
+                  <th class="py-3 px-3">Amount</th>
+                  <th class="py-3 px-3">12-Digit UTR Number</th>
+                  <th class="py-3 px-3">Screenshot Proof</th>
+                  <th class="py-3 px-3 text-right">Verification Decision</th>
+                </tr>
+              </thead>
+              <tbody id="verifications-table-body" class="divide-y divide-white/5"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: COUPONS -->
+      <section id="tab-content-coupons" class="space-y-6 hidden">
+        <div class="border-b border-white/10 pb-4">
+          <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">Promotion & Coupon Codes</h2>
+          <p class="text-xs text-gray-400">Offer percentage or flat discounts at customer checkout</p>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-[#C5A059]/35 rounded-2xl p-6 space-y-4 glow-gold-sm">
+          <h3 class="text-sm font-bold font-serif-luxury text-white">Create New Coupon</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <input id="new-coupon-code" type="text" placeholder="Code (e.g. LUXURY20)" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white uppercase font-mono">
+            <input id="new-coupon-val" type="number" placeholder="Discount (e.g. 20 or 100)" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            <select id="new-coupon-type" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+              <option value="percentage">Percentage (%)</option>
+              <option value="fixed">Flat Amount (₹)</option>
+            </select>
+            <input id="new-coupon-min" type="number" placeholder="Min Order (e.g. 499)" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            <input id="new-coupon-desc" type="text" placeholder="Short description" class="sm:col-span-3 bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            <button onclick="AdminApp.createCoupon()" class="rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury py-3">
+              + Save Coupon
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-white/10 rounded-2xl overflow-hidden">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#14141E] text-gray-400 font-mono">
+              <tr>
+                <th class="py-3 px-3">Coupon Code</th>
+                <th class="py-3 px-3">Discount</th>
+                <th class="py-3 px-3">Min Order</th>
+                <th class="py-3 px-3">Description</th>
+                <th class="py-3 px-3 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="coupons-table-body" class="divide-y divide-white/5"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 5: SETTINGS -->
+      <section id="tab-content-settings" class="space-y-6 hidden">
+        <div class="border-b border-white/10 pb-4">
+          <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">Store Settings & Branding</h2>
+          <p class="text-xs text-gray-400">Configure announcement bar, support phone, UPI payment ID, and free shipping limit</p>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-6 space-y-4 glow-gold-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="space-y-1">
+              <label class="text-gray-400">Store Brand Name</label>
+              <input id="set-store-name" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Tagline</label>
+              <input id="set-tagline" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            </div>
+            <div class="col-span-full space-y-1">
+              <label class="text-gray-400">Top Announcement Bar Text (Displayed Live on Storefront)</label>
+              <input id="set-announcement" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-[#F7EBD0] font-mono">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Support Phone / WhatsApp</label>
+              <input id="set-phone" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Support Email (Customer Care)</label>
+              <input id="set-email" type="email" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            </div>
+            <div class="col-span-full space-y-1">
+              <label class="text-gray-400">Studio / Store Address</label>
+              <input id="set-address" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">UPI Payment ID (For Direct Customer Scan & Pay)</label>
+              <input id="set-upi-id" type="text" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white font-mono">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Free Express Shipping Threshold (₹)</label>
+              <input id="set-threshold" type="number" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white font-mono">
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex justify-end">
+            <button onclick="AdminApp.saveSettings()" class="px-6 py-3 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury shadow-lg shadow-[#C5A059]/30">
+              Save Store Settings &rarr;
+            </button>
+          </div>
+
+          <!-- Administrator Security & Password Management -->
+          <div class="mt-8 pt-6 border-t border-white/10 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold font-serif-luxury text-[#E5C378]">🔒 Administrator Security & Password</h4>
+                <p class="text-[11px] text-gray-400">Update your master admin console credentials securely.</p>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-300 border border-emerald-500/30">Bcrypt Salt Hashing Active</span>
+            </div>
+
+            <div id="pwd-msg" class="hidden p-3 rounded-xl text-xs"></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="space-y-1">
+                <label class="text-gray-400">Current Password *</label>
+                <input id="curr-password" type="password" placeholder="••••••••" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#D4AF37] focus:outline-none">
+              </div>
+              <div class="space-y-1">
+                <label class="text-gray-400">New Password (min 6 chars) *</label>
+                <input id="new-password" type="password" placeholder="••••••••" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#D4AF37] focus:outline-none">
+              </div>
+              <div class="space-y-1">
+                <label class="text-gray-400">Confirm New Password *</label>
+                <input id="confirm-password" type="password" placeholder="••••••••" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#D4AF37] focus:outline-none">
+              </div>
+            </div>
+
+            <div class="flex justify-end">
+              <button onclick="AdminApp.changePassword()" class="px-5 py-2.5 rounded-xl bg-amber-500/20 text-[#FFDF73] border border-[#D4AF37]/50 hover:bg-[#D4AF37] hover:text-black font-bold text-xs uppercase font-serif-luxury transition-all">
+                Update Admin Password &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div id="product-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-[#0F0F16] border-2 border-[#C5A059]/50 rounded-3xl p-6 space-y-4 shadow-2xl glow-gold-sm max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-white/10 pb-3">
+        <h3 id="product-modal-title" class="text-lg font-bold font-serif-luxury text-white">Add New Luxury Perfume</h3>
+        <button onclick="AdminApp.closeProductModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+
+      <input type="hidden" id="prod-form-id">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div class="col-span-full space-y-1">
+          <label class="text-gray-400">Perfume Title *</label>
+          <input id="prod-form-title" type="text" placeholder="e.g. Royal Amber Solid Cologne" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white">
+        </div>
+        <div class="space-y-1">
+          <label class="text-gray-400">Category *</label>
+          <select id="prod-form-category" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white">
+            <option value="Solid Perfumes">Solid Perfumes</option>
+            <option value="Royal Oudhs">Royal Oudhs</option>
+            <option value="Fresh & Aquatic">Fresh & Aquatic</option>
+            <option value="Champions Edition">Champions Edition</option>
+            <option value="Gift Combos">Gift Combos</option>
+          </select>
+        </div>
+        <div class="space-y-1">
+          <label class="text-gray-400">Badge</label>
+          <input id="prod-form-badge" type="text" placeholder="e.g. BESTSELLER, LIMITED" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white font-mono">
+        </div>
+        <div class="space-y-1">
+          <label class="text-gray-400">Selling Price (₹) *</label>
+          <input id="prod-form-price" type="number" placeholder="399" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white font-mono">
+        </div>
+        <div class="space-y-1">
+          <label class="text-gray-400">Compare Price (₹)</label>
+          <input id="prod-form-compare" type="number" placeholder="699" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white font-mono">
+        </div>
+        <div class="space-y-1">
+          <label class="text-gray-400">Stock Inventory Units *</label>
+          <input id="prod-form-stock" type="number" placeholder="40" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white font-mono">
+        </div>
+        <div class="col-span-full space-y-1">
+          <label class="text-gray-400">Top Notes</label>
+          <input id="prod-form-top" type="text" placeholder="e.g. Calabrian Bergamot, Lemon Zest" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white">
+        </div>
+        <div class="col-span-full space-y-1">
+          <label class="text-gray-400">Heart Notes</label>
+          <input id="prod-form-heart" type="text" placeholder="e.g. Cedarwood, French Lavender" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white">
+        </div>
+        <div class="col-span-full space-y-1">
+          <label class="text-gray-400">Base Notes</label>
+          <input id="prod-form-base" type="text" placeholder="e.g. Smoky Vetiver, Pure Ambergris" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white">
+        </div>
+        <div class="col-span-full space-y-1">
+          <label class="text-gray-400">Description</label>
+          <textarea id="prod-form-desc" rows="3" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2.5 text-white"></textarea>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-white/10 flex justify-end gap-2">
+        <button onclick="AdminApp.closeProductModal()" class="px-4 py-2 rounded-xl bg-white/5 text-gray-300 text-xs font-semibold">Cancel</button>
+        <button onclick="AdminApp.saveProduct()" class="px-5 py-2 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury">Save Perfume</button>
+      </div>
+    </div>
+  <!-- PAYMENT PROOF LIGHTBOX MODAL -->
+  <div id="proof-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-lg bg-[#0F0F16] border border-[#C5A059]/50 rounded-2xl p-5 space-y-3 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-white/10 pb-2">
+        <h4 id="proof-modal-title" class="font-bold text-white text-xs font-serif-luxury">Customer Payment Receipt Proof</h4>
+        <button onclick="AdminApp.closeProofModal()" class="text-gray-400 hover:text-white">✕</button>
+      </div>
+      <div class="flex justify-center p-2 bg-black/50 rounded-xl overflow-hidden">
+        <img id="proof-modal-img" src="" class="max-h-[70vh] object-contain rounded-lg">
+      </div>
+      <div class="text-center pt-2">
+        <button onclick="AdminApp.closeProofModal()" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-gray-200 text-xs font-semibold transition-all">
+          Close Lightbox
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

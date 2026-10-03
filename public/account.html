@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAID'S PERFUMES | Customer Portal & Live Order Tracking</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="/css/luxury-glow.css">
+</head>
+<body class="min-h-screen bg-[#08080A] text-[#F4F4F5] antialiased">
+
+  <!-- NAVBAR -->
+  <header class="bg-[#09090C] border-b border-[#C5A059]/25 py-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl gradient-gold-bg flex items-center justify-center text-black font-bold font-serif-luxury text-base">Z</div>
+        <span class="text-xl font-bold font-serif-luxury tracking-widest gradient-gold-text">ZAID'S PERFUMES</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs text-gray-300 hover:text-[#E5C378] px-3.5 py-1.5 rounded-lg bg-[#14141E] border border-white/10 flex items-center gap-1.5 transition-all">
+          <span>&larr; Storefront</span>
+        </a>
+        <a href="/admin/login.html" class="text-xs text-[#C5A059] hover:underline font-mono">Admin Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+    
+    <!-- SEARCH / TRACK ANY ORDER BOX -->
+    <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-3xl p-6 md:p-8 space-y-4 glow-gold-sm">
+      <div class="max-w-2xl">
+        <span class="text-xs font-mono text-[#C5A059] uppercase tracking-widest">LIVE PACKAGE TRACKER</span>
+        <h2 class="text-2xl font-bold font-serif-luxury text-white mt-1">Track Your Order Status</h2>
+        <p class="text-xs text-gray-400 mt-1">Enter your Order ID (e.g. <strong>ZP-9821</strong>) or phone number to view live courier transit updates.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 max-w-xl">
+        <input 
+          id="track-input" 
+          type="text" 
+          placeholder="Enter Order ID (e.g. ZP-9821)" 
+          class="flex-1 bg-[#14141E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white font-mono uppercase focus:border-[#C5A059] focus:outline-none transition-all"
+        >
+        <button onclick="AccountPage.trackOrder()" class="px-6 py-3 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury tracking-wider">
+          Track Live Status
+        </button>
+      </div>
+    </div>
+
+    <!-- LIVE TRACKING RESULT (STEPPER) -->
+    <div id="tracking-result-card" class="bg-[#0F0F16] border-2 border-[#C5A059]/40 rounded-3xl p-6 md:p-8 space-y-6 shadow-2xl glow-gold-sm transition-all duration-300">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="trk-order-id" class="text-xs font-mono font-bold text-[#F7EBD0] bg-[#C5A059]/20 px-2.5 py-0.5 rounded">ORDER #ZP-9821</span>
+            <span id="trk-status-badge" class="text-xs px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30 font-medium">DISPATCHED (IN TRANSIT)</span>
+          </div>
+          <p id="trk-date" class="text-xs text-gray-400 mt-1">Placed on 02 Oct 2026 &bull; Expected Delivery: 05 Oct 2026</p>
+        </div>
+        <div class="text-left md:text-right">
+          <p id="trk-courier" class="text-xs text-gray-400">Courier: BlueDart Express (AWB: 8812930192)</p>
+          <span class="text-xs text-green-400 font-mono">● Active GPS Transmission</span>
+        </div>
+      </div>
+
+      <!-- UPI PAYMENT VERIFICATION STATUS BANNER (Dynamic) -->
+      <div id="trk-verification-banner" class="hidden p-4 rounded-2xl border text-xs space-y-1"></div>
+
+      <!-- VISUAL STEPPER TRACKER -->
+      <div class="py-4">
+        <div id="trk-stepper" class="grid grid-cols-4 gap-2 text-center relative">
+          <!-- Stepper injected dynamically -->
+        </div>
+      </div>
+
+      <!-- PACKAGE DETAILS & DESTINATION -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/10 text-xs">
+        <div class="bg-[#14141E] p-4 rounded-xl border border-white/5 space-y-2">
+          <h5 class="font-bold text-gray-300 uppercase tracking-wider text-[11px]">Items in Package:</h5>
+          <div id="trk-items-list" class="space-y-1.5">
+            <!-- Dynamic items -->
+          </div>
+          <div class="flex justify-between items-center text-gray-400 pt-2 border-t border-white/5">
+            <span>Payment Method:</span>
+            <span id="trk-payment-method" class="text-white font-medium">Cash on Delivery (COD)</span>
+          </div>
+        </div>
+
+        <div class="bg-[#14141E] p-4 rounded-xl border border-white/5 space-y-2">
+          <h5 class="font-bold text-gray-300 uppercase tracking-wider text-[11px]">Delivery Address:</h5>
+          <p id="trk-customer-name" class="text-white font-medium">Mohammad Zaid</p>
+          <p id="trk-customer-address" class="text-gray-400">Flat 402, Royal Residency, Bandra West, Mumbai</p>
+          <p id="trk-customer-phone" class="text-gray-400">Phone: +91 98765 43210</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PAST ORDERS LIST -->
+    <div class="bg-[#0F0F16] border border-white/10 rounded-3xl p-6 md:p-8 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold font-serif-luxury text-white">Recent Orders Archive</h3>
+          <p class="text-xs text-gray-400">Click any order to view live transit checkpoint details</p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="border-b border-white/10 text-gray-400 uppercase font-mono">
+              <th class="py-3 px-2">Order ID</th>
+              <th class="py-3 px-2">Customer</th>
+              <th class="py-3 px-2">Date</th>
+              <th class="py-3 px-2">Total</th>
+              <th class="py-3 px-2">Status</th>
+              <th class="py-3 px-2 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="past-orders-table" class="divide-y divide-white/5">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const AccountPage = {
+      activeOrder: null,
+
+      async init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId') || 'ZP-9821';
+        document.getElementById('track-input').value = orderId;
+        await this.loadOrder(orderId);
+        await this.loadAllOrders();
+      },
+
+      async trackOrder() {
+        const query = document.getElementById('track-input').value.trim();
+        if (!query) return;
+        await this.loadOrder(query);
+      },
+
+      async loadOrder(id) {
+        try {
+          const res = await fetch(`/api/orders/track/${id}`);
+          const data = await res.json();
+          if (data.success && data.order) {
+            this.activeOrder = data.order;
+            this.renderTracking(data.order);
+          } else {
+            alert('Order not found with ID: ' + id);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      },
+
+      renderTracking(o) {
+        document.getElementById('trk-order-id').textContent = `ORDER #${o.id}`;
+        document.getElementById('trk-status-badge').textContent = (o.orderStatus || 'Processing').toUpperCase();
+        document.getElementById('trk-date').textContent = `Placed on ${new Date(o.createdAt).toLocaleDateString()} &bull; Expected Delivery: ${o.estimatedDelivery || 'In 2-3 Days'}`;
+        document.getElementById('trk-courier').textContent = `Courier: ${o.courierName || 'BlueDart Express'} (${o.trackingNumber || 'AWB Pending'})`;
+
+        // Render UPI Verification Banner
+        const banner = document.getElementById('trk-verification-banner');
+        if (banner) {
+          if (o.paymentMethod === 'UPI') {
+            if (o.paymentStatus === 'Verification Pending') {
+              banner.className = 'p-4 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs space-y-1 block';
+              banner.innerHTML = `
+                <div class="flex items-start gap-3">
+                  <span class="text-xl">⏳</span>
+                  <div>
+                    <p class="font-bold text-amber-300 text-sm">UPI Payment Verification In Progress</p>
+                    <p class="text-gray-300 mt-0.5">
+                      Submitted 12-digit UTR: <strong class="text-white font-mono tracking-widest">${o.utrNumber || 'Pending'}</strong>.
+                      Our banking team is cross-referencing your transaction with Zaid's PhonePe merchant account. Once confirmed, your solid perfume order will be dispatched via BlueDart Express.
+                    </p>
+                  </div>
+                </div>
+              `;
+            } else if (o.paymentStatus && o.paymentStatus.includes('Rejected')) {
+              banner.className = 'p-4 rounded-2xl bg-red-950/40 border border-red-500/40 text-red-200 text-xs space-y-1 block';
+              banner.innerHTML = `
+                <div class="flex items-start gap-3">
+                  <span class="text-xl">❌</span>
+                  <div>
+                    <p class="font-bold text-red-300 text-sm">Payment Verification Unsuccessful</p>
+                    <p class="text-gray-300 mt-0.5">
+                      Reason: <span class="text-white">${o.rejectionReason || 'No funds received in merchant account for this UTR.'}</span>
+                    </p>
+                    <p class="text-[11px] text-gray-400 mt-1">
+                      If money was debited from your bank account, please reach out to Zaid with your UPI payment screenshot:
+                    </p>
+                    <a href="https://wa.me/918624085212?text=Hi%20Zaid,%20regarding%20my%20order%20${o.id}%20payment" target="_blank" class="inline-flex items-center gap-1.5 mt-2 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px]">
+                      <span>💬 Contact Support on WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              `;
+            } else {
+              banner.className = 'p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs space-y-1 block';
+              banner.innerHTML = `
+                <div class="flex items-start gap-3">
+                  <span class="text-xl">✓</span>
+                  <div>
+                    <p class="font-bold text-emerald-300 text-sm">UPI Payment Verified & Confirmed</p>
+                    <p class="text-gray-300 mt-0.5">
+                      Verified via Bank UTR: <strong class="text-white font-mono tracking-widest">${o.utrNumber || 'Confirmed'}</strong>. Your handcrafted solid perfume has been sent for packaging.
+                    </p>
+                  </div>
+                </div>
+              `;
+            }
+          } else {
+            banner.classList.add('hidden');
+          }
+        }
+
+        const stepper = document.getElementById('trk-stepper');
+        const history = o.statusHistory || [
+          { status: 'Order Placed', time: 'Completed', completed: true },
+          { status: 'Packed & Quality Checked', time: 'In Progress', completed: false },
+          { status: 'In Transit (Dispatched)', time: 'Pending', completed: false },
+          { status: 'Delivered', time: 'Pending', completed: false }
+        ];
+
+        stepper.innerHTML = history.map((step, idx) => {
+          const isDone = step.completed;
+          const isCurrent = step.current;
+          let badgeHtml = '';
+
+          if (isCurrent) {
+            badgeHtml = `<div class="w-10 h-10 mx-auto rounded-full bg-blue-500 text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-blue-500/50 animate-pulse">🚚</div>`;
+          } else if (isDone) {
+            badgeHtml = `<div class="w-10 h-10 mx-auto rounded-full gradient-gold-bg text-black font-bold flex items-center justify-center text-sm shadow-md shadow-[#C5A059]/40">✓</div>`;
+          } else {
+            badgeHtml = `<div class="w-10 h-10 mx-auto rounded-full bg-[#181824] border border-white/20 text-gray-500 font-bold flex items-center justify-center text-sm">${idx + 1}</div>`;
+          }
+
+          return `
+            <div class="space-y-1.5 ${!isDone && !isCurrent ? 'opacity-50' : ''}">
+              ${badgeHtml}
+              <p class="text-xs font-bold ${isCurrent ? 'text-blue-300' : (isDone ? 'text-white' : 'text-gray-400')}">${step.status}</p>
+              <p class="text-[10px] text-gray-400 font-mono">${step.time || ''}</p>
+            </div>
+          `;
+        }).join('');
+
+        const itemsList = document.getElementById('trk-items-list');
+        itemsList.innerHTML = (o.items || []).map(item => `
+          <div class="flex justify-between items-center text-gray-200">
+            <span>${item.quantity}&times; ${item.title}</span>
+            <span class="font-bold text-[#F7EBD0] font-mono">₹${item.price * item.quantity}</span>
+          </div>
+        `).join('');
+
+        let payMethodText = `${o.paymentMethod || 'COD'} (${o.paymentStatus || 'Pending'})`;
+        if (o.utrNumber) {
+          payMethodText += ` - UTR: ${o.utrNumber}`;
+        }
+        document.getElementById('trk-payment-method').textContent = payMethodText;
+        document.getElementById('trk-customer-name').textContent = o.customerName || 'Customer';
+        document.getElementById('trk-customer-address').textContent = `${o.shippingAddress}, ${o.city} - ${o.pincode}`;
+        document.getElementById('trk-customer-phone').textContent = `Phone: ${o.customerPhone || 'N/A'}`;
+      },
+
+      async loadAllOrders() {
+        try {
+          const res = await fetch('/api/orders');
+          const data = await res.json();
+          if (data.success && data.orders) {
+            const table = document.getElementById('past-orders-table');
+            table.innerHTML = data.orders.map(o => {
+              let statusBadgeClass = 'bg-amber-900/40 text-amber-300 border border-amber-500/30';
+              if (o.orderStatus === 'Delivered') {
+                statusBadgeClass = 'bg-emerald-900/40 text-emerald-300 border border-emerald-500/30';
+              } else if (o.orderStatus === 'Shipped') {
+                statusBadgeClass = 'bg-blue-900/40 text-blue-300 border border-blue-500/30';
+              } else if (o.orderStatus === 'Payment Failed') {
+                statusBadgeClass = 'bg-red-900/40 text-red-300 border border-red-500/30';
+              }
+
+              return `
+                <tr class="hover:bg-white/[0.02] cursor-pointer" onclick="AccountPage.loadOrder('${o.id}')">
+                  <td class="py-3 px-2 font-mono text-[#F7EBD0] font-bold">#${o.id}</td>
+                  <td class="py-3 px-2 font-medium text-white">${o.customerName}</td>
+                  <td class="py-3 px-2 text-gray-400">${new Date(o.createdAt).toLocaleDateString()}</td>
+                  <td class="py-3 px-2 font-bold text-[#F7EBD0] font-mono">₹${o.total}</td>
+                  <td class="py-3 px-2">
+                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold ${statusBadgeClass}">
+                      ${o.orderStatus}
+                    </span>
+                  </td>
+                  <td class="py-3 px-2 text-right">
+                    <button class="px-2.5 py-1 rounded bg-[#181824] hover:bg-[#C5A059] hover:text-black text-gray-300 font-semibold transition-colors">
+                      Track &rarr;
+                    </button>
+                  </td>
+                </tr>
+              `;
+            }).join('');
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      AccountPage.init();
+    });
+  </script>
+</body>
+</html>

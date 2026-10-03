@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAID'S PERFUMES | Fragrance Details & Notes</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="/css/luxury-glow.css">
+</head>
+<body class="min-h-screen bg-[#08080A] text-[#F4F4F5] antialiased">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#09090C]/95 backdrop-blur-md border-b border-[#C5A059]/25 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl gradient-gold-bg flex items-center justify-center text-black font-bold font-serif-luxury text-lg shadow-lg shadow-[#C5A059]/30">Z</div>
+        <div>
+          <span class="text-xl md:text-2xl font-bold font-serif-luxury tracking-widest gradient-gold-text">ZAID'S PERFUMES</span>
+          <span class="block text-[9px] text-gray-400 tracking-wider uppercase font-mono">Artisanal Solid Colognes</span>
+        </div>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-xs text-gray-300 hover:text-[#E5C378] px-3.5 py-1.5 rounded-lg bg-[#12121A] border border-white/10 flex items-center gap-1.5">
+          <span>&larr; Back to Catalog</span>
+        </a>
+        <button id="cart-btn-nav" onclick="Store.openCart()" class="px-3.5 py-2 rounded-xl gradient-gold-btn text-black font-semibold text-xs flex items-center gap-2">
+          <span>Bag</span>
+          <span id="cart-badge-count" class="bg-black text-[#F7EBD0] text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCT DETAIL CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div id="product-loading" class="text-center py-20">
+      <div class="inline-block w-8 h-8 border-4 border-[#C5A059] border-t-transparent rounded-full animate-spin"></div>
+      <p class="mt-4 text-xs font-serif-luxury text-gray-400">Loading fragrance notes & pyramid...</p>
+    </div>
+
+    <div id="product-content" class="hidden space-y-12">
+      <!-- Breadcrumb -->
+      <nav class="text-xs text-gray-400 font-mono flex items-center gap-2">
+        <a href="/" class="hover:text-white">Home</a> &gt; 
+        <span id="p-category-crumb">Solid Perfumes</span> &gt; 
+        <span id="p-title-crumb" class="text-[#E5C378]">Product</span>
+      </nav>
+
+      <!-- Main Showcase Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Left: Interactive Gallery & Visuals -->
+        <div class="lg:col-span-6 space-y-4">
+          <div id="p-main-card" class="product-image-container w-full h-96 sm:h-[430px] rounded-3xl bg-gradient-to-b from-[#181824] to-[#0A0A0F] border-2 border-[#C5A059]/40 p-6 flex flex-col items-center justify-center relative shadow-2xl glow-gold-sm transition-all duration-300 overflow-hidden">
+            <img id="p-main-img" src="" alt="Perfume" class="max-w-full max-h-[330px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)] transition-all duration-500 hover:scale-105">
+            <div id="p-graphic-container" class="perfume-graphic w-56 h-56 rounded-full border-4 border-[#C5A059] bg-gradient-to-tr from-[#13131A] via-[#2A2312] to-[#0E0E14] hidden flex-col items-center justify-center shadow-2xl transition-transform duration-500">
+              <span class="text-[9px] text-[#C5A059] uppercase tracking-widest font-mono">ZAID'S PERFUMES</span>
+              <span id="p-graphic-title-1" class="text-2xl font-bold font-serif-luxury text-white text-center px-2"></span>
+              <span id="p-graphic-title-2" class="text-lg font-bold font-serif-luxury text-[#E5C378]"></span>
+              <span id="p-graphic-weight" class="text-[10px] text-gray-400 mt-1 font-mono"></span>
+            </div>
+            <div class="absolute bottom-3 left-6 right-6 flex justify-between text-xs text-gray-300 font-mono bg-black/70 px-3.5 py-1.5 rounded-xl backdrop-blur-sm border border-white/5">
+              <span id="p-sku">SKU: ZP-SLD-001</span>
+              <span id="p-stock-badge" class="text-green-400 font-semibold">● In Stock</span>
+            </div>
+          </div>
+
+          <!-- Thumbnails switcher -->
+          <div id="p-thumbnails-row" class="grid grid-cols-4 gap-3 text-xs">
+            <!-- Dynamically populated in ProductPage.renderProduct -->
+          </div>
+        </div>
+
+        <!-- Right: Specifications, Notes Pyramid, Buy Actions -->
+        <div class="lg:col-span-6 space-y-6">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span id="p-badge" class="text-xs px-2.5 py-0.5 rounded bg-[#C5A059]/20 text-[#F7EBD0] border border-[#C5A059]/30 font-semibold font-mono">BESTSELLER</span>
+              <span id="p-rating-text" class="text-xs text-yellow-400">★★★★★ (4.9/5 from 182 reviews)</span>
+            </div>
+            <h1 id="p-title" class="text-3xl md:text-4xl font-extrabold font-serif-luxury text-white">
+              Perfume Title
+            </h1>
+            <p id="p-subtitle" class="text-xs text-[#E5C378] font-serif-luxury tracking-widest mt-1">THE COMMANDING EXECUTIVE SCENT</p>
+          </div>
+
+          <div class="flex items-baseline gap-3">
+            <span id="p-price" class="text-3xl font-extrabold text-[#F7EBD0]">₹399</span>
+            <span id="p-compare-price" class="text-base text-gray-500 line-through font-mono">₹699</span>
+            <span id="p-discount-tag" class="text-xs bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded font-mono font-bold">SAVE 43%</span>
+          </div>
+
+          <p id="p-description" class="text-sm text-gray-300 leading-relaxed">
+            Description goes here...
+          </p>
+
+          <!-- Interactive Scent Pyramid -->
+          <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-5 space-y-4 glow-gold-sm">
+            <h4 class="text-xs uppercase font-bold tracking-widest text-[#E5C378] font-serif-luxury border-b border-white/10 pb-2">
+              Fragrance Note Pyramid
+            </h4>
+            <div class="space-y-3 text-xs">
+              <div class="flex items-center gap-3">
+                <span class="w-20 px-2 py-1 rounded bg-[#C5A059]/20 text-[#F7EBD0] font-mono text-[11px] text-center font-bold">TOP</span>
+                <span id="p-top-notes" class="text-gray-200">Calabrian Bergamot, Lemon Zest</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-20 px-2 py-1 rounded bg-[#C5A059]/30 text-[#F7EBD0] font-mono text-[11px] text-center font-bold">HEART</span>
+                <span id="p-heart-notes" class="text-gray-200">Cedarwood, French Lavender</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-20 px-2 py-1 rounded bg-[#C5A059]/40 text-[#F7EBD0] font-mono text-[11px] text-center font-bold">BASE</span>
+                <span id="p-base-notes" class="text-gray-200">Smoky Vetiver, Pure Ambergris</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Longevity & Sillage Meters -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-3.5 rounded-xl bg-[#12121A] border border-white/10">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-400">Skin Longevity:</span>
+                <span id="p-longevity" class="text-[#F7EBD0] font-bold font-mono">8 - 10 Hours</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-black/60 overflow-hidden">
+                <div class="h-full bg-[#C5A059] w-5/6"></div>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-[#12121A] border border-white/10">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-400">Sillage Intensity:</span>
+                <span id="p-sillage" class="text-[#F7EBD0] font-bold font-mono">Intimate to Moderate</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-black/60 overflow-hidden">
+                <div class="h-full bg-[#C5A059] w-4/6"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quantity & Purchase CTAs -->
+          <div id="buy-section-trigger" class="space-y-3 pt-2">
+            <div class="flex items-center gap-4">
+              <div class="flex items-center bg-[#13131B] border border-white/15 rounded-xl p-1">
+                <button onclick="ProductPage.changeQty(-1)" class="w-8 h-8 rounded-lg bg-black/40 text-gray-300 font-bold hover:text-white">-</button>
+                <span id="p-qty-display" class="w-10 text-center text-sm font-bold text-white font-mono">1</span>
+                <button onclick="ProductPage.changeQty(1)" class="w-8 h-8 rounded-lg bg-black/40 text-gray-300 font-bold hover:text-white">+</button>
+              </div>
+              <button onclick="ProductPage.addToCart(event)" class="flex-1 py-3.5 rounded-xl gradient-gold-btn text-black font-extrabold text-xs uppercase tracking-wider font-serif-luxury shadow-lg shadow-[#C5A059]/30">
+                Add To Bag &bull; <span id="p-btn-price">₹399</span>
+              </button>
+            </div>
+            <button onclick="ProductPage.buyNow()" class="w-full py-3.5 rounded-xl bg-[#1B1910] border border-[#E5C378] text-[#F7EBD0] hover:bg-[#C5A059] hover:text-black font-extrabold text-xs uppercase tracking-wider font-serif-luxury transition-all">
+              ⚡ Buy Now (Instant Checkout)
+            </button>
+          </div>
+
+          <!-- COLLAPSIBLE ACCORDIONS (thedmf.shop style) -->
+          <div class="border-t border-white/10 pt-4 space-y-2 text-xs">
+            <details class="group bg-[#111117] rounded-xl border border-white/5 p-3.5 cursor-pointer">
+              <summary class="font-bold font-serif-luxury text-gray-200 flex justify-between items-center list-none">
+                <span>🌿 100% Clean Ingredients Transparency</span>
+                <span class="text-[#C5A059] group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="text-gray-400 mt-2 leading-relaxed">
+                Organic Yellow Beeswax, Cold-Pressed Shea Butter, Golden Jojoba Seed Oil, Pure Fragrance Extracts (Parfum), Vitamin E Acetate. 100% Alcohol-Free, Cruelty-Free, Paraben-Free, and Safe for all skin types.
+              </p>
+            </details>
+
+            <details class="group bg-[#111117] rounded-xl border border-white/5 p-3.5 cursor-pointer">
+              <summary class="font-bold font-serif-luxury text-gray-200 flex justify-between items-center list-none">
+                <span>📍 How to Apply For Maximum Longevity</span>
+                <span class="text-[#C5A059] group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="text-gray-400 mt-2 leading-relaxed">
+                Warm a small dab between your fingertips for 2-3 seconds until melted. Gently massage onto wrist pulse points, the side of your neck, and behind your collarbones. Your natural body temperature activates the fragrance layers throughout the day.
+              </p>
+            </details>
+
+            <details class="group bg-[#111117] rounded-xl border border-white/5 p-3.5 cursor-pointer">
+              <summary class="font-bold font-serif-luxury text-gray-200 flex justify-between items-center list-none">
+                <span>🚚 Shipping, Replacement & Delivery</span>
+                <span class="text-[#C5A059] group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="text-gray-400 mt-2 leading-relaxed">
+                Dispatched within 24 hours via BlueDart Air / Delhivery Express. Delivery takes 2-4 business days across India. Free shipping on orders over ₹499. Hassle-free replacement if damaged in transit.
+              </p>
+            </details>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- REVIEWS SECTION -->
+      <section class="border-t border-white/10 pt-10 space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold font-serif-luxury gradient-gold-text">Customer Reviews & Ratings</h3>
+          <button onclick="ProductPage.toggleReviewForm()" class="px-4 py-2 rounded-xl gradient-gold-outline text-xs font-bold font-serif-luxury">
+            + Write a Review
+          </button>
+        </div>
+
+        <div id="review-form-container" class="hidden bg-[#0D0D14] border border-[#C5A059]/35 rounded-2xl p-6 space-y-4">
+          <h4 class="text-sm font-bold font-serif-luxury text-white">Share your fragrance experience</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <input id="rev-name" type="text" placeholder="Your Name" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+            <select id="rev-rating" class="bg-[#14141E] border border-white/10 rounded-xl p-3 text-white">
+              <option value="5">★★★★★ (5 Stars - Exceptional)</option>
+              <option value="4">★★★★☆ (4 Stars - Very Good)</option>
+              <option value="3">★★★☆☆ (3 Stars - Average)</option>
+            </select>
+          </div>
+          <textarea id="rev-comment" rows="3" placeholder="How was the skin longevity and scent projection?" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-xs text-white"></textarea>
+          <button onclick="ProductPage.submitReview()" class="px-6 py-2.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury">
+            Submit Review
+          </button>
+        </div>
+
+        <div id="reviews-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Dynamic reviews -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- STICKY ADD TO CART BAR (Triggered on Scroll past main button) -->
+  <div id="sticky-bar" class="sticky-buy-bar p-3.5">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-black border border-[#C5A059]/40 flex items-center justify-center font-bold text-xs text-[#E5C378] font-serif-luxury">Z</div>
+        <div>
+          <p id="sticky-title" class="text-xs font-bold text-white line-clamp-1">Product Title</p>
+          <p id="sticky-price" class="text-xs font-bold text-[#F7EBD0] font-mono">₹399</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="ProductPage.addToCart(event)" class="px-6 py-2.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury shadow-lg shadow-[#C5A059]/20">
+          + Add to Bag
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/store.js"></script>
+  <script>
+    const ProductPage = {
+      product: null,
+      qty: 1,
+
+      async init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 'zp-prod-001';
+
+        try {
+          const res = await fetch(`/api/products/${productId}`);
+          const data = await res.json();
+          if (data.success && data.product) {
+            this.product = data.product;
+            this.renderProduct(data.product, data.reviews || []);
+            this.setupScrollObserver();
+          } else {
+            document.getElementById('product-loading').innerHTML = `
+              <p class="text-red-400 text-sm font-serif-luxury">Fragrance not found.</p>
+              <a href="/" class="mt-3 inline-block px-4 py-2 gradient-gold-btn text-black rounded-xl text-xs font-bold">Return to Catalog</a>
+            `;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      },
+
+      renderProduct(p, reviews) {
+        document.getElementById('product-loading').classList.add('hidden');
+        document.getElementById('product-content').classList.remove('hidden');
+
+        document.getElementById('p-category-crumb').textContent = p.category;
+        document.getElementById('p-title-crumb').textContent = p.title;
+
+        document.getElementById('p-title').textContent = p.title;
+        document.getElementById('p-subtitle').textContent = p.subtitle || '';
+        document.getElementById('p-description').textContent = p.description;
+
+        document.getElementById('p-graphic-title-1').textContent = p.title.split(' ')[0] || '';
+        document.getElementById('p-graphic-title-2').textContent = p.title.split(' ')[1] || 'PERFUME';
+        document.getElementById('p-graphic-weight').textContent = `${p.weight || '25g'} Solid Cologne`;
+
+        const mainImg = document.getElementById('p-main-img');
+        const graphicContainer = document.getElementById('p-graphic-container');
+        const thumbRow = document.getElementById('p-thumbnails-row');
+
+        if (p.image) {
+          mainImg.src = p.image;
+          mainImg.onerror = function() {
+            if (p.localImage && this.src !== p.localImage) {
+              this.src = p.localImage;
+            } else {
+              this.classList.add('hidden');
+              graphicContainer.classList.remove('hidden');
+            }
+          };
+          mainImg.classList.remove('hidden');
+          graphicContainer.classList.add('hidden');
+        } else {
+          mainImg.classList.add('hidden');
+          graphicContainer.classList.remove('hidden');
+        }
+
+        // Render thumbnails from Shopify images
+        const imagesToRender = (p.images && p.images.length > 0) ? p.images : (p.image ? [p.image] : []);
+        if (imagesToRender.length > 0) {
+          thumbRow.innerHTML = imagesToRender.map((imgUrl, idx) => `
+            <button onclick="ProductPage.switchImage('${imgUrl}', this)" class="thumb-btn h-20 rounded-xl bg-[#12121A] ${idx === 0 ? 'border-2 border-[#C5A059]' : 'border border-white/10'} flex flex-col items-center justify-center p-1.5 transition-all overflow-hidden group">
+              <img src="${imgUrl}" alt="${p.title}" class="w-full h-full object-contain group-hover:scale-105 transition-transform">
+            </button>
+          `).join('');
+        } else {
+          thumbRow.innerHTML = `
+            <button onclick="ProductPage.switchView('tin')" class="thumb-btn h-20 rounded-xl bg-[#12121A] border-2 border-[#C5A059] flex flex-col items-center justify-center p-2 text-[#E5C378] font-bold transition-all">
+              <span>Pocket Tin</span>
+              <span class="text-[9px] text-gray-400 font-normal">Exterior</span>
+            </button>
+            <button onclick="ProductPage.switchView('wax')" class="thumb-btn h-20 rounded-xl bg-[#12121A] border border-white/10 flex flex-col items-center justify-center p-2 text-gray-300 hover:border-[#C5A059]/50 transition-all">
+              <span>Open Wax</span>
+              <span class="text-[9px] text-gray-400 font-normal">Balm</span>
+            </button>
+            <button onclick="ProductPage.switchView('pulse')" class="thumb-btn h-20 rounded-xl bg-[#12121A] border border-white/10 flex flex-col items-center justify-center p-2 text-gray-300 hover:border-[#C5A059]/50 transition-all">
+              <span>Pulse Points</span>
+              <span class="text-[9px] text-gray-400 font-normal">Application</span>
+            </button>
+            <button onclick="ProductPage.switchView('box')" class="thumb-btn h-20 rounded-xl bg-[#12121A] border border-white/10 flex flex-col items-center justify-center p-2 text-gray-300 hover:border-[#C5A059]/50 transition-all">
+              <span>Gift Box</span>
+              <span class="text-[9px] text-gray-400 font-normal">Packaging</span>
+            </button>
+          `;
+        }
+
+        document.getElementById('p-price').textContent = `₹${p.price}`;
+        document.getElementById('p-btn-price').textContent = `₹${p.price}`;
+        document.getElementById('sticky-title').textContent = p.title;
+        document.getElementById('sticky-price').textContent = `₹${p.price}`;
+
+        if (p.comparePrice) {
+          document.getElementById('p-compare-price').textContent = `₹${p.comparePrice}`;
+          const pct = Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100);
+          document.getElementById('p-discount-tag').textContent = `SAVE ${pct}%`;
+        } else {
+          document.getElementById('p-compare-price').classList.add('hidden');
+          document.getElementById('p-discount-tag').classList.add('hidden');
+        }
+
+        document.getElementById('p-top-notes').textContent = p.topNotes || 'Bergamot, Amber';
+        document.getElementById('p-heart-notes').textContent = p.heartNotes || 'Spices, Woods';
+        document.getElementById('p-base-notes').textContent = p.baseNotes || 'Pure Musk, Oudh';
+
+        document.getElementById('p-longevity').textContent = p.longevity || '8-10 Hours';
+        document.getElementById('p-sillage').textContent = p.sillage || 'Intimate to Moderate';
+
+        document.getElementById('p-sku').textContent = `SKU: ${p.id.toUpperCase()}`;
+        document.getElementById('p-stock-badge').textContent = `● In Stock (${p.stock || 30} units)`;
+
+        const revContainer = document.getElementById('reviews-list');
+        if (reviews.length === 0) {
+          revContainer.innerHTML = `<p class="col-span-full text-xs text-gray-500">Be the first to review this artisanal solid perfume!</p>`;
+        } else {
+          revContainer.innerHTML = reviews.map(r => `
+            <div class="p-4 rounded-2xl bg-[#12121A] border border-white/5 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-white">${r.userName}</span>
+                <span class="text-yellow-400">★★★★★</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">"${r.comment}"</p>
+              <p class="text-[10px] text-gray-500 font-mono">${r.date || 'Verified Purchase'}</p>
+            </div>
+          `).join('');
+        }
+      },
+
+      switchImage(url, btn) {
+        const mainImg = document.getElementById('p-main-img');
+        if (!mainImg) return;
+        mainImg.style.opacity = '0.3';
+        setTimeout(() => {
+          mainImg.src = url;
+          mainImg.style.opacity = '1';
+        }, 150);
+
+        document.querySelectorAll('#p-thumbnails-row .thumb-btn').forEach(b => {
+          b.className = "thumb-btn h-20 rounded-xl bg-[#12121A] border border-white/10 flex flex-col items-center justify-center p-1.5 transition-all overflow-hidden group";
+        });
+        if (btn) {
+          btn.className = "thumb-btn h-20 rounded-xl bg-[#12121A] border-2 border-[#C5A059] flex flex-col items-center justify-center p-1.5 transition-all overflow-hidden group shadow-md shadow-[#C5A059]/20";
+        }
+      },
+
+      switchView(viewType) {
+        const container = document.getElementById('p-graphic-container');
+        document.querySelectorAll('.thumb-btn').forEach(btn => {
+          btn.className = "thumb-btn h-20 rounded-xl bg-[#12121A] border border-white/10 flex flex-col items-center justify-center p-2 text-gray-300 hover:border-[#C5A059]/50 transition-all";
+        });
+
+        // Set active border
+        event.currentTarget.className = "thumb-btn h-20 rounded-xl bg-[#12121A] border-2 border-[#C5A059] flex flex-col items-center justify-center p-2 text-[#E5C378] font-bold transition-all";
+
+        if (viewType === 'wax') {
+          container.style.transform = 'scale(0.92) rotate(15deg)';
+          container.style.background = 'linear-gradient(135deg, #E6C875 0%, #A8863A 100%)';
+          document.getElementById('p-graphic-title-1').textContent = 'PURE';
+          document.getElementById('p-graphic-title-2').textContent = 'BALM';
+        } else if (viewType === 'pulse') {
+          container.style.transform = 'scale(1) rotate(-5deg)';
+          container.style.background = 'linear-gradient(135deg, #181824 0%, #2A1D0B 100%)';
+          document.getElementById('p-graphic-title-1').textContent = 'PULSE';
+          document.getElementById('p-graphic-title-2').textContent = 'POINTS';
+        } else if (viewType === 'box') {
+          container.style.transform = 'scale(1.05) rotate(0deg)';
+          container.style.background = 'linear-gradient(135deg, #0A0A0E 0%, #1F190D 100%)';
+          document.getElementById('p-graphic-title-1').textContent = 'GIFT';
+          document.getElementById('p-graphic-title-2').textContent = 'EDITION';
+        } else {
+          container.style.transform = 'scale(1) rotate(0deg)';
+          container.style.background = 'linear-gradient(135deg, #13131A 0%, #2A2312 50%, #0E0E14 100%)';
+          document.getElementById('p-graphic-title-1').textContent = this.product.title.split(' ')[0] || '';
+          document.getElementById('p-graphic-title-2').textContent = this.product.title.split(' ')[1] || 'PERFUME';
+        }
+      },
+
+      setupScrollObserver() {
+        const trigger = document.getElementById('buy-section-trigger');
+        const stickyBar = document.getElementById('sticky-bar');
+
+        window.addEventListener('scroll', () => {
+          if (!trigger || !stickyBar) return;
+          const rect = trigger.getBoundingClientRect();
+          if (rect.bottom < 0) {
+            stickyBar.classList.add('show');
+          } else {
+            stickyBar.classList.remove('show');
+          }
+        });
+      },
+
+      changeQty(delta) {
+        this.qty = Math.max(1, this.qty + delta);
+        document.getElementById('p-qty-display').textContent = this.qty;
+        if (this.product) {
+          document.getElementById('p-btn-price').textContent = `₹${this.product.price * this.qty}`;
+        }
+      },
+
+      addToCart(event) {
+        if (!this.product) return;
+        Store.addToCartWithAnimation(this.product.id, event);
+      },
+
+      buyNow() {
+        if (!this.product) return;
+        Store.addToCart(this.product.id, this.qty, false);
+        window.location.href = '/checkout.html';
+      },
+
+      toggleReviewForm() {
+        const form = document.getElementById('review-form-container');
+        form.classList.toggle('hidden');
+      },
+
+      async submitReview() {
+        const name = document.getElementById('rev-name').value;
+        const rating = document.getElementById('rev-rating').value;
+        const comment = document.getElementById('rev-comment').value;
+
+        if (!name || !comment) {
+          alert('Please enter your name and comment');
+          return;
+        }
+
+        try {
+          const res = await fetch(`/api/products/${this.product.id}/reviews`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userName: name, rating, comment })
+          });
+          const data = await res.json();
+          if (data.success) {
+            Store.showToast('✨ Thank you for your review!');
+            this.toggleReviewForm();
+            this.init();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      ProductPage.init();
+    });
+  </script>
+</body>
+</html>

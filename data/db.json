@@ -1,0 +1,1328 @@
+{
+  "products": [
+    {
+      "id": "zp-sld-001",
+      "title": "Hawas Fire Luxury Solid Perfume",
+      "slug": "hawas-fire",
+      "category": "Signature Solids",
+      "price": 179,
+      "comparePrice": 249,
+      "badge": "BESTSELLER",
+      "weight": "18g",
+      "stock": 38,
+      "rating": 5,
+      "reviewCount": 118,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6867_2f23c2a9-349f-4a3c-8911-3480cc17200d.png?v=1789459912",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6867_2f23c2a9-349f-4a3c-8911-3480cc17200d.png?v=1789459912",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6866.png?v=1789459950",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-001_img1.png",
+      "subtitle": "Amber, Marine & Warm Soft Spices",
+      "description": "Zaid's Hawas Fire Luxury Solid Perfume delivers an exhilarating explosion of warm amber, aromatic minerals, and marine breeze with soft spicy undertones. Crafted with organic beeswax and nourishing oils for a long-lasting skin-scent.",
+      "gradient": "from-[#2A1711] via-[#1D100C] to-[#0A0A0E]",
+      "accentColor": "#E05353",
+      "topNotes": "Aromatic Citrus, Salty Sea Spray, Mineral Accords",
+      "heartNotes": "White Florals, Soft Spices, Warm Resins",
+      "baseNotes": "Deep Amber, Animalic Accords, Driftwood",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-002",
+      "title": "Pacific Ocean Luxury Solid Perfume",
+      "slug": "pacific-ocean",
+      "category": "Fresh Aquatics",
+      "price": 179,
+      "comparePrice": 250,
+      "badge": "TRENDING",
+      "weight": "18g",
+      "stock": 50,
+      "rating": 4.9,
+      "reviewCount": 134,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6864.png?v=1789459995",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6864.png?v=1789459995",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6865.png?v=1789458374",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-002_img1.png",
+      "subtitle": "Crisp Citrus, Green Freshness & Fruity Breeze",
+      "description": "Zaid's Pacific Ocean Luxury Solid Perfume is an invigorating cool ocean breeze infused with vibrant citrus, crushed herbs, aromatic spices, and dewy woods. Pocket-friendly solid cologne for an all-day refreshing aura.",
+      "gradient": "from-[#0F1E29] via-[#0B151D] to-[#08080C]",
+      "accentColor": "#38BDF8",
+      "topNotes": "Sparkling Citrus, Fresh Spicy Mint, Green Apple",
+      "heartNotes": "Aromatic Basil, Dewy Jasmine, Sweet Fruity Notes",
+      "baseNotes": "Clean Cedar, Warm Amber, White Musk",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-003",
+      "title": "CEO'S Choice Luxury Solid Perfume",
+      "slug": "ceos-choice",
+      "category": "Signature Solids",
+      "price": 149,
+      "comparePrice": 249,
+      "badge": "SIGNATURE",
+      "weight": "18g",
+      "stock": 60,
+      "rating": 4.9,
+      "reviewCount": 162,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/96736d2d-919e-4b3a-87bf-f90b92c0ba48.jpg?v=1779092334",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/96736d2d-919e-4b3a-87bf-f90b92c0ba48.jpg?v=1779092334",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/facaea98-bd07-4173-8131-61d0aa02b51b.jpg?v=1779092359",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/f28c58e7-4c1d-47b5-95cd-c55921c2ad34.jpg?v=1779092389"
+      ],
+      "localImage": "/images/products/zp-sld-003_img1.jpg",
+      "subtitle": "Commanding Boardroom Charisma & Refined Woods",
+      "description": "Zaid's CEO's Choice Luxury Solid Perfume is crafted for leaders. Natural beeswax, shea butter, and organic jojoba oil infused with Italian bergamot, cedarwood, and smoky vetiver for commanding boardroom confidence.",
+      "gradient": "from-[#1F190D] via-[#161209] to-[#0A0A0E]",
+      "accentColor": "#C5A059",
+      "topNotes": "Calabrian Bergamot, Lemon Zest, Fresh Cardamom",
+      "heartNotes": "Cedarwood, French Lavender, Pink Peppercorn",
+      "baseNotes": "Smoky Vetiver, Pure Ambergris, Roasted Tonka",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-004",
+      "title": "White Oudh Luxury Solid Perfume",
+      "slug": "white-oudh",
+      "category": "Royal Oudhs & Leather",
+      "price": 149,
+      "comparePrice": 299,
+      "badge": "ROYAL ARABIAN",
+      "weight": "18g",
+      "stock": 55,
+      "rating": 4.9,
+      "reviewCount": 140,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3980.jpg?v=1779129589",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3980.jpg?v=1779129589",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3989.png?v=1779129633",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3987.png?v=1779129647",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-004_img1.jpg",
+      "subtitle": "Aristocratic White Musk & Pure Sweet Agarwood",
+      "description": "Zaid's White Oudh Luxury Solid Perfume brings aristocratic Arabian prestige. A soothing creamy blend of white musk, pure dewy damask rose, and sacred agarwood (oudh) balm that lasts 10+ hours on pulse points.",
+      "gradient": "from-[#1C1812] via-[#14110C] to-[#09080A]",
+      "accentColor": "#F7EBD0",
+      "topNotes": "Soft White Musk, Dewy Rose, Gentle Saffron",
+      "heartNotes": "Jasmine Sambac, White Amber, Light Spices",
+      "baseNotes": "Royal Agarwood (Oudh), Sandalwood, Cashmere Wood",
+      "longevity": "10-12 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-005",
+      "title": "Chocolate Coffee Luxury Solid Perfume",
+      "slug": "chocolate-coffee",
+      "category": "Signature Solids",
+      "price": 179,
+      "comparePrice": 249,
+      "badge": "GOURMAND",
+      "weight": "18g",
+      "stock": 48,
+      "rating": 4.9,
+      "reviewCount": 78,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3979.png?v=1779128079",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3979.png?v=1779128079",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3977.png?v=1779128047",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3985.png?v=1779127981"
+      ],
+      "localImage": "/images/products/zp-sld-005_img1.png",
+      "subtitle": "Roasted Arabica Beans & Rich Belgian Chocolate",
+      "description": "Zaid's Chocolate Coffee Unisex Solid Perfume is the ultimate gourmand indulgence. A rich fusion of freshly roasted Arabica beans, melted dark Belgian chocolate, and sweet Madagascar vanilla.",
+      "gradient": "from-[#22130C] via-[#170E08] to-[#090605]",
+      "accentColor": "#D97706",
+      "topNotes": "Fresh Roasted Arabica, Hazelnut Cream",
+      "heartNotes": "Dark Belgian Chocolate, Cinnamon, Warm Caramel",
+      "baseNotes": "Madagascar Vanilla Pods, Sweet Amber, Coffee Bean Absolue",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-006",
+      "title": "Aqua Wave Fresh Solid Perfume",
+      "slug": "aqua-wave",
+      "category": "Fresh Aquatics",
+      "price": 169,
+      "comparePrice": 249,
+      "badge": "FRESH PICK",
+      "weight": "18g",
+      "stock": 54,
+      "rating": 4.8,
+      "reviewCount": 92,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3982.png?v=1779128453",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3982.png?v=1779128453",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3984.png?v=1779128366",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3983_4daed520-d845-433f-9409-163247d9fe99.png?v=1779128341"
+      ],
+      "localImage": "/images/products/zp-sld-006_img1.png",
+      "subtitle": "Crashing Waves, Blue Calone & Icy Mint",
+      "description": "Zaid's Aqua Wave Fresh Solid Perfume brings the rush of ocean surf with crisp blue calone accords, iced spearmint, salty sea mist, and aquatic musk. Keeps you cool, vibrant, and energetic all day.",
+      "gradient": "from-[#0E1C27] via-[#09131C] to-[#050B10]",
+      "accentColor": "#0EA5E9",
+      "topNotes": "Italian Mandarin, Oceanic Calone, Crushed Mint",
+      "heartNotes": "Neroli Petals, Lotus Flower, Sea Salt",
+      "baseNotes": "Clean Cedarwood, White Amber, Sheer Musk",
+      "longevity": "7-9 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-007",
+      "title": "The Most Awaited Luxury Solid Perfume",
+      "slug": "the-most-awaited",
+      "category": "Signature Solids",
+      "price": 179,
+      "comparePrice": 259,
+      "badge": "HYPED",
+      "weight": "18g",
+      "stock": 42,
+      "rating": 5,
+      "reviewCount": 145,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/43E0F041-DDE8-40EC-B214-159CAA52D79F.png?v=1781184731",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/43E0F041-DDE8-40EC-B214-159CAA52D79F.png?v=1781184731",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/4466BFB8-9328-467E-AC31-AA9B57609CD3.png?v=1781184789",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-007_img1.png",
+      "subtitle": "Irresistible Night-Out Sweetness & Spices",
+      "description": "Zaid's The Most Awaited Luxury Solid Perfume is an addictive date-night masterpiece. Cardamom spice, molten toffee caramel, warm amberwood, and Bourbon vanilla create an irresistible magnetic attraction.",
+      "gradient": "from-[#2A180E] via-[#1A0E08] to-[#0A0704]",
+      "accentColor": "#F59E0B",
+      "topNotes": "Guatemalan Cardamom, Pink Pepper, Ginger Zing",
+      "heartNotes": "Molten Toffee, Lavender Blossom, Clary Sage",
+      "baseNotes": "Bourbon Vanilla, Amberwood, Smoked Vetiver",
+      "longevity": "9-11 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-008",
+      "title": "Hawas Leather Luxury Solid Perfume",
+      "slug": "hawas-leather",
+      "category": "Royal Oudhs & Leather",
+      "price": 179,
+      "comparePrice": 250,
+      "badge": "INTENSE",
+      "weight": "18g",
+      "stock": 39,
+      "rating": 4.9,
+      "reviewCount": 88,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/90E26B06-C1C8-4A40-AC6F-19E57700CFD8.png?v=1780985179",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/90E26B06-C1C8-4A40-AC6F-19E57700CFD8.png?v=1780985179",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/E4044986-E521-4568-BC28-021D8D8D9C5E.png?v=1780985219",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-008_img1.png",
+      "subtitle": "Tuscan Leather, Smoked Birch & Wild Berries",
+      "description": "Zaid's Hawas Leather Luxury Solid Perfume is bold, raw, and unapologetically masculine. Luxurious Tuscan leather accords mingled with smoked birch, thyme, and dark raspberry.",
+      "gradient": "from-[#1D1410] via-[#140E0B] to-[#0A0706]",
+      "accentColor": "#B45309",
+      "topNotes": "Saffron Threads, Wild Raspberry, Fresh Thyme",
+      "heartNotes": "Night-blooming Jasmine, Frankincense, Birch Tar",
+      "baseNotes": "Tuscan Leather, Black Suede, Amber Resin",
+      "longevity": "10-12 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-009",
+      "title": "Creed Ways Luxury Solid Perfume",
+      "slug": "creed-ways",
+      "category": "Signature Solids",
+      "price": 149,
+      "comparePrice": 259,
+      "badge": "ROYAL HERITAGE",
+      "weight": "18g",
+      "stock": 58,
+      "rating": 4.9,
+      "reviewCount": 150,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/FA257436-3E0B-4AFC-91AC-009EF4BF0D0F.png?v=1780984954",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/FA257436-3E0B-4AFC-91AC-009EF4BF0D0F.png?v=1780984954",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/C4575C15-E0CC-4280-8AC3-4F05B03AB872.png?v=1780985096",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-009_img1.png",
+      "subtitle": "Smoky Pineapple, Blackcurrant & Oakmoss",
+      "description": "Zaid's Creed Ways Luxury Solid Perfume echoes legendary royalty. A striking blend of tart blackcurrant, royal pineapple, birch smoke, and clean oakmoss.",
+      "gradient": "from-[#15191C] via-[#0E1113] to-[#070809]",
+      "accentColor": "#94A3B8",
+      "topNotes": "Royal Pineapple, Bergamot, Blackcurrant, Apple",
+      "heartNotes": "Birch Smoke, Patchouli, Moroccan Jasmine, Rose",
+      "baseNotes": "Clean Oakmoss, Ambergris, Soft Vanilla",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-010",
+      "title": "Velvet Current Luxury Solid Perfume",
+      "slug": "velvet-current",
+      "category": "Signature Solids",
+      "price": 129,
+      "comparePrice": 249,
+      "badge": "DAILY STEAL",
+      "weight": "18g",
+      "stock": 65,
+      "rating": 4.8,
+      "reviewCount": 105,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3978.png?v=1779130475",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3978.png?v=1779130475",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3974.png?v=1779130571",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_3976.png?v=1779129086"
+      ],
+      "localImage": "/images/products/zp-sld-010_img1.png",
+      "subtitle": "Plum Liqueur, Velvet Petals & Smooth Cashmeran",
+      "description": "Zaid's Velvet Current Luxury Solid Perfume is silky smooth and alluring. Midnight blackcurrant berries, velvety orchid petals, and warm cashmeran.",
+      "gradient": "from-[#22101E] via-[#170B14] to-[#0A0509]",
+      "accentColor": "#A855F7",
+      "topNotes": "Dark Plum Liqueur, Crushed Blackcurrant, Pink Pepper",
+      "heartNotes": "Night Jasmine, Purple Orchid, Candied Violet",
+      "baseNotes": "Cashmeran, Creamy Sandalwood, Praline Musk",
+      "longevity": "7-9 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-011",
+      "title": "CR7 Champions Edition Solid Perfume",
+      "slug": "cr7-champions",
+      "category": "Champions Series",
+      "price": 149,
+      "comparePrice": 249,
+      "badge": "CHAMPIONS",
+      "weight": "18g",
+      "stock": 52,
+      "rating": 5,
+      "reviewCount": 189,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/2758BEA0-D5B4-4B62-974C-D54A3EA8899C.png?v=1782575827",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/2758BEA0-D5B4-4B62-974C-D54A3EA8899C.png?v=1782575827",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/8324787D-2757-4FAC-9971-9016033CE141.png?v=1782694615"
+      ],
+      "localImage": "/images/products/zp-sld-011_img1.png",
+      "subtitle": "Dynamic Cedar, Red Apple & Electric Musk",
+      "description": "Zaid's CR7 Champions Edition Solid Perfume channels the unstoppable drive of Cristiano Ronaldo. Crisp red apple, energetic spices, Virginia cedar, and high-impact magnetic musk.",
+      "gradient": "from-[#261010] via-[#1A0A0A] to-[#0A0505]",
+      "accentColor": "#EF4444",
+      "topNotes": "Crisp Red Apple, Fresh Artemisia, Cardamom",
+      "heartNotes": "Cedarwood, Cinnamon Bark, Iris Bloom",
+      "baseNotes": "Vanilla Pod, Sandalwood, Amber Crystals",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-012",
+      "title": "MESSI Champions Edition Solid Perfume",
+      "slug": "messi-champions",
+      "category": "Champions Series",
+      "price": 149,
+      "comparePrice": 249,
+      "badge": "GOAT EDITION",
+      "weight": "18g",
+      "stock": 58,
+      "rating": 5,
+      "reviewCount": 210,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/2B00124C-476D-4776-8012-02D38152A60C_f4a995eb-1d65-45c8-805f-61ae420abb77.png?v=1782576544",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/2B00124C-476D-4776-8012-02D38152A60C_f4a995eb-1d65-45c8-805f-61ae420abb77.png?v=1782576544",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/8E050A4B-F73C-4D5B-B614-91CAC19BE6C4.png?v=1782694653"
+      ],
+      "localImage": "/images/products/zp-sld-012_img1.png",
+      "subtitle": "Cool Cardamom, French Cypress & Pure Class",
+      "description": "Zaid's MESSI Champions Edition Solid Perfume embodies the pure genius and effortless elegance of Lionel Messi. Cool green cardamom, French cypress wood, and celestial amber.",
+      "gradient": "from-[#0F1E29] via-[#0A141C] to-[#050A0E]",
+      "accentColor": "#60A5FA",
+      "topNotes": "Cool Cardamom, Wild Apple Leaf, Blue Sage",
+      "heartNotes": "French Cypress, Lavender Water, Violet Leaf",
+      "baseNotes": "Celestial Amber, Cedarwood, Sheer Musk",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-013",
+      "title": "Neymar Junior Edition Solid Perfume",
+      "slug": "neymar-junior",
+      "category": "Champions Series",
+      "price": 149,
+      "comparePrice": 349,
+      "badge": "SAMBA FLAIR",
+      "weight": "18g",
+      "stock": 46,
+      "rating": 4.9,
+      "reviewCount": 115,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/1296F253-A29C-4436-9A39-028C1E2A9AD3.png?v=1783703009",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/1296F253-A29C-4436-9A39-028C1E2A9AD3.png?v=1783703009",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/CFA57C21-9A0D-47BA-895A-74344471A54C.png?v=1783703030",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/c161ef74-022c-46f3-8d20-0e79f61e2975.jpg?v=1779092235"
+      ],
+      "localImage": "/images/products/zp-sld-013_img1.png",
+      "subtitle": "Exotic Brazilian Lime, Passionfruit & Cashmere",
+      "description": "Zaid's Neymar Junior Edition Solid Perfume is packed with Brazilian charisma and vibrant rhythm. Sparkling zesty lime, exotic passionfruit, peppered mint, and cashmere wood.",
+      "gradient": "from-[#221A0A] via-[#171207] to-[#0A0703]",
+      "accentColor": "#FACC15",
+      "topNotes": "Brazilian Key Lime, Passionfruit, Peppered Spearmint",
+      "heartNotes": "Ginger Blossom, Nutmeg, Crushed Herbals",
+      "baseNotes": "Cashmere Wood, Golden Amber, Creamy Tonka",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-014",
+      "title": "Pack of 5 Luxury Solid Perfumes",
+      "slug": "pack-of-5",
+      "category": "Multi-Pack Combos",
+      "price": 499,
+      "comparePrice": 1000,
+      "badge": "MEGA VALUE",
+      "weight": "5x18g",
+      "stock": 30,
+      "rating": 5,
+      "reviewCount": 85,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/C5D49281-4E03-4634-B560-42F214F6BA6C.png?v=1779133596",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/C5D49281-4E03-4634-B560-42F214F6BA6C.png?v=1779133596"
+      ],
+      "localImage": "/images/products/zp-sld-014_img1.png",
+      "subtitle": "5 Pocket-Sized Tins | Complete Scent Wardrobe",
+      "description": "Zaid's Pack of 5 Solid Perfumes gives you a versatile fragrance wardrobe for every occasion: gym, office, evening dates, and weekend rides. Huge value bundle in pocket luxury tins.",
+      "gradient": "from-[#1F190D] via-[#141008] to-[#0A0805]",
+      "accentColor": "#E5C378",
+      "topNotes": "Assorted Fresh, Citrus & Fruity Blends",
+      "heartNotes": "Spices, Florals & Gourmand Accords",
+      "baseNotes": "Oudhs, Woods, Leathers & Deep Ambers",
+      "longevity": "8-12 Hours across wardrobe",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-015",
+      "title": "Premium Pack of 3 Solid Perfumes",
+      "slug": "pack-of-3",
+      "category": "Multi-Pack Combos",
+      "price": 399,
+      "comparePrice": 599,
+      "badge": "CURATED TRIO",
+      "weight": "3x18g",
+      "stock": 40,
+      "rating": 4.9,
+      "reviewCount": 96,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/666.png?v=1781094626",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/666.png?v=1781094626"
+      ],
+      "localImage": "/images/products/zp-sld-015_img1.png",
+      "subtitle": "Signature Fragrances Trio for Day & Night",
+      "description": "Zaid's Premium Pack of 3 brings together our top 3 most requested solid perfumes. Perfect gift set and travel companion for daily rotation.",
+      "gradient": "from-[#1A1812] via-[#11100C] to-[#080806]",
+      "accentColor": "#C5A059",
+      "topNotes": "Zesty Citrus & Fresh Spices",
+      "heartNotes": "Warm Resins & Rich Florals",
+      "baseNotes": "Rich Oudh, Sandalwood & Amber",
+      "longevity": "8-10 Hours each",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    },
+    {
+      "id": "zp-sld-016",
+      "title": "Champions Edition Dual Pack (Messi & CR7)",
+      "slug": "champions-dual-pack",
+      "category": "Multi-Pack Combos",
+      "price": 349,
+      "comparePrice": 499,
+      "badge": "LEGENDS PACK",
+      "weight": "2x18g",
+      "stock": 35,
+      "rating": 5,
+      "reviewCount": 142,
+      "isFeatured": true,
+      "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/12C9A8EC-0EF1-4B49-9CFF-20A1E596C673_3d796d42-c27e-4a4b-9940-39cd94ee1418.png?v=1782576933",
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/12C9A8EC-0EF1-4B49-9CFF-20A1E596C673_3d796d42-c27e-4a4b-9940-39cd94ee1418.png?v=1782576933",
+        "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/103E4FFE-167D-4297-9265-56828AF270F1.png?v=1782575644"
+      ],
+      "localImage": "/images/products/zp-sld-016_img1.png",
+      "subtitle": "CR7 Champions + MESSI Champions Duo",
+      "description": "The ultimate football rivalry in an elite fragrance combo. Get both CR7 and MESSI Champions solid perfume tins in one collectors edition pack.",
+      "gradient": "from-[#221016] via-[#160A0F] to-[#0A0507]",
+      "accentColor": "#F43F5E",
+      "topNotes": "Electric Apple, Wild Sage, Cardamom",
+      "heartNotes": "French Cypress, Virginia Cedar, Cinnamon",
+      "baseNotes": "Crystalline Amber, Warm Woods, Sheer Musk",
+      "longevity": "8-10 Hours",
+      "sillage": "Intimate to Moderate (Skin Heat Activated)"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr-admin-01",
+      "name": "Zaid Admin",
+      "email": "admin@zaidsperfumes.com",
+      "password": "$2a$10$cjDs2EsHkFJ.3EWGMfxkJe.PBODGEQ9T1W64FSFXnlfJUnrlByk8e",
+      "role": "admin",
+      "phone": "+91 9876543210",
+      "createdAt": "2026-10-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-cust-01",
+      "name": "Mohammad Zaid",
+      "email": "customer@gmail.com",
+      "password": "$2a$10$fsNh0yOulFcKaBEsD5geseEY4UYY3ouplBTd2ep8dgD73B4C0RIJC",
+      "role": "customer",
+      "phone": "+91 9876543210",
+      "address": "Flat 402, Royal Residency, Bandra West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "createdAt": "2026-10-02T10:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ZP-2573",
+      "createdAt": "2026-10-03T10:02:53.812Z",
+      "orderStatus": "Processing",
+      "paymentStatus": "Paid (Verified via UTR)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-4781520041",
+      "statusHistory": [
+        {
+          "status": "Order Submitted",
+          "time": "03 Oct, 15:32",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Bank UPI Verified",
+          "time": "03 Oct, 15:32 by Zaid Admin",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        }
+      ],
+      "utrNumber": "970223824130",
+      "paymentProofUrl": "/uploads/payments/utr_970223824130_1791021773810.png",
+      "verifiedAt": "2026-10-03T10:02:53.831Z",
+      "verifiedBy": "Zaid Admin",
+      "rejectionReason": null,
+      "customerName": "Rohan Deshmukh",
+      "customerEmail": "rohan@example.com",
+      "customerPhone": "9819283746",
+      "shippingAddress": "401 Palm Breeze, Bandra West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "quantity": 2
+        }
+      ],
+      "subtotal": 358,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 358,
+      "userId": null
+    },
+    {
+      "id": "ZP-7608",
+      "createdAt": "2026-10-03T10:00:30.125Z",
+      "orderStatus": "Placed",
+      "paymentStatus": "Pending (COD)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-4489279000",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "03 Oct, 15:30",
+          "completed": true,
+          "current": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        }
+      ],
+      "utrNumber": null,
+      "paymentProofUrl": null,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "rejectionReason": null,
+      "customerName": "Zaid Kharadi",
+      "customerEmail": "kharadizaid36@gmail.com",
+      "customerPhone": "1234567890",
+      "shippingAddress": "147, aanand nager 1  majrewadi solapur",
+      "city": "solapur",
+      "state": "Maharashtra",
+      "pincode": "413224",
+      "paymentMethod": "COD",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "image": "https://cdn.shopify.com/s/files/1/0984/5876/3582/files/IMG_6867_2f23c2a9-349f-4a3c-8911-3480cc17200d.png?v=1789459912",
+          "weight": "18g",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 179,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 179,
+      "userId": null
+    },
+    {
+      "id": "ZP-4248",
+      "createdAt": "2026-10-03T09:57:02.469Z",
+      "orderStatus": "Processing",
+      "paymentStatus": "Paid (Verified via UTR)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-4621391450",
+      "statusHistory": [
+        {
+          "status": "Order Submitted",
+          "time": "03 Oct, 15:27",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Bank UPI Verified",
+          "time": "03 Oct, 15:27 by Zaid Admin",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        }
+      ],
+      "utrNumber": "247054486224",
+      "paymentProofUrl": "/uploads/payments/utr_247054486224_1791021422468.png",
+      "verifiedAt": "2026-10-03T09:57:02.488Z",
+      "verifiedBy": "Zaid Admin",
+      "rejectionReason": null,
+      "customerName": "Rohan Deshmukh",
+      "customerEmail": "rohan@example.com",
+      "customerPhone": "9819283746",
+      "shippingAddress": "401 Palm Breeze, Bandra West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "quantity": 2
+        }
+      ],
+      "subtotal": 358,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 358,
+      "userId": null
+    },
+    {
+      "id": "ZP-4914",
+      "createdAt": "2026-10-03T09:52:22.723Z",
+      "orderStatus": "Payment Failed",
+      "paymentStatus": "Payment Rejected / Unverified",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-3300043877",
+      "statusHistory": [
+        {
+          "status": "Order Submitted",
+          "time": "03 Oct, 15:22",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Verification Failed",
+          "time": "03 Oct, 15:22 (No funds received in PhonePe account. Fake screenshot.)",
+          "completed": false,
+          "current": true
+        }
+      ],
+      "utrNumber": "305144047005",
+      "paymentProofUrl": null,
+      "verifiedAt": "2026-10-03T09:52:22.736Z",
+      "verifiedBy": "Zaid Admin",
+      "rejectionReason": "No funds received in PhonePe account. Fake screenshot.",
+      "customerName": "Fraud Test",
+      "customerEmail": "guest@zaidsperfumes.com",
+      "customerPhone": "9876543210",
+      "shippingAddress": "Fake Address",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "quantity": 1
+        }
+      ],
+      "subtotal": 179,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 179,
+      "userId": null
+    },
+    {
+      "id": "ZP-2561",
+      "createdAt": "2026-10-03T09:52:22.688Z",
+      "orderStatus": "Processing",
+      "paymentStatus": "Paid (Verified via UTR)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-4672988710",
+      "statusHistory": [
+        {
+          "status": "Order Submitted",
+          "time": "03 Oct, 15:22",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Bank UPI Verified",
+          "time": "03 Oct, 15:22 by Zaid Admin",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        }
+      ],
+      "utrNumber": "445221708166",
+      "paymentProofUrl": null,
+      "verifiedAt": "2026-10-03T09:52:22.707Z",
+      "verifiedBy": "Zaid Admin",
+      "rejectionReason": null,
+      "customerName": "Zaid Fan",
+      "customerEmail": "guest@zaidsperfumes.com",
+      "customerPhone": "9876543210",
+      "shippingAddress": "Flat 101, Hill Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "quantity": 1
+        }
+      ],
+      "subtotal": 179,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 179,
+      "userId": null
+    },
+    {
+      "id": "ZP-7680",
+      "createdAt": "2026-10-03T09:52:10.233Z",
+      "orderStatus": "Processing",
+      "paymentStatus": "Paid (Verified via UTR)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-8870756079",
+      "statusHistory": [
+        {
+          "status": "Order Submitted",
+          "time": "03 Oct, 15:22",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Bank UPI Verified",
+          "time": "03 Oct, 15:22 by Zaid Admin",
+          "completed": true,
+          "current": false
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false,
+          "current": false
+        }
+      ],
+      "utrNumber": "307765918180",
+      "paymentProofUrl": null,
+      "verifiedAt": "2026-10-03T09:52:10.275Z",
+      "verifiedBy": "Zaid Admin",
+      "rejectionReason": null,
+      "customerName": "Zaid Fan",
+      "customerEmail": "guest@zaidsperfumes.com",
+      "customerPhone": "9876543210",
+      "shippingAddress": "Flat 101, Hill Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Luxury Solid Perfume",
+          "price": 179,
+          "quantity": 1
+        }
+      ],
+      "subtotal": 179,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 179,
+      "userId": null
+    },
+    {
+      "id": "ZP-3315",
+      "createdAt": "2026-10-03T09:37:46.137Z",
+      "orderStatus": "Placed",
+      "paymentStatus": "Paid (Verified)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-8943571666",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "03 Oct, 15:07",
+          "completed": true,
+          "current": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ],
+      "customerName": "Zaid Kharadi",
+      "customerEmail": "kharadizaid36@gmail.com",
+      "customerPhone": "1234567890",
+      "shippingAddress": "147, aanand nager 1 majrewadi road solpur",
+      "city": "solapur",
+      "state": "Maharashtra",
+      "pincode": "413224",
+      "paymentMethod": "UPI",
+      "items": [
+        {
+          "productId": "zp-prod-007",
+          "title": "Discovery Pack (Set of 5 Solid Perfumes)",
+          "price": 1299,
+          "image": "pack_of_5.png",
+          "weight": "5 x 25g",
+          "quantity": 1
+        }
+      ],
+      "subtotal": 1299,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 1299,
+      "userId": null
+    },
+    {
+      "id": "ZP-9392",
+      "createdAt": "2026-10-03T09:07:34.393Z",
+      "orderStatus": "Placed",
+      "paymentStatus": "Pending (COD)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-9580267603",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "03 Oct, 14:37",
+          "completed": true,
+          "current": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ],
+      "customerName": "Zaid Customer Test",
+      "customerEmail": "zaid.test@gmail.com",
+      "customerPhone": "+91 9876543210",
+      "shippingAddress": "786 Royal Heritage Villa, Marine Drive",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400020",
+      "paymentMethod": "COD",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Solid Perfume",
+          "price": 179,
+          "quantity": 2,
+          "weight": "18g"
+        },
+        {
+          "productId": "zp-sld-003",
+          "title": "CEO'S Choice · Unisex Solid Perfume",
+          "price": 149,
+          "quantity": 1,
+          "weight": "18g"
+        }
+      ],
+      "subtotal": 399,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 399,
+      "userId": null
+    },
+    {
+      "id": "ZP-4866",
+      "createdAt": "2026-10-03T07:36:29.123Z",
+      "orderStatus": "Placed",
+      "paymentStatus": "Pending (COD)",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-1829706150",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "03 Oct, 13:06",
+          "completed": true,
+          "current": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ],
+      "customerName": "Zaid Customer Test",
+      "customerEmail": "zaid.test@gmail.com",
+      "customerPhone": "+91 9876543210",
+      "shippingAddress": "786 Royal Heritage Villa, Marine Drive",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400020",
+      "paymentMethod": "COD",
+      "items": [
+        {
+          "productId": "zp-sld-001",
+          "title": "Hawas Fire Solid Perfume",
+          "price": 179,
+          "quantity": 2,
+          "weight": "18g"
+        },
+        {
+          "productId": "zp-sld-003",
+          "title": "CEO'S Choice · Unisex Solid Perfume",
+          "price": 149,
+          "quantity": 1,
+          "weight": "18g"
+        }
+      ],
+      "subtotal": 399,
+      "discount": 0,
+      "couponUsed": null,
+      "shippingFee": 0,
+      "total": 399,
+      "userId": null
+    },
+    {
+      "id": "ZP-9821",
+      "userId": "usr-cust-01",
+      "customerName": "Mohammad Zaid",
+      "customerEmail": "customer@gmail.com",
+      "customerPhone": "+91 9876543210",
+      "shippingAddress": "Flat 402, Royal Residency, Bandra West",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400050",
+      "paymentMethod": "COD",
+      "paymentStatus": "Pending (Cash on Delivery)",
+      "orderStatus": "Shipped",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "AWB-8812930192",
+      "estimatedDelivery": "05 Oct 2026",
+      "subtotal": 748,
+      "discount": 75,
+      "couponUsed": "ZAIDFIRST",
+      "shippingFee": 0,
+      "total": 673,
+      "createdAt": "2026-10-02T10:15:00.000Z",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "02 Oct, 10:15 AM",
+          "completed": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "02 Oct, 04:30 PM",
+          "completed": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "03 Oct, 08:00 AM",
+          "completed": true,
+          "current": true
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending (Expected 05 Oct)",
+          "completed": false
+        }
+      ],
+      "items": [
+        {
+          "productId": "zp-prod-001",
+          "title": "CEO's Choice Solid Perfume",
+          "price": 399,
+          "quantity": 1,
+          "weight": "25g",
+          "total": 399
+        },
+        {
+          "productId": "zp-prod-002",
+          "title": "Hawas Fire Solid Perfume",
+          "price": 349,
+          "quantity": 1,
+          "weight": "25g",
+          "total": 349
+        }
+      ]
+    },
+    {
+      "id": "ZP-9820",
+      "userId": "usr-cust-guest",
+      "customerName": "Ayesha Khan",
+      "customerEmail": "ayesha.k@outlook.com",
+      "customerPhone": "+91 9123456789",
+      "shippingAddress": "Plot 14, Jubilee Hills, Road No. 36",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500033",
+      "paymentMethod": "UPI",
+      "paymentStatus": "Paid (UPI Transaction UTR-8291039)",
+      "orderStatus": "Delivered",
+      "courierName": "Delhivery Air",
+      "trackingNumber": "DLH-9920194820",
+      "estimatedDelivery": "Delivered on 01 Oct 2026",
+      "subtotal": 1299,
+      "discount": 0,
+      "shippingFee": 0,
+      "total": 1299,
+      "createdAt": "2026-09-29T14:20:00.000Z",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "29 Sep, 02:20 PM",
+          "completed": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "29 Sep, 06:10 PM",
+          "completed": true
+        },
+        {
+          "status": "In Transit (Dispatched)",
+          "time": "30 Sep, 09:00 AM",
+          "completed": true
+        },
+        {
+          "status": "Delivered",
+          "time": "01 Oct, 03:45 PM",
+          "completed": true,
+          "current": true
+        }
+      ],
+      "items": [
+        {
+          "productId": "zp-prod-007",
+          "title": "Discovery Pack (Set of 5 Solid Perfumes)",
+          "price": 1299,
+          "quantity": 1,
+          "weight": "5 x 25g",
+          "total": 1299
+        }
+      ]
+    },
+    {
+      "id": "ZP-9819",
+      "userId": "usr-cust-guest2",
+      "customerName": "Rohit Sharma",
+      "customerEmail": "rohit.perfumes@gmail.com",
+      "customerPhone": "+91 9988776655",
+      "shippingAddress": "House 54, Sector 17-C",
+      "city": "Chandigarh",
+      "state": "Punjab",
+      "pincode": "160017",
+      "paymentMethod": "UPI",
+      "paymentStatus": "Paid (UPI Verified)",
+      "orderStatus": "Processing",
+      "courierName": "BlueDart Express",
+      "trackingNumber": "Pending generation",
+      "estimatedDelivery": "06 Oct 2026",
+      "subtotal": 798,
+      "discount": 0,
+      "shippingFee": 0,
+      "total": 798,
+      "createdAt": "2026-10-03T09:10:00.000Z",
+      "statusHistory": [
+        {
+          "status": "Order Placed",
+          "time": "03 Oct, 09:10 AM",
+          "completed": true
+        },
+        {
+          "status": "Packed & Quality Checked",
+          "time": "In Progress",
+          "completed": false,
+          "current": true
+        },
+        {
+          "status": "In Transit",
+          "time": "Pending",
+          "completed": false
+        },
+        {
+          "status": "Delivered",
+          "time": "Pending",
+          "completed": false
+        }
+      ],
+      "items": [
+        {
+          "productId": "zp-prod-003",
+          "title": "White Oudh Royal Solid Cologne",
+          "price": 399,
+          "quantity": 2,
+          "weight": "25g",
+          "total": 798
+        }
+      ]
+    }
+  ],
+  "coupons": [
+    {
+      "id": "cpn-01",
+      "code": "ZAIDFIRST",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "minOrder": 499,
+      "active": true,
+      "description": "15% OFF for new customers on orders over ₹499"
+    },
+    {
+      "id": "cpn-02",
+      "code": "GOLD10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minOrder": 299,
+      "active": true,
+      "description": "10% Flat OFF on any luxury solid perfume"
+    },
+    {
+      "id": "cpn-03",
+      "code": "FLAT100",
+      "discountType": "fixed",
+      "discountValue": 100,
+      "minOrder": 799,
+      "active": true,
+      "description": "Flat ₹100 OFF on orders over ₹799"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-01",
+      "productId": "zp-sld-001",
+      "userName": "Arjun Malhotra",
+      "rating": 5,
+      "comment": "Hawas Fire solid perfume is insane! The spicy amber and marine notes last all day. Fits perfectly in my pocket.",
+      "date": "28 Sep 2026"
+    },
+    {
+      "id": "rev-02",
+      "productId": "zp-sld-002",
+      "userName": "Sameer Joshi",
+      "rating": 5,
+      "comment": "Smells identical to the luxury Pacific Chill perfume! Fresh citrus and mint that gives great cooling feel in heat.",
+      "date": "30 Sep 2026"
+    },
+    {
+      "id": "rev-03",
+      "productId": "zp-sld-003",
+      "userName": "Vikram Rathore",
+      "rating": 5,
+      "comment": "CEO's Choice is pure boardroom authority. Warm bergamot and cedarwood, and the ₹149 price is unbeatable.",
+      "date": "01 Oct 2026"
+    },
+    {
+      "id": "rev-04",
+      "productId": "zp-sld-004",
+      "userName": "Farhan Siddiqui",
+      "rating": 5,
+      "comment": "White Oudh is regal and soft. Not pungent at all, very soothing and royal Arabic vibes. Highly recommended!",
+      "date": "02 Oct 2026"
+    },
+    {
+      "id": "rev-05",
+      "productId": "zp-sld-014",
+      "userName": "Dr. Sneha Verma",
+      "rating": 5,
+      "comment": "Got the pack of 5 solid perfumes for ₹499. Outstanding deal! All 5 tins smell unique and luxurious.",
+      "date": "02 Oct 2026"
+    }
+  ],
+  "settings": {
+    "storeName": "ZAID'S PERFUMES",
+    "tagline": "Pure Handcrafted Solid Perfumes & Luxury Fragrances",
+    "announcementText": "🌙 LUXURY IN YOUR POCKET: FREE SHIPPING ON ALL SOLID PERFUMES | CODE: ZAIDFIRST",
+    "phone": "+91 86240 85212",
+    "email": "zaidsperfumes@gmail.com",
+    "address": "Zaid Fragrance Studio, Bandra West, Mumbai, MH - 400050",
+    "upiId": "8624085212-3@ybl",
+    "merchantName": "ZAID MUDASSAR KHARADI",
+    "currency": "INR",
+    "currencySymbol": "₹",
+    "freeShippingThreshold": 499,
+    "enableCod": true,
+    "enableUpi": true,
+    "enableCard": false
+  }
+}

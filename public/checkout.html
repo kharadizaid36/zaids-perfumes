@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAID'S PERFUMES | Secure Luxury Checkout</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <script src="/js/qrcode.min.js"></script>
+  <link rel="stylesheet" href="/css/luxury-glow.css">
+</head>
+<body class="min-h-screen bg-[#08080A] text-[#F4F4F5] antialiased">
+
+  <!-- NAVBAR -->
+  <header class="bg-[#09090C] border-b border-[#C5A059]/25 py-4">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl gradient-gold-bg flex items-center justify-center text-black font-bold font-serif-luxury text-base">Z</div>
+        <span class="text-xl font-bold font-serif-luxury tracking-widest gradient-gold-text">ZAID'S PERFUMES</span>
+      </a>
+      <div class="flex items-center gap-2 text-xs text-gray-400 font-mono">
+        <span class="text-[#E5C378]">🔒 256-bit Encrypted Checkout</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- LEFT: CUSTOMER & SHIPPING FORM -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- STEP 1: CONTACT & SHIPPING -->
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-6 space-y-4 glow-gold-sm">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+            <span class="w-6 h-6 rounded-full gradient-gold-bg text-black font-bold text-xs flex items-center justify-center">1</span>
+            <h3 class="text-base font-bold font-serif-luxury text-white">Shipping Details</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="space-y-1">
+              <label class="text-gray-400">Full Name *</label>
+              <input id="c-name" type="text" placeholder="e.g. Mohammad Zaid" required class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Phone Number (For Delivery Updates) *</label>
+              <input id="c-phone" type="tel" placeholder="e.g. +91 9876543210" required class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+            <div class="col-span-full space-y-1">
+              <label class="text-gray-400">Email Address (For Order Receipt)</label>
+              <input id="c-email" type="email" placeholder="e.g. zaid@example.com" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+            <div class="col-span-full space-y-1">
+              <label class="text-gray-400">Street Address / House No. / Landmark *</label>
+              <input id="c-address" type="text" placeholder="Flat, Street, Building, Locality" required class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">City *</label>
+              <input id="c-city" type="text" placeholder="e.g. Mumbai" value="Mumbai" required class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+            <div class="space-y-1">
+              <label class="text-gray-400">Pincode *</label>
+              <input id="c-pincode" type="text" placeholder="e.g. 400050" value="400050" required class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#C5A059] focus:outline-none transition-all">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: PAYMENT METHOD -->
+        <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl p-6 space-y-4 glow-gold-sm">
+          <div class="flex items-center gap-3 border-b border-white/10 pb-3">
+            <span class="w-6 h-6 rounded-full gradient-gold-bg text-black font-bold text-xs flex items-center justify-center">2</span>
+            <h3 class="text-base font-bold font-serif-luxury text-white">Payment Method</h3>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- COD OPTION -->
+            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[#14141E] border border-[#C5A059]/50 cursor-pointer">
+              <input type="radio" name="paymentMethod" value="COD" checked onchange="CheckoutPage.onPaymentMethodChange()" class="mt-1 accent-[#C5A059]">
+              <div>
+                <p class="font-bold text-white text-sm">Cash on Delivery (COD)</p>
+                <p class="text-gray-400 mt-0.5">Pay in cash or via UPI when the BlueDart/Delhivery courier arrives.</p>
+              </div>
+            </label>
+
+            <!-- UPI QR SCAN & PAY -->
+            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[#14141E] border border-white/10 hover:border-[#C5A059]/50 cursor-pointer transition-colors">
+              <input type="radio" name="paymentMethod" value="UPI" onchange="CheckoutPage.onPaymentMethodChange()" class="mt-1 accent-[#C5A059]">
+              <div>
+                <p class="font-bold text-white text-sm">Instant UPI QR (PhonePe / GPay / Paytm)</p>
+                <p class="text-gray-400 mt-0.5">Zero convenience fee. Live QR pre-filled with exact bill amount.</p>
+              </div>
+            </label>
+
+            <!-- DYNAMIC UPI QR & ANTI-FRAUD VERIFICATION CONTAINER (Revealed when UPI is chosen) -->
+            <div id="upi-box" class="hidden mt-4 p-5 rounded-2xl bg-[#09090E] border-2 border-[#C5A059] space-y-4 shadow-xl glow-gold-sm">
+              <div class="flex items-center justify-between border-b border-[#C5A059]/30 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span class="font-bold text-white uppercase tracking-wider text-xs">Dynamic Merchant UPI QR</span>
+                </div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-900/40 text-purple-300 border border-purple-500/40 font-bold">PhonePe Verified</span>
+              </div>
+
+              <!-- EXACT BILL AMOUNT DISPLAY -->
+              <div class="bg-[#14141E] p-3.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-gray-400 block font-mono">EXACT PAYABLE AMOUNT:</span>
+                  <span id="upi-exact-amount" class="text-2xl font-black text-[#F7EBD0] font-serif-luxury">₹0</span>
+                </div>
+                <div class="text-right text-[11px] text-emerald-400 font-mono">
+                  ✓ Pre-filled in QR code
+                </div>
+              </div>
+
+              <!-- QR CODE & MERCHANT DETAILS -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                <div class="flex flex-col items-center justify-center p-3 bg-[#14141E] rounded-xl border border-white/10 text-center">
+                  <div id="dynamic-qr-render" class="p-2.5 bg-white rounded-xl shadow-lg inline-block">
+                    <!-- Dynamic QR Canvas will be rendered here -->
+                  </div>
+                  <p class="text-[10px] text-gray-400 mt-2 font-mono">Scan via PhonePe, GPay, Paytm or CRED</p>
+                </div>
+
+                <div class="space-y-3">
+                  <div class="p-3 rounded-xl bg-[#14141E] border border-white/10 space-y-1">
+                    <span class="text-[10px] text-gray-400 font-mono block">VERIFIED PAYEE:</span>
+                    <p class="font-bold text-white text-xs">ZAID MUDASSAR KHARADI</p>
+                    <div class="flex items-center justify-between pt-1">
+                      <span id="upi-vpa-text" class="text-[#F7EBD0] font-mono text-xs font-semibold">8624085212-3@ybl</span>
+                      <button type="button" onclick="CheckoutPage.copyUpiId()" id="btn-copy-upi" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#C5A059] hover:text-black text-gray-300 text-[10px] font-semibold transition-all">
+                        📋 Copy
+                      </button>
+                    </div>
+                  </div>
+
+                  <a id="btn-upi-intent" href="#" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-bold text-xs uppercase flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all text-center">
+                    <span>⚡ Pay via UPI App (PhonePe / GPay)</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- STEP 2: FRAUD PROTECTION & UTR SUBMISSION -->
+              <div class="pt-3 border-t border-white/10 space-y-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full gradient-gold-bg text-black font-bold text-[10px] flex items-center justify-center">✓</span>
+                  <h4 class="font-bold text-white text-xs">Payment Verification Details (Mandatory)</h4>
+                </div>
+                <p class="text-[11px] text-gray-400">
+                  After paying in your UPI app, enter your <strong class="text-white">12-digit UPI Reference / UTR Number</strong> below so we can confirm the transfer in our merchant statement.
+                </p>
+
+                <div class="space-y-1">
+                  <div class="flex justify-between items-center text-xs">
+                    <label class="text-[#F7EBD0] font-bold">12-Digit UPI Transaction ID / UTR Number *</label>
+                    <span id="utr-counter" class="font-mono text-gray-400 text-[11px]">0 / 12 Digits</span>
+                  </div>
+                  <input id="c-utr" type="text" maxlength="12" placeholder="e.g. 428172635412" class="w-full bg-[#14141E] border border-white/20 rounded-xl p-3 text-[#F7EBD0] font-mono text-sm tracking-widest focus:border-[#C5A059] focus:outline-none transition-all">
+                  <p class="text-[10px] text-gray-500 font-mono">Found in your payment app under "UPI Ref No", "UTR", or "Transaction ID".</p>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="text-gray-400 text-xs block">Attach Payment Screenshot (Optional proof for priority dispatch):</label>
+                  <input id="c-screenshot" type="file" accept="image/*" class="w-full bg-[#14141E] border border-white/10 rounded-xl p-2 text-xs text-gray-400 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#C5A059] file:text-black">
+                  <div id="screenshot-preview-container" class="hidden mt-2 flex items-center gap-3 bg-[#14141E] p-2.5 rounded-xl border border-white/10">
+                    <img id="screenshot-preview" class="w-14 h-14 object-cover rounded-lg border border-[#C5A059]/40">
+                    <div>
+                      <p class="text-[11px] text-emerald-400 font-bold font-mono">✓ Screenshot Loaded</p>
+                      <p class="text-[10px] text-gray-400">Ready to submit with your 12-digit UTR</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: ORDER SUMMARY -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-[#0F0F16] border border-[#C5A059]/35 rounded-2xl p-6 space-y-5 sticky top-24 glow-gold-sm">
+          <h3 class="text-base font-bold font-serif-luxury text-white border-b border-white/10 pb-3">Order Summary</h3>
+
+          <div id="checkout-items" class="space-y-3 max-h-60 overflow-y-auto pr-1">
+            <!-- Dynamic items -->
+          </div>
+
+          <!-- Coupon Box -->
+          <div class="flex gap-2 pt-2 border-t border-white/10">
+            <input id="checkout-coupon" type="text" placeholder="Coupon Code (ZAIDFIRST)" class="flex-1 bg-[#14141E] border border-white/15 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono focus:border-[#C5A059] focus:outline-none">
+            <button onclick="CheckoutPage.applyCoupon()" class="px-4 py-2 rounded-xl gradient-gold-outline text-xs font-bold font-serif-luxury">Apply</button>
+          </div>
+
+          <!-- Pricing Table -->
+          <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+            <div class="flex justify-between text-gray-400">
+              <span>Subtotal</span>
+              <span id="ck-subtotal" class="text-white font-medium font-mono">₹0</span>
+            </div>
+            <div class="flex justify-between text-emerald-400">
+              <span>Discount</span>
+              <span id="ck-discount" class="font-medium font-mono">-₹0</span>
+            </div>
+            <div class="flex justify-between text-gray-400">
+              <span>Express Delivery (Air)</span>
+              <span class="text-green-400 font-semibold font-mono">FREE</span>
+            </div>
+            <div class="flex justify-between text-base font-extrabold pt-2 border-t border-white/10">
+              <span class="text-white font-serif-luxury">Total Payable</span>
+              <span id="ck-total" class="text-[#F7EBD0] text-xl font-serif-luxury">₹0</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button onclick="CheckoutPage.placeOrder()" id="btn-submit-order" class="w-full py-4 rounded-xl gradient-gold-btn text-black font-extrabold text-xs uppercase tracking-wider font-serif-luxury shadow-lg shadow-[#C5A059]/30 flex items-center justify-center gap-2">
+            <span>Confirm & Place Order</span>
+            <span>&rarr;</span>
+          </button>
+          
+          <p class="text-[11px] text-gray-400 text-center font-mono">
+            🛡️ 100% Satisfaction Guarantee &bull; Dispatched in 24 Hours
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div id="order-success-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-lg bg-[#0E0E14] border-2 border-[#C5A059] rounded-3xl p-8 text-center space-y-6 shadow-2xl glow-gold-sm">
+      <div class="w-20 h-20 mx-auto rounded-full gradient-gold-bg text-black font-bold text-3xl flex items-center justify-center shadow-lg shadow-[#C5A059]/40">
+        ✓
+      </div>
+      <div>
+        <span class="text-xs uppercase font-mono tracking-widest text-[#C5A059]">ORDER CONFIRMED</span>
+        <h2 class="text-2xl md:text-3xl font-bold font-serif-luxury text-white mt-1">Thank You For Your Order!</h2>
+        <p class="text-xs text-gray-400 mt-2">
+          Your handcrafted solid perfume will be freshly packaged and dispatched via BlueDart Express.
+        </p>
+      </div>
+
+      <div class="bg-[#14141E] p-4 rounded-2xl border border-white/10 text-xs space-y-2 text-left">
+        <div class="flex justify-between">
+          <span class="text-gray-400">Order ID:</span>
+          <span id="modal-order-id" class="text-[#F7EBD0] font-mono font-bold">ZP-9822</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-400">Total Amount:</span>
+          <span id="modal-order-total" class="text-white font-bold font-mono">₹0</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-400">Payment Status:</span>
+          <span id="modal-order-payment" class="text-green-400 font-medium">Pending (COD)</span>
+        </div>
+      </div>
+
+      <div id="modal-order-notice" class="hidden p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs text-left">
+        <p class="font-bold flex items-center gap-1.5 text-amber-300">
+          <span>⏳ Bank Payment Verification In Progress</span>
+        </p>
+        <p class="mt-1 text-[11px] text-gray-300">
+          Your 12-digit UTR (<span id="modal-utr-val" class="font-mono text-white font-bold"></span>) has been queued for verification with Zaid's PhonePe merchant account. Once confirmed, you will receive dispatch updates.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a id="modal-track-btn" href="/account.html" class="flex-1 py-3.5 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury shadow-md">
+          Track Live Status &rarr;
+        </a>
+        <a href="/" class="px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold hover:border-[#C5A059]">
+          Continue Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/store.js"></script>
+  <script>
+    const CheckoutPage = {
+      screenshotBase64: null,
+      qrcodeInstance: null,
+
+      init() {
+        if (!Store.cart || Store.cart.length === 0) {
+          Store.loadCart();
+        }
+        if (Store.cart.length === 0) {
+          alert('Your cart is empty! Redirecting to shop.');
+          window.location.href = '/';
+          return;
+        }
+
+        if (Store.activeCoupon) {
+          document.getElementById('checkout-coupon').value = Store.activeCoupon.code;
+        }
+
+        this.renderSummary();
+        this.setupUtrListener();
+        this.setupScreenshotListener();
+      },
+
+      onPaymentMethodChange() {
+        const selected = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+        const upiBox = document.getElementById('upi-box');
+        if (selected === 'UPI') {
+          upiBox.classList.remove('hidden');
+          this.renderUpiQr();
+        } else {
+          upiBox.classList.add('hidden');
+        }
+      },
+
+      renderUpiQr() {
+        const total = Store.getCartTotal();
+        const displayAmt = document.getElementById('upi-exact-amount');
+        if (displayAmt) displayAmt.textContent = `₹${total}`;
+
+        const upiId = Store.settings?.upiId || '8624085212-3@ybl';
+        const payeeName = Store.settings?.merchantName || 'ZAID MUDASSAR KHARADI';
+
+        const vpaEl = document.getElementById('upi-vpa-text');
+        if (vpaEl) vpaEl.textContent = upiId;
+
+        // Standard Indian UPI Intent format prefilled with Zaid's PhonePe merchant details & exact amount
+        const upiUri = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(payeeName)}&mc=0000&mode=02&purpose=00&am=${total}&cu=INR&tn=ZAIDS-PERFUMES`;
+
+        // Update mobile 1-tap UPI app button
+        const intentBtn = document.getElementById('btn-upi-intent');
+        if (intentBtn) {
+          intentBtn.href = upiUri;
+          intentBtn.innerHTML = `<span>⚡ Pay ₹${total} via UPI App (PhonePe / GPay)</span>`;
+        }
+
+        // Render live dynamic QR Code
+        const qrContainer = document.getElementById('dynamic-qr-render');
+        if (qrContainer) {
+          qrContainer.innerHTML = '';
+          try {
+            if (typeof QRCode !== 'undefined') {
+              this.qrcodeInstance = new QRCode(qrContainer, {
+                text: upiUri,
+                width: 150,
+                height: 150,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
+              });
+            } else {
+              qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUri)}" alt="UPI QR" class="w-36 h-36">`;
+            }
+          } catch (e) {
+            console.error('Error generating QR:', e);
+            qrContainer.innerHTML = `<img src="/images/qr/zaid_phonepe_qr.jpg" alt="Zaid PhonePe QR" class="w-36 h-36 object-contain">`;
+          }
+        }
+      },
+
+      copyUpiId() {
+        const vpa = '8624085212-3@ybl';
+        navigator.clipboard.writeText(vpa).then(() => {
+          const btn = document.getElementById('btn-copy-upi');
+          const original = btn.textContent;
+          btn.textContent = '✓ Copied!';
+          btn.classList.add('bg-emerald-500', 'text-black');
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('bg-emerald-500', 'text-black');
+          }, 2000);
+        }).catch(() => {
+          alert('Merchant UPI ID: ' + vpa);
+        });
+      },
+
+      setupUtrListener() {
+        const utrInput = document.getElementById('c-utr');
+        const counter = document.getElementById('utr-counter');
+        if (!utrInput) return;
+
+        utrInput.addEventListener('input', (e) => {
+          // Allow only numeric digits up to 12 digits
+          e.target.value = e.target.value.replace(/\D/g, '').slice(0, 12);
+          const len = e.target.value.length;
+          if (counter) {
+            counter.textContent = `${len} / 12 Digits`;
+            if (len === 12) {
+              counter.className = 'font-mono text-emerald-400 font-bold text-[11px]';
+              utrInput.className = 'w-full bg-[#14141E] border-2 border-emerald-500 rounded-xl p-3 text-emerald-300 font-mono text-sm tracking-widest focus:outline-none';
+            } else {
+              counter.className = 'font-mono text-gray-400 text-[11px]';
+              utrInput.className = 'w-full bg-[#14141E] border border-white/20 rounded-xl p-3 text-[#F7EBD0] font-mono text-sm tracking-widest focus:border-[#C5A059] focus:outline-none';
+            }
+          }
+        });
+      },
+
+      setupScreenshotListener() {
+        const fileInput = document.getElementById('c-screenshot');
+        if (!fileInput) return;
+
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          if (file.size > 5 * 1024 * 1024) {
+            alert('Screenshot file size must be under 5MB');
+            fileInput.value = '';
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            this.screenshotBase64 = event.target.result;
+            const preview = document.getElementById('screenshot-preview');
+            const previewContainer = document.getElementById('screenshot-preview-container');
+            if (preview && previewContainer) {
+              preview.src = event.target.result;
+              previewContainer.classList.remove('hidden');
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      },
+
+      renderSummary() {
+        const container = document.getElementById('checkout-items');
+        container.innerHTML = Store.cart.map(item => `
+          <div class="flex justify-between items-center text-xs">
+            <div>
+              <p class="font-bold text-white">${item.title}</p>
+              <p class="text-[11px] text-gray-400 font-mono">Qty: ${item.quantity} &bull; ₹${item.price} each</p>
+            </div>
+            <span class="font-bold text-[#F7EBD0] font-mono">₹${item.price * item.quantity}</span>
+          </div>
+        `).join('');
+
+        const subtotal = Store.getCartSubtotal();
+        const discount = Store.getCartDiscount();
+        const total = Store.getCartTotal();
+
+        document.getElementById('ck-subtotal').textContent = `₹${subtotal}`;
+        document.getElementById('ck-discount').textContent = discount > 0 ? `-₹${discount}` : '₹0';
+        document.getElementById('ck-total').textContent = `₹${total}`;
+
+        // Re-render UPI QR if active
+        const selected = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+        if (selected === 'UPI') {
+          this.renderUpiQr();
+        }
+      },
+
+      async applyCoupon() {
+        const code = document.getElementById('checkout-coupon').value.trim();
+        await Store.applyCoupon(code);
+        this.renderSummary();
+      },
+
+      async placeOrder() {
+        const name = document.getElementById('c-name').value.trim();
+        const phone = document.getElementById('c-phone').value.trim();
+        const email = document.getElementById('c-email').value.trim();
+        const address = document.getElementById('c-address').value.trim();
+        const city = document.getElementById('c-city').value.trim();
+        const pincode = document.getElementById('c-pincode').value.trim();
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'COD';
+
+        if (!name || !phone || !address || !city || !pincode) {
+          alert('Please fill in all required shipping fields');
+          return;
+        }
+
+        let utrNumber = null;
+        if (paymentMethod === 'UPI') {
+          const utrVal = document.getElementById('c-utr')?.value.trim();
+          if (!utrVal || utrVal.length !== 12 || !/^\d{12}$/.test(utrVal)) {
+            alert('Security Requirement: Please enter your complete 12-digit numeric UPI Reference / UTR Number from your payment app.');
+            document.getElementById('c-utr')?.focus();
+            return;
+          }
+          utrNumber = utrVal;
+        }
+
+        const btn = document.getElementById('btn-submit-order');
+        btn.disabled = true;
+        btn.innerHTML = `<span>Securing & Submitting Order...</span>`;
+
+        const orderPayload = {
+          customerName: name,
+          customerPhone: phone,
+          customerEmail: email || 'customer@zaidsperfumes.com',
+          shippingAddress: address,
+          city,
+          state: 'Maharashtra',
+          pincode,
+          paymentMethod,
+          utrNumber,
+          paymentProofBase64: this.screenshotBase64,
+          items: Store.cart,
+          subtotal: Store.getCartSubtotal(),
+          discount: Store.getCartDiscount(),
+          couponUsed: Store.activeCoupon ? Store.activeCoupon.code : null,
+          total: Store.getCartTotal()
+        };
+
+        try {
+          const res = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderPayload)
+          });
+          const data = await res.json();
+          if (data.success && data.order) {
+            Store.cart = [];
+            Store.activeCoupon = null;
+            Store.saveCart();
+
+            document.getElementById('modal-order-id').textContent = data.order.id;
+            document.getElementById('modal-order-total').textContent = `₹${data.order.total}`;
+            
+            const paymentDisplay = document.getElementById('modal-order-payment');
+            paymentDisplay.textContent = data.order.paymentStatus;
+
+            const noticeBox = document.getElementById('modal-order-notice');
+            if (paymentMethod === 'UPI') {
+              paymentDisplay.className = 'text-amber-400 font-bold font-mono';
+              if (noticeBox) {
+                document.getElementById('modal-utr-val').textContent = utrNumber;
+                noticeBox.classList.remove('hidden');
+              }
+            } else {
+              paymentDisplay.className = 'text-green-400 font-medium font-mono';
+              if (noticeBox) noticeBox.classList.add('hidden');
+            }
+
+            document.getElementById('modal-track-btn').href = `/account.html?orderId=${data.order.id}`;
+            document.getElementById('order-success-modal').classList.remove('hidden');
+          } else {
+            alert(data.message || 'Failed to place order');
+            btn.disabled = false;
+            btn.innerHTML = `<span>Confirm & Place Order &rarr;</span>`;
+          }
+        } catch (e) {
+          alert('Server error while placing order');
+          btn.disabled = false;
+          btn.innerHTML = `<span>Confirm & Place Order &rarr;</span>`;
+        }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      CheckoutPage.init();
+    });
+  </script>
+</body>
+</html>
