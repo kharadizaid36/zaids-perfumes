@@ -124,62 +124,62 @@ const Store = {
     grid.innerHTML = this.products.map(p => {
       const discountPercent = p.comparePrice ? Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100) : 0;
       return `
-        <div class="product-card bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+        <div class="product-card bg-white rounded-2xl p-3 sm:p-3.5 border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
           ${p.badge ? `
-            <div class="absolute top-1.5 left-1.5 sm:top-2.5 sm:left-2.5 z-10">
-              <span class="text-[7px] sm:text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-gray-900 text-white shadow-sm">${p.badge}</span>
+            <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10">
+              <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-900 text-white shadow-sm">${p.badge}</span>
             </div>
           ` : ''}
 
           <!-- Visual Tin / Perfume Graphic with Zoom -->
-          <a href="/product.html?id=${p.id}" class="product-image-container w-full h-24 sm:h-44 md:h-48 rounded-lg sm:rounded-xl bg-gradient-to-b from-gray-50 to-gray-100/80 border border-gray-100 flex flex-col items-center justify-center relative p-1 sm:p-2 group-hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
+          <a href="/product.html?id=${p.id}" class="product-image-container w-full h-36 sm:h-44 md:h-48 rounded-xl bg-gradient-to-b from-gray-50 to-gray-100/80 border border-gray-100 flex flex-col items-center justify-center relative p-2 group-hover:scale-[1.02] transition-transform cursor-pointer overflow-hidden">
             ${p.image ? `
-              <img src="${p.image}" alt="${p.title}" class="w-full h-20 sm:h-36 md:h-40 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="if(this.src!=='${p.localImage || ''}' && '${p.localImage || ''}'){this.src='${p.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
-              <div class="perfume-graphic w-16 h-16 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white hidden flex-col items-center justify-center shadow-md">
-                <span class="text-[7px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-                <span class="text-[9px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
-                <span class="text-[8px] sm:text-[9px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
+              <img src="${p.image}" alt="${p.title}" class="w-full h-28 sm:h-36 md:h-40 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="if(this.src!=='${p.localImage || ''}' && '${p.localImage || ''}'){this.src='${p.localImage || ''}';}else{this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';}">
+              <div class="perfume-graphic w-20 h-20 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white hidden flex-col items-center justify-center shadow-md">
+                <span class="text-[8px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
+                <span class="text-[10px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
+                <span class="text-[9px] sm:text-[10px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
               </div>
             ` : `
-              <div class="perfume-graphic w-16 h-16 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white flex flex-col items-center justify-center shadow-md">
-                <span class="text-[7px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
-                <span class="text-[9px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
-                <span class="text-[8px] sm:text-[9px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
+              <div class="perfume-graphic w-20 h-20 sm:w-28 sm:h-28 rounded-full border border-gray-300 bg-white flex flex-col items-center justify-center shadow-md">
+                <span class="text-[8px] text-gray-400 uppercase tracking-widest font-mono">SOLID</span>
+                <span class="text-[10px] sm:text-xs font-bold text-gray-900 text-center px-1 leading-tight">${p.title.split(' ')[0]}</span>
+                <span class="text-[9px] sm:text-[10px] font-bold text-blue-600">${p.title.split(' ')[1] || 'PERFUME'}</span>
               </div>
             `}
-            <span class="hidden sm:inline-block absolute bottom-1.5 text-[9px] text-gray-600 font-mono tracking-tight bg-white/95 px-2 py-0.5 rounded-full border border-gray-200 backdrop-blur-sm">${p.weight || '18g'} &bull; ${p.category}</span>
+            <span class="absolute bottom-2 text-[9px] sm:text-[10px] text-gray-600 font-mono tracking-tight bg-white/95 px-2 py-0.5 rounded-full border border-gray-200 backdrop-blur-sm shadow-xs">${p.weight || '18g'} &bull; ${p.category}</span>
           </a>
 
           <!-- Details -->
-          <div class="mt-1.5 sm:mt-2.5 flex-1 flex flex-col justify-between">
+          <div class="mt-2 sm:mt-2.5 flex-1 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between text-[8px] sm:text-xs text-amber-500 font-semibold">
+              <div class="flex items-center justify-between text-[10px] sm:text-xs text-amber-500 font-semibold">
                 <span>★ 5.0 <span class="text-gray-400 font-normal">(${p.reviewCount || 40})</span></span>
-                <span class="hidden sm:inline text-gray-500 font-mono text-[10px]">${p.longevity || '8+ Hours'}</span>
+                <span class="text-gray-500 font-mono text-[10px]">${p.longevity || '8+ Hours'}</span>
               </div>
 
-              <a href="/product.html?id=${p.id}" class="block mt-0.5 sm:mt-1">
-                <h3 class="text-[11px] sm:text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1 leading-snug">
+              <a href="/product.html?id=${p.id}" class="block mt-1">
+                <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1 leading-snug">
                   ${p.title}
                 </h3>
               </a>
 
-              <p class="hidden sm:block text-[11px] text-gray-500 line-clamp-1 leading-relaxed mt-0.5">
+              <p class="text-[11px] text-gray-500 line-clamp-1 leading-relaxed mt-0.5">
                 ${p.subtitle || p.description}
               </p>
             </div>
 
-            <div class="flex items-baseline gap-1 sm:gap-2 pt-1 sm:pt-2">
-              <span class="text-xs sm:text-base font-extrabold text-gray-900">₹${p.price}</span>
-              ${p.comparePrice ? `<span class="text-[9px] sm:text-xs text-gray-400 line-through font-mono">₹${p.comparePrice}</span>` : ''}
-              ${discountPercent > 0 ? `<span class="hidden sm:inline text-[10px] text-emerald-600 font-bold font-mono">${discountPercent}% OFF</span>` : ''}
+            <div class="flex items-baseline gap-1.5 sm:gap-2 pt-1.5 sm:pt-2">
+              <span class="text-sm sm:text-base font-extrabold text-gray-900">₹${p.price}</span>
+              ${p.comparePrice ? `<span class="text-[10px] sm:text-xs text-gray-400 line-through font-mono">₹${p.comparePrice}</span>` : ''}
+              ${discountPercent > 0 ? `<span class="text-[10px] text-emerald-600 font-bold font-mono">${discountPercent}% OFF</span>` : ''}
             </div>
           </div>
 
           <!-- Action buttons with Fly To Cart Trigger -->
-          <div class="mt-1.5 sm:mt-2.5 pt-1.5 sm:pt-2 border-t border-gray-100 flex items-center gap-1.5">
-            <button onclick="Store.addToCartWithAnimation('${p.id}', event)" class="add-to-cart-btn flex-1 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all active:scale-95">
-              <svg class="w-3 h-3 hidden sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <div class="mt-2 sm:mt-2.5 pt-2 border-t border-gray-100 flex items-center gap-1.5">
+            <button onclick="Store.addToCartWithAnimation('${p.id}', event)" class="add-to-cart-btn flex-1 py-2 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-95">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
               <span>+ Add</span>
             </button>
             <button onclick="Store.openQuickView('${p.id}')" class="hidden sm:flex p-2 rounded-xl bg-gray-100 border border-gray-200 hover:border-gray-400 text-gray-700 hover:text-black transition-colors" title="Quick View">
