@@ -22,6 +22,10 @@
     </div>
 
     <div class="flex items-center gap-4 text-xs">
+      <div id="admin-env-badge" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#14141E] border border-white/10 text-gray-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="admin-env-text" class="font-mono text-[11px] text-gray-300">Connecting...</span>
+      </div>
       <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#14141E] border border-amber-500/20 text-gray-300">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
         <span id="admin-badge-name" class="font-mono text-gray-300">Admin</span>
@@ -149,7 +153,8 @@
                 <tr>
                   <th class="py-3 px-3">Perfume Title</th>
                   <th class="py-3 px-3">Category</th>
-                  <th class="py-3 px-3">Price</th>
+                  <th class="py-3 px-3">Rate / Selling Price (₹)</th>
+                  <th class="py-3 px-3">Compare MRP</th>
                   <th class="py-3 px-3">Stock Units</th>
                   <th class="py-3 px-3">Badge</th>
                   <th class="py-3 px-3 text-right">Actions</th>
@@ -168,6 +173,10 @@
             <h2 class="text-xl font-bold font-serif-luxury gradient-gold-text">Store Orders & Invoicing</h2>
             <p class="text-xs text-gray-400">Update live shipment status (reflects instantly in customer tracker)</p>
           </div>
+          <button onclick="AdminApp.loadOrders(true)" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-[#C5A059] hover:text-black text-gray-300 font-bold text-xs flex items-center gap-2 transition-all shadow-md">
+            <span id="orders-refresh-spinner">🔄</span>
+            <span>Refresh Orders</span>
+          </button>
         </div>
 
         <div class="bg-[#0F0F16] border border-[#C5A059]/30 rounded-2xl overflow-hidden shadow-xl">
@@ -430,6 +439,8 @@
         <button onclick="AdminApp.saveProduct()" class="px-5 py-2 rounded-xl gradient-gold-btn text-black font-bold text-xs uppercase font-serif-luxury">Save Perfume</button>
       </div>
     </div>
+  </div>
+
   <!-- PAYMENT PROOF LIGHTBOX MODAL -->
   <div id="proof-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="w-full max-w-lg bg-[#0F0F16] border border-[#C5A059]/50 rounded-2xl p-5 space-y-3 shadow-2xl">

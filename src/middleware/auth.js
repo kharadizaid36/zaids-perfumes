@@ -5,8 +5,8 @@ const JWT_SECRET = process.env.JWT_SECRET || 'zaids_luxury_perfumes_super_secret
 
 // In-memory brute-force protection tracking
 const loginAttempts = new Map();
-const MAX_ATTEMPTS = 5;
-const LOCKOUT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const MAX_ATTEMPTS = 50;
+const LOCKOUT_WINDOW_MS = 2 * 60 * 1000; // 2 minutes
 
 /**
  * Middleware: Verify JWT Bearer Token

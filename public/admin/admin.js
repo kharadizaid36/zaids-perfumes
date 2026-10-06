@@ -12,10 +12,12 @@ const AdminApp = {
   currentAdmin: null,
 
   async init() {
+    this.initEnvIndicator();
     const isAuthed = await this.checkAuth();
     if (!isAuthed) return;
     this.loadDashboard();
     this.setupNavigation();
+    this.startOrdersPolling();
   },
 
   async authFetch(url, options = {}) {
@@ -217,7 +219,20 @@ const AdminApp = {
               </div>
             </td>
             <td class="py-3 px-3 font-mono text-gray-300">${p.category}</td>
-            <td class="py-3 px-3 font-bold text-[#FFDF73]">₹${p.price}</td>
+            <td class="py-3 px-3">
+              <div class="flex items-center gap-1">
+                <button onclick="AdminApp.adjustPrice('${p.id}', -10)" class="w-6 h-6 rounded bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center text-xs transition-colors" title="Decrease Rate ₹10">−</button>
+                <div class="relative">
+                  <span class="absolute left-1.5 top-1 text-gray-400 text-xs font-mono">₹</span>
+                  <input type="number" id="quick-price-${p.id}" value="${p.price}" oninput="AdminApp.markPriceDirty('${p.id}')" onkeydown="if(event.key==='Enter') AdminApp.saveQuickPrice('${p.id}')" class="w-16 pl-4 pr-1 py-1 rounded bg-[#14141E] border border-white/20 text-[#FFDF73] font-bold font-mono text-xs focus:border-[#D4AF37] focus:outline-none" title="Type new rate and press Enter or click Save">
+                </div>
+                <button onclick="AdminApp.adjustPrice('${p.id}', 10)" class="w-6 h-6 rounded bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center text-xs transition-colors" title="Increase Rate ₹10">+</button>
+                <button id="btn-save-price-${p.id}" onclick="AdminApp.saveQuickPrice('${p.id}')" class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold shadow transition-all ml-1" title="Save new price">
+                  Save
+                </button>
+              </div>
+            </td>
+            <td class="py-3 px-3 font-mono text-gray-400">₹${p.comparePrice || p.price}</td>
             <td class="py-3 px-3">
               <span class="font-mono text-xs ${p.stock <= 25 ? 'text-red-400 font-bold' : 'text-gray-300'}">${p.stock} in stock</span>
             </td>
@@ -225,7 +240,7 @@ const AdminApp = {
               ${p.badge ? `<span class="px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#FFDF73] text-[10px] font-mono">${p.badge}</span>` : '-'}
             </td>
             <td class="py-3 px-3 text-right space-x-2">
-              <button onclick="AdminApp.openEditProduct('${p.id}')" class="px-2.5 py-1 rounded bg-[#1A1A26] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-[11px] font-medium transition-colors">Edit</button>
+              <button onclick="AdminApp.openEditProduct('${p.id}')" class="px-2.5 py-1 rounded bg-[#1A1A26] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-[11px] font-medium transition-colors">Edit Details</button>
               <button onclick="AdminApp.deleteProduct('${p.id}')" class="px-2.5 py-1 rounded bg-red-950/40 hover:bg-red-900 text-red-300 text-[11px] font-medium transition-colors">Delete</button>
             </td>
           </tr>
@@ -368,8 +383,81 @@ const AdminApp = {
     }
   },
 
+  adjustPrice(id, delta) {
+    const input = document.getElementById(`quick-price-${id}`);
+    if (!input) return;
+    const current = Number(input.value) || 0;
+    const updated = Math.max(1, current + delta);
+    input.value = updated;
+    this.markPriceDirty(id);
+  },
+
+  markPriceDirty(id) {
+    const btn = document.getElementById(`btn-save-price-${id}`);
+    if (btn) {
+      btn.className = 'px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-400 text-black text-[10px] font-bold shadow animate-pulse ml-1';
+      btn.textContent = 'Save*';
+    }
+  },
+
+  async saveQuickPrice(id) {
+    const input = document.getElementById(`quick-price-${id}`);
+    const btn = document.getElementById(`btn-save-price-${id}`);
+    if (!input) return;
+
+    const newPrice = Number(input.value);
+    if (!newPrice || newPrice <= 0) {
+      alert('Please enter a valid price greater than ₹0');
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = '...';
+    }
+
+    try {
+      const res = await this.authFetch(`/api/products/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ price: newPrice })
+      });
+      if (!res) return;
+      const data = await res.json();
+      if (data.success) {
+        if (btn) {
+          btn.className = 'px-2.5 py-1 rounded bg-emerald-600 text-white text-[10px] font-bold ml-1';
+          btn.textContent = '✓ Saved';
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = 'Save';
+          }, 2000);
+        }
+        // Update local object
+        const p = this.products.find(item => item.id === id);
+        if (p) p.price = newPrice;
+      } else {
+        alert(data.message || 'Error updating price');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Save';
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'Save';
+      }
+    }
+  },
+
   // 3. ORDERS MANAGEMENT
-  async loadOrders() {
+  async loadOrders(isManual = false) {
+    const spinner = document.getElementById('orders-refresh-spinner');
+    if (spinner && isManual) {
+      spinner.classList.add('animate-spin', 'inline-block');
+    }
     try {
       const res = await this.authFetch('/api/orders');
       if (!res) return;
@@ -468,7 +556,38 @@ const AdminApp = {
       }
     } catch (e) {
       console.error(e);
+    } finally {
+      if (spinner && isManual) {
+        setTimeout(() => {
+          spinner.classList.remove('animate-spin');
+        }, 500);
+      }
     }
+  },
+
+  initEnvIndicator() {
+    const badge = document.getElementById('admin-env-badge');
+    const text = document.getElementById('admin-env-text');
+    if (!badge || !text) return;
+    badge.classList.remove('hidden');
+
+    const host = window.location.hostname;
+    if (host.includes('onrender.com') || host.includes('render.com')) {
+      text.innerHTML = '<span class="text-emerald-400 font-bold">● Render Cloud</span> <span class="text-[9px] text-gray-400">(Live Orders Syncing)</span>';
+      badge.className = 'hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-200';
+    } else {
+      text.innerHTML = '<span class="text-amber-400 font-bold">● Localhost</span> <span class="text-[9px] text-gray-400">(Offline Dev DB)</span>';
+      badge.className = 'hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-200';
+    }
+  },
+
+  startOrdersPolling() {
+    // Automatically poll every 25 seconds for new customer orders
+    setInterval(() => {
+      if (localStorage.getItem('zp_admin_token') && (this.activeTab === 'orders' || this.activeTab === 'dashboard')) {
+        this.loadOrders(false);
+      }
+    }, 25000);
   },
 
   // 3B. UPI PAYMENT VERIFICATIONS
