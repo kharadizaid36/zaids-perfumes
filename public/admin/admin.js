@@ -10,9 +10,15 @@ const AdminApp = {
   coupons: [],
   settings: {},
   currentAdmin: null,
+  soundEnabled: false,
+  knownOrderIds: new Set(),
+  originalDocTitle: document.title || "ZAID'S PERFUMES | Admin Control Panel",
+  titleInterval: null,
+  audioCtx: null,
 
   async init() {
     this.initEnvIndicator();
+    this.initNotifications();
     const isAuthed = await this.checkAuth();
     if (!isAuthed) return;
     this.loadDashboard();
@@ -463,7 +469,19 @@ const AdminApp = {
       if (!res) return;
       const data = await res.json();
       if (data.success) {
-        this.orders = data.orders;
+        // Real-time detection of newly arrived orders
+        if (this.knownOrderIds && this.knownOrderIds.size > 0) {
+          const newOrders = (data.orders || []).filter(o => !this.knownOrderIds.has(o.id));
+          if (newOrders.length > 0) {
+            newOrders.forEach(o => {
+              this.knownOrderIds.add(o.id);
+              this.triggerNewOrderAlert(o);
+            });
+          }
+        } else {
+          // Initialize known orders on first load
+          this.knownOrderIds = new Set((data.orders || []).map(o => o.id));
+        }
 
         // Update pending verifications badges
         const count = data.pendingVerificationCount || 0;
@@ -524,7 +542,7 @@ const AdminApp = {
           actionsHtml += `</div>`;
 
           return `
-            <tr class="hover:bg-white/[0.02]">
+            <tr id="order-row-${o.id}" class="hover:bg-white/[0.02] transition-all duration-300">
               <td class="py-3 px-3 font-mono text-[#FFDF73] font-bold">#${o.id}</td>
               <td class="py-3 px-3">
                 <p class="font-bold text-white">${o.customerName}</p>
@@ -581,13 +599,281 @@ const AdminApp = {
     }
   },
 
+  initAudioContext() {
+    try {
+      if (!this.audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          this.audioCtx = new AudioContextClass();
+        }
+      }
+      if (this.audioCtx && this.audioCtx.state === 'suspended') {
+        this.audioCtx.resume();
+      }
+    } catch (e) {
+      console.warn('AudioContext init error:', e);
+    }
+  },
+
+  initNotifications() {
+    this.originalDocTitle = document.title || "ZAID'S PERFUMES | Admin Control Panel";
+    const savedSound = localStorage.getItem('zp_admin_sound_enabled');
+    // If user previously enabled or browser push is allowed, turn sound ON
+    if (savedSound === 'true' || (window.Notification && Notification.permission === 'granted')) {
+      this.soundEnabled = true;
+    }
+    this.updateNotificationButtonUI();
+
+    // Clear flashing title when window is clicked or focused
+    window.addEventListener('focus', () => this.stopTitleFlashing());
+    document.addEventListener('click', () => {
+      this.initAudioContext();
+      this.stopTitleFlashing();
+    }, { once: false });
+  },
+
+  async toggleNotifications() {
+    this.initAudioContext();
+
+    if ('Notification' in window && Notification.permission !== 'granted') {
+      try {
+        const perm = await Notification.requestPermission();
+        if (perm === 'granted') {
+          this.soundEnabled = true;
+        } else {
+          // Keep sound enabled within browser even if OS notifications are denied
+          this.soundEnabled = !this.soundEnabled;
+        }
+      } catch (e) {
+        console.warn('Permission request error:', e);
+        this.soundEnabled = !this.soundEnabled;
+      }
+    } else {
+      this.soundEnabled = !this.soundEnabled;
+    }
+
+    localStorage.setItem('zp_admin_sound_enabled', this.soundEnabled ? 'true' : 'false');
+    this.updateNotificationButtonUI();
+
+    if (this.soundEnabled) {
+      this.playOrderChime();
+      this.showOrderToast({
+        id: 'TEST',
+        customerName: 'Sound Alerts Active!',
+        total: 179,
+        paymentMethod: 'Instant Alert',
+        items: [{ title: 'Luxury Cash Register Chime Tested', quantity: 1 }]
+      }, true);
+    }
+  },
+
+  updateNotificationButtonUI() {
+    const btn = document.getElementById('btn-toggle-notifs');
+    const icon = document.getElementById('notif-bell-icon');
+    const text = document.getElementById('notif-bell-text');
+    const promptBanner = document.getElementById('notif-banner-prompt');
+
+    if (!btn || !text) return;
+
+    if (this.soundEnabled) {
+      btn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900/60 transition-all font-mono text-xs cursor-pointer shadow-sm';
+      if (icon) {
+        icon.className = '';
+        icon.textContent = '🔔';
+      }
+      text.textContent = 'Alerts: ON (Test)';
+      if (promptBanner) promptBanner.classList.add('hidden');
+    } else {
+      btn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-[#FFDF73] hover:bg-amber-500/30 transition-all font-mono text-xs cursor-pointer';
+      if (icon) {
+        icon.className = 'animate-bounce';
+        icon.textContent = '🔔';
+      }
+      text.textContent = 'Sound Alerts: OFF';
+      if (promptBanner) promptBanner.classList.remove('hidden');
+    }
+  },
+
+  playOrderChime() {
+    try {
+      this.initAudioContext();
+      if (!this.audioCtx) return;
+      const ctx = this.audioCtx;
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+      const now = ctx.currentTime;
+
+      // Note 1: 880Hz (A5)
+      const osc1 = ctx.createOscillator();
+      const gain1 = ctx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(880, now);
+      osc1.frequency.exponentialRampToValueAtTime(1320, now + 0.15);
+      gain1.gain.setValueAtTime(0.3, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      osc1.connect(gain1);
+      gain1.connect(ctx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.8);
+
+      // Note 2: 1760Hz (A6)
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(1760, now + 0.12);
+      gain2.gain.setValueAtTime(0.35, now + 0.12);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      osc2.connect(gain2);
+      gain2.connect(ctx.destination);
+      osc2.start(now + 0.12);
+      osc2.stop(now + 1.2);
+
+      // Note 3: 2640Hz (E7) - Shimmer
+      const osc3 = ctx.createOscillator();
+      const gain3 = ctx.createGain();
+      osc3.type = 'sine';
+      osc3.frequency.setValueAtTime(2640, now + 0.22);
+      gain3.gain.setValueAtTime(0.2, now + 0.22);
+      gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+      osc3.connect(gain3);
+      gain3.connect(ctx.destination);
+      osc3.start(now + 0.22);
+      osc3.stop(now + 1.5);
+    } catch (e) {
+      console.warn('Audio chime playback failed:', e);
+    }
+  },
+
+  triggerNewOrderAlert(order) {
+    // 1. Play Audio Chime
+    if (this.soundEnabled) {
+      this.playOrderChime();
+    }
+
+    // 2. Browser Native Push Notification
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        const notif = new Notification(`🛍️ NEW ORDER: #${order.id}!`, {
+          body: `Customer: ${order.customerName} • Total: ₹${order.total} (${order.paymentMethod})\nClick to view in Admin Panel.`,
+          icon: '/images/logo-emblem.png',
+          badge: '/images/logo-emblem.png',
+          tag: `order-${order.id}`,
+          renotify: true,
+          requireInteraction: true
+        });
+        notif.onclick = () => {
+          window.focus();
+          this.viewOrderFromToast(order.id);
+          notif.close();
+        };
+      } catch (e) {
+        console.warn('Browser notification error:', e);
+      }
+    }
+
+    // 3. Floating In-App Pop-up Card
+    this.showOrderToast(order);
+
+    // 4. Flashing Browser Tab Title
+    this.startTitleFlashing(`🔔 NEW ORDER #${order.id}!`);
+  },
+
+  showOrderToast(order, isTest = false) {
+    const container = document.getElementById('order-toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.id = `toast-order-${order.id}`;
+    toast.className = 'pointer-events-auto bg-[#101018] border-2 border-[#D4AF37] rounded-2xl p-4 shadow-2xl glow-gold-lg flex items-start justify-between gap-3 animate-bounce transition-all';
+    
+    const itemsDesc = (order.items || []).map(i => `${i.quantity || 1}x ${i.title}`).join(', ') || 'Perfume Order';
+
+    toast.innerHTML = `
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl flex-shrink-0 border border-amber-500/40">
+          🔔
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full ${isTest ? 'bg-blue-500/20 text-blue-300' : 'bg-emerald-500/20 text-emerald-300'} font-mono text-[10px] font-bold">
+              ${isTest ? 'TEST ALERT' : 'NEW ORDER'}
+            </span>
+            <span class="text-[#FFDF73] font-mono text-xs font-bold">#${order.id}</span>
+          </div>
+          <h4 class="font-bold text-white text-sm mt-0.5">${order.customerName}</h4>
+          <p class="text-xs text-[#FFDF73] font-bold font-mono">Total: ₹${order.total} <span class="text-gray-400 font-normal">(${order.paymentMethod})</span></p>
+          <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1">${itemsDesc}</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-1.5 items-end flex-shrink-0">
+        ${!isTest ? `
+          <button onclick="AdminApp.viewOrderFromToast('${order.id}')" class="px-3 py-1.5 rounded-xl gradient-gold-btn text-black font-bold text-xs shadow-md whitespace-nowrap">
+            View Order &rarr;
+          </button>
+        ` : ''}
+        <button onclick="document.getElementById('toast-order-${order.id}')?.remove()" class="text-gray-400 hover:text-white text-xs px-2 py-0.5">
+          ✕ Dismiss
+        </button>
+      </div>
+    `;
+
+    container.appendChild(toast);
+
+    // Auto dismiss after 15 seconds
+    setTimeout(() => {
+      if (toast && toast.parentNode) {
+        toast.classList.remove('animate-bounce');
+        toast.classList.add('opacity-0', 'transition-opacity');
+        setTimeout(() => toast.remove(), 400);
+      }
+    }, 15000);
+  },
+
+  viewOrderFromToast(orderId) {
+    this.switchTab('orders');
+    const toast = document.getElementById(`toast-order-${orderId}`);
+    if (toast) toast.remove();
+    this.stopTitleFlashing();
+
+    setTimeout(() => {
+      const row = document.getElementById(`order-row-${orderId}`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.classList.add('bg-[#D4AF37]/30', 'outline', 'outline-amber-400');
+        setTimeout(() => {
+          row.classList.remove('bg-[#D4AF37]/30', 'outline', 'outline-amber-400');
+        }, 4000);
+      }
+    }, 300);
+  },
+
+  startTitleFlashing(alertText) {
+    this.stopTitleFlashing();
+    let toggle = false;
+    this.titleInterval = setInterval(() => {
+      document.title = toggle ? alertText : this.originalDocTitle;
+      toggle = !toggle;
+    }, 900);
+  },
+
+  stopTitleFlashing() {
+    if (this.titleInterval) {
+      clearInterval(this.titleInterval);
+      this.titleInterval = null;
+    }
+    if (this.originalDocTitle) {
+      document.title = this.originalDocTitle;
+    }
+  },
+
   startOrdersPolling() {
-    // Automatically poll every 25 seconds for new customer orders
+    // Automatically poll every 10 seconds for real-time new order alerts
     setInterval(() => {
-      if (localStorage.getItem('zp_admin_token') && (this.activeTab === 'orders' || this.activeTab === 'dashboard')) {
+      if (localStorage.getItem('zp_admin_token')) {
         this.loadOrders(false);
       }
-    }, 25000);
+    }, 10000);
   },
 
   // 3B. UPI PAYMENT VERIFICATIONS

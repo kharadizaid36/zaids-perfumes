@@ -21,7 +21,12 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-4 text-xs">
+    <div class="flex items-center gap-3 sm:gap-4 text-xs">
+      <button id="btn-toggle-notifs" onclick="AdminApp.toggleNotifications()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-[#FFDF73] hover:bg-amber-500/30 transition-all font-mono text-xs" title="Click to test/enable live sound & push notifications for new orders">
+        <span id="notif-bell-icon" class="animate-bounce">🔔</span>
+        <span id="notif-bell-text">Sound Alerts: OFF</span>
+      </button>
+
       <div id="admin-env-badge" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#14141E] border border-white/10 text-gray-300">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span id="admin-env-text" class="font-mono text-[11px] text-gray-300">Connecting...</span>
@@ -85,6 +90,20 @@
       
       <!-- TAB 1: DASHBOARD -->
       <section id="tab-content-dashboard" class="space-y-6">
+        <!-- REAL-TIME ORDER ALERT PROMPT BANNER -->
+        <div id="notif-banner-prompt" class="p-3.5 rounded-2xl bg-gradient-to-r from-amber-950/60 via-[#161622] to-amber-950/60 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-lg">
+          <div class="flex items-center gap-2.5">
+            <span class="text-2xl animate-bounce">🔔</span>
+            <div>
+              <span class="font-bold text-[#FFDF73]">Live Order Notifications:</span>
+              <span class="text-gray-300 ml-1">Receive sound alerts & mobile/desktop notifications when a new order is placed.</span>
+            </div>
+          </div>
+          <button onclick="AdminApp.toggleNotifications()" class="px-4 py-2 rounded-xl gradient-gold-btn text-black font-bold text-xs whitespace-nowrap shadow-md">
+            🔔 Enable Order Sound Alerts
+          </button>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="p-5 rounded-2xl bg-[#0F0F16] border border-[#C5A059]/35 glow-gold-sm">
             <span class="text-xs uppercase font-mono text-gray-400">Total Revenue</span>
@@ -458,6 +477,9 @@
       </div>
     </div>
   </div>
+
+  <!-- FLOATING NOTIFICATION TOAST CONTAINER FOR REAL-TIME NEW ORDERS -->
+  <div id="order-toast-container" class="fixed top-20 right-4 sm:right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
 
   <script src="/admin/admin.js"></script>
 </body>
