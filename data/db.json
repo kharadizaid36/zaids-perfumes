@@ -485,11 +485,12 @@
     {
       "id": "usr-admin-01",
       "name": "Zaid Admin",
-      "email": "admin@zaidsperfumes.com",
-      "password": "$2a$10$EEobEQ.VcnHh/T2YjhaEIu1iCXjcCp6WlLmgqGBbJmOFM7I0E0fPG",
+      "email": "zaidsperfumes@gmail.com",
+      "password": "$2a$10$WNt7nCGbaDam/XMeT/DxmuO9zQmOPizM31b2NMfVGJQzwspw1Ui46",
       "role": "admin",
       "phone": "+91 86240 85212",
-      "createdAt": "2026-10-01T00:00:00.000Z"
+      "createdAt": "2026-10-01T00:00:00.000Z",
+      "username": "zaidsperfumes"
     },
     {
       "id": "usr-cust-01",

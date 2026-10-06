@@ -24,11 +24,11 @@
     <!-- Login Form -->
     <form id="admin-login-form" class="space-y-4 text-xs">
       <div class="space-y-1">
-        <label class="text-gray-300 font-medium">Administrator Email</label>
+        <label class="text-gray-300 font-medium">Admin ID</label>
         <input 
           id="adm-email" 
-          type="email" 
-          placeholder="admin@zaidsperfumes.com" 
+          type="text" 
+          placeholder="Enter Admin ID" 
           autocomplete="username"
           required 
           class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#D4AF37] focus:outline-none"
@@ -40,7 +40,7 @@
         <input 
           id="adm-password" 
           type="password" 
-          placeholder="Enter administrator password" 
+          placeholder="Enter Password" 
           autocomplete="current-password"
           required 
           class="w-full bg-[#14141E] border border-white/10 rounded-xl p-3 text-white focus:border-[#D4AF37] focus:outline-none"
@@ -49,10 +49,6 @@
 
       <div id="login-error" class="hidden p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-red-200 text-xs">
         <!-- Error message -->
-      </div>
-
-      <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center text-[11px] text-gray-300">
-        <span>Admin Access: <strong class="text-[#FFDF73] font-mono">admin@zaidsperfumes.com</strong> | Password: <strong class="text-[#FFDF73] font-mono">admin123</strong></span>
       </div>
 
       <button 
@@ -75,7 +71,7 @@
   <script>
     document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('adm-email').value;
+      const loginId = document.getElementById('adm-email').value.trim();
       const password = document.getElementById('adm-password').value;
       const errBox = document.getElementById('login-error');
 
@@ -83,7 +79,7 @@
         const res = await fetch('/api/auth/admin-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+          body: JSON.stringify({ email: loginId, username: loginId, id: loginId, password })
         });
         const data = await res.json();
         if (data.success && data.token) {

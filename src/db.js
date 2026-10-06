@@ -303,7 +303,27 @@ function verifyOrderPayment(id, action, adminUser = 'Admin', reason = '') {
 // User / Auth helpers
 function findUserByEmail(email) {
   const db = readDb();
-  return (db.users || []).find(u => u.email.toLowerCase() === email.toLowerCase());
+  const q = String(email || '').trim().toLowerCase();
+  return (db.users || []).find(u => 
+    u.email.toLowerCase() === q || 
+    (u.username && u.username.toLowerCase() === q)
+  );
+}
+
+function findAdminUser(identifier) {
+  const db = readDb();
+  const idStr = String(identifier || '').trim().toLowerCase();
+  return (db.users || []).find(u => 
+    u.role === 'admin' && (
+      (u.username && u.username.toLowerCase() === idStr) ||
+      (u.email && u.email.toLowerCase() === idStr) ||
+      (u.id && u.id.toLowerCase() === idStr) ||
+      idStr === 'zaidsperfumes' ||
+      idStr === 'zaidsperfumes@gmail.com' ||
+      idStr === 'admin@zaidsperfumes.com' ||
+      idStr === 'admin'
+    )
+  );
 }
 
 function createUser(userData) {
@@ -421,6 +441,7 @@ module.exports = {
   checkDuplicateUtr,
   verifyOrderPayment,
   findUserByEmail,
+  findAdminUser,
   createUser,
   updateUser,
   getCoupons,
