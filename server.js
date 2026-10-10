@@ -99,6 +99,14 @@ app.get('/terms', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'terms.html'));
 });
 
+app.get('/invoice', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'invoice.html'));
+});
+
+app.get('/admin/invoice', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'invoice.html'));
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({

@@ -554,6 +554,8 @@ const AdminApp = {
       if (!res) return;
       const data = await res.json();
       if (data.success) {
+        this.orders = data.orders || [];
+
         // Real-time detection of newly arrived orders
         if (this.knownOrderIds && this.knownOrderIds.size > 0) {
           const newOrders = (data.orders || []).filter(o => !this.knownOrderIds.has(o.id));
@@ -611,9 +613,9 @@ const AdminApp = {
 
           let actionsHtml = `
             <div class="flex items-center justify-end gap-1.5">
-              <button onclick="AdminApp.printInvoice('${o.id}')" class="px-3 py-1 rounded-lg bg-[#181824] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-xs font-semibold transition-colors">
+              <a href="/admin/invoice.html?id=${o.id}" target="_blank" class="px-3 py-1 rounded-lg bg-[#181824] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-xs font-semibold transition-colors inline-flex items-center gap-1" title="View & Print Tax Invoice">
                 🧾 Invoice
-              </button>
+              </a>
           `;
 
           if (o.paymentMethod === 'UPI' && o.paymentStatus === 'Verification Pending') {
@@ -1120,89 +1122,16 @@ const AdminApp = {
   },
 
   printInvoice(orderId) {
-    const o = this.orders.find(item => item.id === orderId);
-    if (!o) return;
-
-    const invoiceWin = window.open('', '_blank');
-    invoiceWin.document.write(`
-      <html>
-      <head>
-        <title>Invoice #${o.id} - ZAID'S PERFUMES</title>
-        <style>
-          body { font-family: 'Helvetica Neue', Arial, sans-serif; padding: 40px; color: #111; line-height: 1.5; }
-          .header { display: flex; justify-content: space-between; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; }
-          .brand { font-size: 24px; font-weight: bold; color: #000; letter-spacing: 2px; }
-          .meta { text-align: right; font-size: 13px; color: #555; }
-          .bill-to { margin: 30px 0; font-size: 13px; }
-          table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
-          th { background: #f8f8f8; text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }
-          td { padding: 10px; border-bottom: 1px solid #eee; }
-          .total-box { margin-top: 20px; text-align: right; font-size: 14px; }
-          .grand-total { font-size: 18px; font-weight: bold; color: #997A15; margin-top: 5px; }
-          .footer { margin-top: 60px; font-size: 11px; text-align: center; color: #888; border-top: 1px solid #eee; padding-top: 20px; }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <div>
-            <div class="brand">ZAID'S PERFUMES</div>
-            <div style="font-size: 12px; color: #D4AF37; font-weight: bold;">Pure Handcrafted Solid Perfumes & Luxury Scents</div>
-            <div style="font-size: 12px; color: #666; margin-top: 5px;">Bandra West, Mumbai - 400050<br>GSTIN: 27AABCZ1234F1Z5</div>
-          </div>
-          <div class="meta">
-            <h3 style="margin: 0; color: #D4AF37;">TAX INVOICE</h3>
-            <p><strong>Invoice #:</strong> ${o.id}</p>
-            <p><strong>Date:</strong> ${new Date(o.createdAt).toLocaleDateString()}</p>
-            <p><strong>Payment:</strong> ${o.paymentMethod} (${o.paymentStatus})</p>
-          </div>
-        </div>
-
-        <div class="bill-to">
-          <strong>Delivered To:</strong><br>
-          ${o.customerName}<br>
-          ${o.shippingAddress}<br>
-          ${o.city} - ${o.pincode}<br>
-          Phone: ${o.customerPhone}
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Item Description</th>
-              <th>Qty</th>
-              <th>Unit Price</th>
-              <th style="text-align: right;">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${(o.items || []).map(i => `
-              <tr>
-                <td>${i.title}</td>
-                <td>${i.quantity}</td>
-                <td>₹${i.price}</td>
-                <td style="text-align: right;">₹${i.price * i.quantity}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-
-        <div class="total-box">
-          <p>Subtotal: ₹${o.subtotal || o.total}</p>
-          ${o.discount ? `<p style="color: green;">Discount (${o.couponUsed || 'Coupon'}): -₹${o.discount}</p>` : ''}
-          <p>Express Shipping: FREE</p>
-          <div class="grand-total">Total Payable: ₹${o.total}</div>
-        </div>
-
-        <div class="footer">
-          Thank you for choosing ZAID'S PERFUMES! Handcrafted with organic beeswax, shea butter & royal fragrance oils.<br>
-          For any questions, contact us at support@zaidsperfumes.com or +91 98765 43210.
-        </div>
-      </body>
-      </html>
-    `);
-    invoiceWin.document.close();
-    invoiceWin.focus();
-    setTimeout(() => invoiceWin.print(), 500);
+    if (!orderId) {
+      alert('Order ID is required to print invoice.');
+      return;
+    }
+    const invoiceUrl = `/admin/invoice.html?id=${encodeURIComponent(orderId)}`;
+    const win = window.open(invoiceUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      // Direct navigation if popup blocker triggered
+      window.location.href = invoiceUrl;
+    }
   },
 
   // 4. COUPONS MANAGEMENT

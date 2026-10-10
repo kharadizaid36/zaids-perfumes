@@ -63,7 +63,12 @@
         </div>
         <div class="text-left md:text-right">
           <p id="trk-courier" class="text-xs text-gray-400">Courier: BlueDart Express (AWB: 8812930192)</p>
-          <span class="text-xs text-green-400 font-mono">● Active GPS Transmission</span>
+          <div class="flex items-center md:justify-end gap-2 mt-1">
+            <span class="text-xs text-green-400 font-mono">● Active Tracking</span>
+            <a id="trk-invoice-btn" href="#" target="_blank" class="px-2.5 py-0.5 rounded-lg bg-[#C5A059]/20 hover:bg-[#C5A059] text-[#FFDF73] hover:text-black font-bold text-[11px] font-serif-luxury border border-[#C5A059]/40 transition-all inline-flex items-center gap-1" title="View & Print Tax Invoice">
+              🧾 Tax Invoice
+            </a>
+          </div>
         </div>
       </div>
 
@@ -208,6 +213,9 @@
         document.getElementById('trk-date').textContent = `Placed on ${new Date(o.createdAt).toLocaleDateString()} &bull; Expected Delivery: ${o.estimatedDelivery || 'In 2-3 Days'}`;
         document.getElementById('trk-courier').textContent = `Courier: ${o.courierName || 'BlueDart Express'} (${o.trackingNumber || 'AWB Pending'})`;
 
+        const invBtn = document.getElementById('trk-invoice-btn');
+        if (invBtn) invBtn.href = `/invoice?id=${encodeURIComponent(o.id)}`;
+
         // Render UPI Verification Banner
         const banner = document.getElementById('trk-verification-banner');
         if (banner) {
@@ -339,10 +347,13 @@
                       ${o.orderStatus}
                     </span>
                   </td>
-                  <td class="py-3 px-2 text-right">
-                    <button class="px-2.5 py-1 rounded bg-[#181824] hover:bg-[#C5A059] hover:text-black text-gray-300 font-semibold transition-colors">
+                  <td class="py-3 px-2 text-right space-x-1 whitespace-nowrap">
+                    <button class="px-2.5 py-1 rounded bg-[#181824] hover:bg-[#C5A059] hover:text-black text-gray-300 font-semibold transition-colors text-xs">
                       Track &rarr;
                     </button>
+                    <a href="/invoice?id=${encodeURIComponent(o.id)}" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded bg-[#C5A059]/20 hover:bg-[#C5A059] text-[#FFDF73] hover:text-black font-semibold transition-colors inline-block text-[11px]" title="Download Tax Invoice">
+                      🧾 Invoice
+                    </a>
                   </td>
                 </tr>
               `;
