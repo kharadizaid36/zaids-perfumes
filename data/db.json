@@ -1319,5 +1319,6 @@
     "enableCod": true,
     "enableUpi": true,
     "enableCard": false
-  }
+  },
+  "inquiries": []
 }

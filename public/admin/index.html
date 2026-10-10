@@ -72,6 +72,13 @@
           <span>🏷️</span>
           <span>Discount Coupons</span>
         </button>
+        <button data-tab="inquiries" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center justify-between transition-all">
+          <div class="flex items-center gap-2.5">
+            <span>💬</span>
+            <span>Customer Inquiries</span>
+          </div>
+          <span id="nav-inquiries-count" class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold font-mono">0</span>
+        </button>
         <button data-tab="settings" class="admin-nav-btn w-full text-left px-4 py-3 rounded-xl bg-transparent text-gray-400 hover:text-white hover:bg-white/5 font-medium text-xs uppercase tracking-wider font-serif-luxury flex items-center gap-2.5 transition-all">
           <span>⚙️</span>
           <span>Store Settings</span>
@@ -387,6 +394,41 @@
                 Update Admin Password &rarr;
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 7: INQUIRIES & GRIEVANCES -->
+      <section id="tab-content-inquiries" class="space-y-6 hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold font-serif-luxury text-white">Customer Inquiries & Support Messages</h2>
+            <p class="text-xs text-gray-400">Review and respond to messages submitted via the online Contact Form.</p>
+          </div>
+          <button onclick="AdminApp.loadInquiries()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-semibold flex items-center gap-2">
+            <span>🔄 Refresh Inquiries</span>
+          </button>
+        </div>
+
+        <div class="bg-[#0F0F16] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-gray-300">
+              <thead class="bg-[#14141E] text-gray-400 font-mono border-b border-white/10">
+                <tr>
+                  <th class="py-3 px-4">Date</th>
+                  <th class="py-3 px-4">Customer</th>
+                  <th class="py-3 px-4">Subject</th>
+                  <th class="py-3 px-4">Message</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inquiries-table-body" class="divide-y divide-white/5 font-sans">
+                <tr>
+                  <td colspan="6" class="py-8 text-center text-gray-500 font-mono">Loading inquiries...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

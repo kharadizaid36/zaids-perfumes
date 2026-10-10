@@ -4,10 +4,12 @@ const fs = require('fs');
 const path = require('path');
 const db = require('../db');
 const { requireAdmin } = require('../middleware/auth');
+const { orderRateLimiter, sanitizeInput } = require('../middleware/security');
 
 // POST /api/orders - Place a new order from checkout
-router.post('/', (req, res) => {
+router.post('/', orderRateLimiter, (req, res) => {
   try {
+    const cleanBody = sanitizeInput(req.body);
     const {
       customerName,
       customerEmail,
@@ -25,7 +27,7 @@ router.post('/', (req, res) => {
       couponUsed,
       total,
       userId
-    } = req.body;
+    } = cleanBody;
 
     if (!customerName || !customerPhone || !shippingAddress || !items || items.length === 0) {
       return res.status(400).json({

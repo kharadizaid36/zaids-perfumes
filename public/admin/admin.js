@@ -108,7 +108,7 @@ const AdminApp = {
     });
 
     // Hide all tab sections
-    ['dashboard', 'products', 'orders', 'verifications', 'coupons', 'settings'].forEach(t => {
+    ['dashboard', 'products', 'orders', 'verifications', 'coupons', 'settings', 'inquiries'].forEach(t => {
       const el = document.getElementById(`tab-content-${t}`);
       if (el) el.classList.toggle('hidden', t !== tab);
     });
@@ -120,11 +120,96 @@ const AdminApp = {
     if (tab === 'verifications') this.loadVerifications();
     if (tab === 'coupons') this.loadCoupons();
     if (tab === 'settings') this.loadSettings();
+    if (tab === 'inquiries') this.loadInquiries();
+  },
+
+  // Customer Inquiries Controller
+  async loadInquiries() {
+    try {
+      const res = await this.authFetch('/api/contact/admin-inquiries');
+      if (!res) return;
+      const data = await res.json();
+      if (data.success) {
+        this.inquiries = data.inquiries || [];
+        const countBadge = document.getElementById('nav-inquiries-count');
+        const newCount = this.inquiries.filter(i => i.status === 'new').length;
+        if (countBadge) countBadge.textContent = newCount;
+
+        const tbody = document.getElementById('inquiries-table-body');
+        if (!tbody) return;
+        if (this.inquiries.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 font-mono">No customer inquiries received yet.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = this.inquiries.map(inq => {
+          const dateStr = inq.createdAt ? new Date(inq.createdAt).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : 'N/A';
+          const isNew = inq.status === 'new';
+          const phoneLink = inq.phone ? `https://wa.me/${inq.phone.replace(/[^0-9]/g, '')}` : null;
+          return `
+            <tr class="hover:bg-white/[0.02]">
+              <td class="py-3 px-4 font-mono text-[11px] text-gray-400 whitespace-nowrap">${dateStr}</td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-white">${inq.name}</div>
+                <div class="text-[11px] text-gray-400 font-mono flex items-center gap-2 mt-0.5">
+                  ${inq.phone ? `<span>📞 ${inq.phone}</span>` : ''}
+                  ${inq.email ? `<span>✉️ ${inq.email}</span>` : ''}
+                </div>
+              </td>
+              <td class="py-3 px-4">
+                <span class="font-medium text-amber-300">${inq.subject}</span>
+                ${inq.orderId ? `<div class="text-[10px] font-mono text-gray-400">Order: #${inq.orderId}</div>` : ''}
+              </td>
+              <td class="py-3 px-4 max-w-xs">
+                <p class="text-gray-300 text-[11px] leading-relaxed line-clamp-2" title="${inq.message}">${inq.message}</p>
+              </td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                  isNew ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                }">
+                  ${inq.status.toUpperCase()}
+                </span>
+              </td>
+              <td class="py-3 px-4 text-right whitespace-nowrap space-x-1.5">
+                ${phoneLink ? `
+                  <a href="${phoneLink}" target="_blank" class="px-2.5 py-1 rounded bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white font-mono text-[10px] font-bold transition-colors inline-block" title="Reply on WhatsApp">
+                    💬 WhatsApp
+                  </a>
+                ` : ''}
+                ${isNew ? `
+                  <button onclick="AdminApp.markInquiryResponded('${inq.id}')" class="px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 text-gray-200 text-[10px] font-semibold transition-colors">
+                    ✓ Done
+                  </button>
+                ` : ''}
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  },
+
+  async markInquiryResponded(id) {
+    try {
+      const res = await this.authFetch(`/api/contact/admin-inquiries/${id}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'responded' })
+      });
+      if (res && res.ok) {
+        this.loadInquiries();
+      }
+    } catch (e) {
+      console.error(e);
+    }
   },
 
   // 1. DASHBOARD
   async loadDashboard() {
     try {
+      this.loadInquiries();
       const res = await this.authFetch('/api/admin/stats');
       if (!res) return;
       const data = await res.json();

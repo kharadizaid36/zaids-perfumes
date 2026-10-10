@@ -427,6 +427,26 @@ function addReview(reviewData) {
   return newReview;
 }
 
+// Inquiries / Customer Contact Messages
+function getInquiries() {
+  const db = readDb();
+  return db.inquiries || [];
+}
+
+function addInquiry(inquiryData) {
+  const db = readDb();
+  if (!db.inquiries) db.inquiries = [];
+  const newInquiry = {
+    id: 'inq-' + Date.now(),
+    createdAt: new Date().toISOString(),
+    status: 'new', // new, responded, archived
+    ...inquiryData
+  };
+  db.inquiries.unshift(newInquiry);
+  writeDb(db);
+  return newInquiry;
+}
+
 module.exports = {
   getProducts,
   getProductById,
@@ -451,5 +471,7 @@ module.exports = {
   getSettings,
   updateSettings,
   getReviews,
-  addReview
+  addReview,
+  getInquiries,
+  addInquiry
 };

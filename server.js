@@ -10,13 +10,8 @@ app.set('trust proxy', 1);
 
 // Security Enhancements
 app.disable('x-powered-by');
-app.use((req, res, next) => {
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  next();
-});
+const { securityHeaders } = require('./src/middleware/security');
+app.use(securityHeaders);
 
 // Middleware
 app.use(cors());
@@ -32,6 +27,7 @@ app.use('/api/products', require('./src/routes/products'));
 app.use('/api/orders', require('./src/routes/orders'));
 app.use('/api/coupons', require('./src/routes/coupons'));
 app.use('/api/admin', require('./src/routes/admin'));
+app.use('/api/contact', require('./src/routes/contact'));
 
 // Public Store Settings (for customer storefront branding, customer care & limits)
 app.get('/api/settings', (req, res) => {
@@ -62,24 +58,45 @@ app.get('/api/settings', (req, res) => {
   }
 });
 
-// Fallback for Admin Panel route
+// Fallback Clean Page Routes (SEO Friendly & Extensionless)
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'index.html'));
 });
 
-// Fallback for Account / Customer Portal
 app.get('/account', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'account.html'));
 });
 
-// Fallback for Checkout
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
 });
 
-// Fallback for Product Details
 app.get('/product', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'product.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+});
+
+app.get('/shipping-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'shipping-policy.html'));
+});
+
+app.get('/refund-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'refund-policy.html'));
+});
+
+app.get('/privacy-policy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy-policy.html'));
+});
+
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terms.html'));
 });
 
 // Health check endpoint
