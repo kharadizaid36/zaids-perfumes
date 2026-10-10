@@ -356,6 +356,21 @@ const AdminApp = {
     document.getElementById('prod-form-base').value = 'Smoky Vetiver, Pure Ambergris';
     document.getElementById('prod-form-desc').value = 'Pure handcrafted solid cologne with 100% natural organic beeswax and shea butter.';
 
+    // Reset image controls
+    const fileInput = document.getElementById('prod-form-file');
+    if (fileInput) fileInput.value = '';
+    const imgUrlInput = document.getElementById('prod-form-image-url');
+    if (imgUrlInput) imgUrlInput.value = '';
+    const preview = document.getElementById('prod-img-preview');
+    if (preview) {
+      preview.src = '';
+      preview.classList.add('hidden');
+    }
+    const placeholder = document.getElementById('prod-img-placeholder');
+    if (placeholder) placeholder.classList.remove('hidden');
+    const statusEl = document.getElementById('prod-img-upload-status');
+    if (statusEl) statusEl.textContent = '';
+
     document.getElementById('product-modal').classList.remove('hidden');
   },
 
@@ -376,7 +391,103 @@ const AdminApp = {
     document.getElementById('prod-form-base').value = p.baseNotes || '';
     document.getElementById('prod-form-desc').value = p.description || '';
 
+    // Populate image controls
+    const existingImg = p.image || p.localImage || '';
+    const imgUrlInput = document.getElementById('prod-form-image-url');
+    if (imgUrlInput) imgUrlInput.value = existingImg;
+    const preview = document.getElementById('prod-img-preview');
+    const placeholder = document.getElementById('prod-img-placeholder');
+    if (existingImg && preview && placeholder) {
+      preview.src = existingImg;
+      preview.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+    } else if (preview && placeholder) {
+      preview.src = '';
+      preview.classList.add('hidden');
+      placeholder.classList.remove('hidden');
+    }
+    const fileInput = document.getElementById('prod-form-file');
+    if (fileInput) fileInput.value = '';
+    const statusEl = document.getElementById('prod-img-upload-status');
+    if (statusEl) statusEl.textContent = '';
+
     document.getElementById('product-modal').classList.remove('hidden');
+  },
+
+  handleProductImageSelect(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please select a valid image file (JPG, PNG, WEBP).');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size exceeds 10MB limit. Please select a smaller image.');
+      return;
+    }
+
+    const preview = document.getElementById('prod-img-preview');
+    const placeholder = document.getElementById('prod-img-placeholder');
+    const statusEl = document.getElementById('prod-img-upload-status');
+
+    if (statusEl) {
+      statusEl.textContent = '⏳ Uploading image...';
+      statusEl.className = 'text-[11px] text-[#FFDF73] font-mono font-semibold';
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64Data = e.target.result;
+      if (preview && placeholder) {
+        preview.src = base64Data;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+      }
+
+      try {
+        const res = await this.authFetch('/api/products/upload-image', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ imageBase64: base64Data, fileName: file.name })
+        });
+        if (!res) throw new Error('Upload request failed');
+        const data = await res.json();
+        if (data.success && data.url) {
+          const imgUrlInput = document.getElementById('prod-form-image-url');
+          if (imgUrlInput) imgUrlInput.value = data.url;
+          if (statusEl) {
+            statusEl.textContent = '✅ Image Uploaded!';
+            statusEl.className = 'text-[11px] text-emerald-400 font-mono font-semibold';
+          }
+        } else {
+          throw new Error(data.message || 'Upload failed');
+        }
+      } catch (err) {
+        console.error('Image upload error:', err);
+        if (statusEl) {
+          statusEl.textContent = '⚠️ Upload failed, using preview';
+          statusEl.className = 'text-[11px] text-amber-400 font-mono';
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  },
+
+  previewManualImageUrl(url) {
+    const preview = document.getElementById('prod-img-preview');
+    const placeholder = document.getElementById('prod-img-placeholder');
+    const clean = (url || '').trim();
+    if (clean && preview && placeholder) {
+      preview.src = clean;
+      preview.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+    } else if (preview && placeholder) {
+      preview.src = '';
+      preview.classList.add('hidden');
+      placeholder.classList.remove('hidden');
+    }
   },
 
   closeProductModal() {
@@ -396,10 +507,16 @@ const AdminApp = {
     const baseNotes = document.getElementById('prod-form-base').value.trim();
     const description = document.getElementById('prod-form-desc').value.trim();
 
+    const imageInput = document.getElementById('prod-form-image-url');
+    const image = imageInput ? imageInput.value.trim() : '';
+
     if (!title || !price) {
       alert('Title and Price are required');
       return;
     }
+
+    const defaultImg = '/images/logo-emblem.png';
+    const finalImg = image || defaultImg;
 
     const payload = {
       title,
@@ -408,6 +525,9 @@ const AdminApp = {
       comparePrice,
       stock,
       badge,
+      image: finalImg,
+      images: [finalImg],
+      localImage: finalImg,
       topNotes,
       heartNotes,
       baseNotes,
@@ -585,6 +705,18 @@ const AdminApp = {
         }
 
         const tbody = document.getElementById('orders-table-body');
+        if (data.orders.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-12 text-center text-gray-400 font-mono text-xs">
+                <span class="text-2xl block mb-2">📦</span>
+                No active store orders. New customer orders will appear here automatically.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
         tbody.innerHTML = data.orders.map(o => {
           let paymentHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-white/5 border border-white/10 text-gray-300">${o.paymentMethod}</span>`;
           if (o.paymentMethod === 'UPI') {
@@ -613,9 +745,12 @@ const AdminApp = {
 
           let actionsHtml = `
             <div class="flex items-center justify-end gap-1.5">
-              <a href="/admin/invoice.html?id=${o.id}" target="_blank" class="px-3 py-1 rounded-lg bg-[#181824] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-xs font-semibold transition-colors inline-flex items-center gap-1" title="View & Print Tax Invoice">
+              <a href="/admin/invoice.html?id=${o.id}" target="_blank" class="px-2.5 py-1 rounded-lg bg-[#181824] hover:bg-[#D4AF37] hover:text-black text-gray-300 text-xs font-semibold transition-colors inline-flex items-center gap-1" title="View & Print Tax Invoice">
                 🧾 Invoice
               </a>
+              <button onclick="AdminApp.deleteOrder('${o.id}')" class="px-2 py-1 rounded-lg bg-red-950/40 hover:bg-red-800 text-red-300 hover:text-white text-xs transition-colors" title="Delete Order #${o.id}">
+                🗑️
+              </button>
           `;
 
           if (o.paymentMethod === 'UPI' && o.paymentStatus === 'Verification Pending') {
@@ -667,6 +802,41 @@ const AdminApp = {
           spinner.classList.remove('animate-spin');
         }, 500);
       }
+    }
+  },
+
+  async deleteOrder(id) {
+    if (!confirm(`Are you sure you want to permanently delete Order #${id}? This cannot be undone.`)) return;
+    try {
+      const res = await this.authFetch(`/api/orders/${id}`, { method: 'DELETE' });
+      if (!res) return;
+      const data = await res.json();
+      if (data.success) {
+        this.loadOrders();
+      } else {
+        alert(data.message || 'Error deleting order');
+      }
+    } catch (e) {
+      console.error(e);
+      alert('Failed to delete order');
+    }
+  },
+
+  async clearAllOrders() {
+    if (!confirm('⚠️ WARNING: Are you sure you want to delete ALL orders from the database? This cannot be undone.')) return;
+    try {
+      const res = await this.authFetch('/api/orders/all', { method: 'DELETE' });
+      if (!res) return;
+      const data = await res.json();
+      if (data.success) {
+        alert('All orders have been cleared successfully.');
+        this.loadOrders();
+      } else {
+        alert(data.message || 'Error clearing orders');
+      }
+    } catch (e) {
+      console.error(e);
+      alert('Failed to clear orders');
     }
   },
 

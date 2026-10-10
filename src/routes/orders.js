@@ -225,4 +225,33 @@ router.put('/:id/status', requireAdmin, (req, res) => {
   }
 });
 
+// ADMIN: DELETE /api/orders/all - Clear all store orders (Protected)
+router.delete('/all', requireAdmin, (req, res) => {
+  try {
+    db.clearAllOrders();
+    res.json({
+      success: true,
+      message: 'All orders have been successfully cleared from the database'
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// ADMIN: DELETE /api/orders/:id - Delete a specific order (Protected)
+router.delete('/:id', requireAdmin, (req, res) => {
+  try {
+    const deleted = db.deleteOrder(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ success: false, message: 'Order not found or already deleted' });
+    }
+    res.json({
+      success: true,
+      message: `Order #${req.params.id} deleted successfully`
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 const db = require('../db');
 const { requireAdmin } = require('../middleware/auth');
 
@@ -94,6 +96,52 @@ router.delete('/:id', requireAdmin, (req, res) => {
       return res.status(404).json({ success: false, message: 'Product not found or already deleted' });
     }
     res.json({ success: true, message: 'Product deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// ADMIN: POST /api/products/upload-image - Upload product image from device (Protected)
+router.post('/upload-image', requireAdmin, (req, res) => {
+  try {
+    const { imageBase64, fileName } = req.body;
+    if (!imageBase64 || typeof imageBase64 !== 'string') {
+      return res.status(400).json({ success: false, message: 'Base64 image data is required' });
+    }
+
+    const matches = imageBase64.match(/^data:image\/([a-zA-Z0-9.+]+);base64,(.+)$/);
+    let ext = 'jpg';
+    let dataBuffer;
+
+    if (matches && matches[2]) {
+      ext = matches[1].replace('jpeg', 'jpg');
+      dataBuffer = Buffer.from(matches[2], 'base64');
+    } else {
+      dataBuffer = Buffer.from(imageBase64, 'base64');
+    }
+
+    // Limit buffer size to 10MB
+    if (dataBuffer.length > 10 * 1024 * 1024) {
+      return res.status(400).json({ success: false, message: 'Image size exceeds 10MB limit' });
+    }
+
+    const uploadDir = path.join(__dirname, '..', '..', 'public', 'uploads', 'products');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    const cleanExt = (ext || 'jpg').split('+')[0];
+    const generatedFileName = `prod_${Date.now()}_${Math.floor(Math.random() * 1000)}.${cleanExt}`;
+    const filePath = path.join(uploadDir, generatedFileName);
+
+    fs.writeFileSync(filePath, dataBuffer);
+
+    const imageUrl = `/uploads/products/${generatedFileName}`;
+    res.json({
+      success: true,
+      message: 'Product image uploaded successfully',
+      url: imageUrl
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

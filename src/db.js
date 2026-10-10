@@ -60,12 +60,16 @@ function addProduct(productData) {
   const db = readDb();
   const id = 'zp-prod-' + Date.now();
   const slug = (productData.title || 'perfume').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const img = productData.image || productData.localImage || '/images/logo-emblem.png';
   const newProduct = {
     id,
     slug,
     rating: 5.0,
     reviewCount: 1,
     ...productData,
+    image: img,
+    images: Array.isArray(productData.images) && productData.images.length ? productData.images : [img],
+    localImage: img,
     price: Number(productData.price) || 399,
     comparePrice: Number(productData.comparePrice) || 699,
     stock: Number(productData.stock) || 25,
@@ -80,12 +84,17 @@ function updateProduct(id, updates) {
   const db = readDb();
   const index = (db.products || []).findIndex(p => p.id === id);
   if (index === -1) return null;
+  const existing = db.products[index];
+  const img = updates.image || updates.localImage || existing.image || '/images/logo-emblem.png';
   db.products[index] = { 
-    ...db.products[index], 
+    ...existing, 
     ...updates,
-    price: updates.price !== undefined ? Number(updates.price) : db.products[index].price,
-    comparePrice: updates.comparePrice !== undefined ? Number(updates.comparePrice) : db.products[index].comparePrice,
-    stock: updates.stock !== undefined ? Number(updates.stock) : db.products[index].stock
+    image: img,
+    images: Array.isArray(updates.images) && updates.images.length ? updates.images : [img],
+    localImage: img,
+    price: updates.price !== undefined ? Number(updates.price) : existing.price,
+    comparePrice: updates.comparePrice !== undefined ? Number(updates.comparePrice) : existing.comparePrice,
+    stock: updates.stock !== undefined ? Number(updates.stock) : existing.stock
   };
   writeDb(db);
   return db.products[index];
@@ -300,6 +309,21 @@ function verifyOrderPayment(id, action, adminUser = 'Admin', reason = '') {
   return order;
 }
 
+function deleteOrder(id) {
+  const db = readDb();
+  const initialLen = (db.orders || []).length;
+  db.orders = (db.orders || []).filter(o => o.id.toUpperCase() !== id.toUpperCase());
+  writeDb(db);
+  return db.orders.length < initialLen;
+}
+
+function clearAllOrders() {
+  const db = readDb();
+  db.orders = [];
+  writeDb(db);
+  return true;
+}
+
 // User / Auth helpers
 function findUserByEmail(email) {
   const db = readDb();
@@ -458,6 +482,8 @@ module.exports = {
   getOrdersByEmailOrPhone,
   createOrder,
   updateOrderStatus,
+  deleteOrder,
+  clearAllOrders,
   checkDuplicateUtr,
   verifyOrderPayment,
   findUserByEmail,
